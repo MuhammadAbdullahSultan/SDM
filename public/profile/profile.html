@@ -1,7 +1,14 @@
-<h2>Profile Settings</h2>
-<hr/>
+<div class="page-header">
+   <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#!maintain">Setting</a>
+        </li>
+        <li class="breadcrumb-item active">Setting up your profile by changing password</li>
+    </ol>
+</div>
+
 <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-12">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         
         
         
@@ -14,14 +21,14 @@
             <input type="password" class="form-control" data-ng-model="currentPass" id="currentPass"/>
 
             <label for="newPass">Enter New Password</label>
-            <input type="password" class="form-control" data-ng-model="newPassword"/>
+            <input type="password" class="form-control" data-ng-model="newPassword" placeholder="More than 6 alphanumeric characters"/>
 
             <label for="newPass">Repeat New Password</label>
-            <input type="password" class="form-control" data-ng-model="newPasswordrepeat"/>
+            <input type="password" class="form-control" data-ng-model="newPasswordrepeat" placeholder="Ensure the password as entered above"/>
             
             <br/>
             <div class="form-group">
-                <input type="button" data-ng-click="changePassword()" value="Change Password" class="btn btn-primary"/>
+                <input type="button" data-ng-click="changePassword()" value="Change Password" class="btn btn-info"/>
             </div>
         </form>
         </div>

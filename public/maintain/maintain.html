@@ -1,15 +1,15 @@
 <div class="page-header">
    <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#!maintain">Maintain</a>
+          <a href="#!maintain">Manage Equipment</a>
         </li>
-        <li class="breadcrumb-item active">Maintain system and equipment</li>
+        <li class="breadcrumb-item active">Maintaining system and equipment</li>
     </ol>
 </div>
 <div>
    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-         <button type="button" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
+         <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
       </div>
    </div>
    <br/>
@@ -33,11 +33,11 @@
                <td id="age_row1"><p>{{equipments.description}}</p></td>
                <td id="group_row1">{{equipments.group}}</td>
                <td>
-                  <a data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></a>
+                  <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button>
                    
-                  <a id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></a>
+                  <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
                    
-                  <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
+                  <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
                    
                </td>
                 
@@ -93,8 +93,8 @@
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
                   <strong>Save Complete</strong>
                 </div>
-            <button type="button" class="btn btn-primary" data-ng-click="saveEquipment()">Save</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-ng-click="saveEquipment()">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span></button>
             </div>
          </div>
    </div>
@@ -136,37 +136,14 @@
                         <option value="">
                          <input type="text" id="other" placeholder="Other Group"/>   
                      </datalist>
-<!--
-                      <ul class="nav" role="navigation">
-    <li class="dropdown"> <a id="searchType" role="button" class="form-control" data-toggle="dropdown" data-ng-model="groupToAdd">Select Group<b class="caret"></b></a>
 
-        <ul class="dropdown-menu" id="browsers" role="menu">
-            <li role="presentation"><a role="menuitem" tabindex="-1">Group A</a>
-
-            </li>
-            <li role="presentation" class="form-control"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1">Group B</a>
-
-            </li>
-            <li role="presentation" class="form-control"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1">Group C</a>
-
-            </li>
-            <li role="presentation" class="form-control"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="other" placeholder="Other Group"/><button>+</button></a>
-
-            </li>
-        </ul>
-    </li>
-</ul>
--->
                   </div>
                
             </div>
                 
             <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" data-ng-click="writeUserData()">Add</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span></button>
             </div>
          </div>
           </div>
