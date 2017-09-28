@@ -189,31 +189,24 @@
                   </select>
                </div>
                 
-               <div class="container">
-                    <form action="" class="form-horizontal"  role="form">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="dtp_input4" class="col-md-2 control-label">Start Time</label>
-                                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label for="dtp_input4" class="control-label">Start Time</label>
+                                <div class="input-group date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                                     <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT">
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                 </div>
                                 <input type="hidden" id="dtp_input4" value="" /><br/>
                             </div>
 
-                            <div class="form-group">
-                                <label for="dtp_input5" class="col-md-2 control-label">End Time</label>
-                                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label for="dtp_input5" class="control-label">End Time</label>
+                                <div class="input-group date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                                     <input class="form-control" size="16" type="text" value="" readonly data-ng-model="endDT">
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                 </div>
                                 <input type="hidden" id="dtp_input5" value="" /><br/>
                             </div>
 
-                        </fieldset>
-                        <input type="reset" class="btn btn-primary" role="button" style="margin:20px" data-ng-click="resetGraph()"/>
-                    </form>
-                </div>
                 
             </div>
          </div>
@@ -240,7 +233,7 @@
                      <th id="type">Type</th>
                   </tr>
                </thead>
-               <tbody id="downtimeData">
+               <tbody>
                   <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d != null">
                      <td headers = "equipment">{{d.equipment}}</td>
                      <td headers = "start">{{d.start}}</td>
@@ -249,27 +242,16 @@
                   </tr>
                </tbody>
                 
+                {{hours}}
+                
                 <tfoot>
-                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination" boundary-links="true" force-ellipses="true"></ul>
                 </tfoot>
             </table>
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
-    
-    
-<!--
-    <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="fa fa-calendar"></i></button>
-          </span>
-        </p>
-      </div>
-    </div>
--->
     
 <div class="modal fade" id="viewGraph">
    <div class="modal-dialog modal-lg">
