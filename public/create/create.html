@@ -1,42 +1,36 @@
 <div class="page-header">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#!create">Create</a>
+          <a href="#!create">Manage User</a>
         </li>
         <li class="breadcrumb-item active">Create users panel</li>
     </ol>
     
 </div>
-<div>
+
+<div class="card mb-3">
+   <div class="card-header">
+      <i class="fa fa-area-chart"></i> System
+   </div>
+   <div class="card-body">
+
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <label for="email">Email</label>
-            <input type="text" ng-model="email" class="form-control" id="email">
+            <input type="email" ng-model="email" class="form-control" id="email" placeholder="e.g: abc123@def456.com" >
 
             <label for="password">Password</label>
-            <input type="password" ng-model="password" class="form-control" id="password">
+            <input type="password" ng-model="password" class="form-control" id="password" placeholder="More than 6 alphanumeric characters" >
+            
+            <br>
+             
+            <button data-ng-click="createUser()" class="btn  cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active">Create User  <span class="fa fa-plus"></span></button>
         </div>
-    
-    </div>
-    
-
-  <br>
-    
-    <div class="row">
         
-        <button data-ng-click="createUser()" class="btn  cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active " style="margin-left:15px">Create User  <span class="fa fa-plus"></span></button>
-        
-<!--        <button ng-click="changePW()" class="btn  cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#changePassword" data-backdrop="false" style="margin-left:15px">Change Password  <span class="fa fa-pencil"></span></button>  -->
-        
-    </div>
-
-  <br><br>
-
-<!--  <button ng-click="deleteUser()">Delete User</button>-->
-    
+    </div>    
     <br>
     
-    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-6 txtsize">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="box">
             <div class="table-responsive">
     <table class="table table-hover">
@@ -60,6 +54,7 @@
     </table>
                 </div>
             </div>
+    </div>
     </div>
 </div>
 
