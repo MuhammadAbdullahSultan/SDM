@@ -11,76 +11,95 @@
 </div>
 <div class="row">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <button type="button" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
+      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
    </div>
 </div>
 <br/>
 
-<div class="card mb-3">
+<div class="row">
+
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    
+    <div class="card mb-3">
    <div class="card-header">
       <i class="fa fa-area-chart"></i> System
    </div>
    <div class="card-body">
-      <div class="row txtsize">
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrl">
-            <div class="col-xs-12 txtsize">
-               System Downtime (Hour)
-               <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl" style="font-size: 13px">
+                System Downtime (Hour)
+                
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-            </div>
-            <div class="col-xs-12 border" id="chartStyle">
-               <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrlPercent">
-            <div class="col-xs-12">
-               System Downtime Percentage(%)
-               <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
-            <div class="col-xs-12 border" id="chartStyle">
-               <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+        </div>
+        
+        
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent" style="font-size: 15px">
+            
+            System Downtime Percentage(%)
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
+            
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
-         </div>
-         
-      </div>
-   </div>
+            
+        </div>
     
+    </div>
+    </div>
+</div>
     
 </div>
-<div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-area-chart"></i> Equipments</div>
-        <div class="card-body">
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    
+    <div class="card mb-3">
+   <div class="card-header">
+      <i class="fa fa-area-chart"></i> Equipment
+   </div>
+   <div class="card-body">
+    <div class="row" style="margin-left: 5px, margin-right: 5px">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl">
+
+                Equipment Downtime (Hour)
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-            <div class="row txtsize">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrl">
-               <div class="col-xs-12 txtsize">
-                  Equipment Downtime (Hour)
-                  <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-               </div>
-               <div class="col-xs-12 border" id="chartStyle">
-                  <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-               </div>
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrlPercent">
-               <div class="col-xs-12 txtsize">
-                  Equipment Downtime Percentage (%) 
-                  <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
-            
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-               </div>
-               <div class="col-xs-12 border" id="chartStyle">
-                  <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-               </div>
-            </div>
-         </div>
         </div>
-      </div>
+       
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent">
+            
+            Equipment Downtime Percentage (%) 
+            
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
+            
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                                        
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+            </div>        
+        </div>
+        
+        
+    </div>
+    </div>
+</div>
+
+    
+</div>
+
+</div>
     
     <div class="row">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -152,8 +171,10 @@
 </div>
 -->
     
-<a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span></a>
-<a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span></button>
+    
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+    
 <div class="modal fade" id="manageDT">
    <div class="modal-dialog modal-lg">
       <div class="modal-content txtsize">
@@ -211,9 +232,9 @@
             </div>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-ng-click="manageDowntime()">Add Downtime <span class="fa fa-plus"></span>
+            <button type="button" class="btn btn-info" data-ng-click="manageDowntime()"><span class="fa fa-plus"></span>
             </button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span></button>
          </div>
       </div>
    </div>
