@@ -1,0 +1,87 @@
+<div class="page-header">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#!create">Create</a>
+        </li>
+        <li class="breadcrumb-item active">Create users panel</li>
+    </ol>
+    
+</div>
+<div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
+            <label for="email">Email</label>
+            <input type="text" ng-model="email" class="form-control" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" ng-model="password" class="form-control" id="password">
+        </div>
+    
+    </div>
+    
+
+  <br>
+    
+    <div class="row">
+        
+        <button data-ng-click="createUser()" class="btn  cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active " style="margin-left:15px">Create User  <span class="fa fa-plus"></span></button>
+        
+<!--        <button ng-click="changePW()" class="btn  cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#changePassword" data-backdrop="false" style="margin-left:15px">Change Password  <span class="fa fa-pencil"></span></button>  -->
+        
+    </div>
+
+  <br><br>
+
+<!--  <button ng-click="deleteUser()">Delete User</button>-->
+    
+    <br>
+    
+    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-6 txtsize">
+        <div class="box">
+            <div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+                    <tr>
+                      <th>List of Existing Users</th>
+                        <th></th>
+                    </tr>
+        </thead>
+                  <tbody>
+                    <tr>
+                        <td>User 1</td>
+                        
+                        <td>
+                        <button id="deactivate" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" onclick="deleteUser">Deactivate <span class="fa fa-times"></span></button>
+                        </td>
+
+                    </tr>
+                    
+                  </tbody>
+    </table>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changePassword">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content txtsize">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Change Password</h4>
+       </div>
+       <div class="modal-body">
+         <label for="email">Email</label>
+            <input type="text" ng-model="email" class="form-control" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" ng-model="password" class="form-control" id="password">
+           
+       </div>
+       <div class="modal-footer">
+           
+           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+  </div>

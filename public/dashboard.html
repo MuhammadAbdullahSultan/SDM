@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp" data-ng-controller="loginCtrl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    <script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <!-- Bootstrap core CSS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Jquery UI -->
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Toaster css -->
+    <link rel="stylesheet" href="assets/css/toaster.min.css">
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="assets/css/sb-admin.css" rel="stylesheet">
+    <!--  Datetimepicker  -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="dtp/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    
+</head>
+
+<body class="fixed-nav bg-dark sidenav-toggled" id="page-top" data-ng-controller="myCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="index.html">System Downtime Monitoring</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-placement="right" title="Dashboard">
+                    <a class="nav-link" href="#!sdt">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-placement="right" title="Manage Downtime">
+                    <a class="nav-link" href="#!downtime">
+                        <i class="fa fa-fw fa-area-chart"></i>
+                        <span class="nav-link-text">Manage Downtime</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-placement="right" title="Manage Equipment">
+                    <a class="nav-link" href="#!maintain">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">Manage Equipment</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-placement="right" title="Manage User">
+                    <a class="nav-link" href="#!create">
+                        <i class="fa fa-fw fa-user"></i>
+                        <span class="nav-link-text">Manage User</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                  <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                  </a>
+                </li>
+              </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#!profile" class="nav-link">
+                        <i class="fa fa-fw fa-user"></i>Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-ng-click="signout();">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Example DataTables Card-->
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div data-ng-view=""></div>
+            <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
+        </div>
+    </div>
+    
+    <!-- Angular -->
+    <script src="assets/js/angular.js"></script>
+    <script src="assets/js/angular-route.min.js"></script>
+    <!-- Charts -->
+    <script src="vendor/chart.js/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+    <!-- Toaster -->
+    <script src="assets/js/toaster.min.js"></script>
+    
+    <!-- jquery ui -->
+    <!-- modernizr -->
+    <script src="assets/js/modernizr.custom.79639.js"></script>
+    <!-- sb admin js -->
+    <script src="assets/js/sb-admin.min.js"></script>
+    <!-- Animate -->
+    <script src="assets/js/angular-animate.js"></script>
+    <!-- Sanitize -->
+    <script src="assets/js/angular-sanitize.js"></script>
+    <!-- Bootstrap ui -->
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <!-- Admin datatables -->
+    <script src="assets/js/sb-admin-datatables.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="assets/js/app.js"></script>
+    <script src="downtime/downtime.js"></script>
+    <script src="maintain/maintain.js"></script>
+    <script src="Searchdowntime/sdt.js"></script>
+    <script src="create/create.js"></script>
+    <script src="profile/profile.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="assets/js/sb-admin-datatables.min.js"></script>
+    <!--  Datetimepicker  -->
+    <script type="text/javascript" src="dtp/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="dtp/js/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+</body>
+
+</html>

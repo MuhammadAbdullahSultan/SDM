@@ -1,0 +1,330 @@
+.NavColor{
+    background-color: rgba(0, 70, 79, 1);
+    
+}
+
+.logintext{
+    color: darkblue;
+}
+
+.menucolor{
+    color: darkcyan;
+}
+
+.sideNavColor {
+    color: white;
+}
+#buttcolor{
+    background-color: rgba(33, 23, 115, 1);
+    color: whitesmoke;
+}
+
+li a:hover {
+    color: white;
+    border-radius: 20px;
+}
+
+/*Collapse Filter Panel*/
+
+.container{
+    margin-top:30px;
+}
+
+.filter-col{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+/*Datetimepicker*/ 
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+
+/**/
+
+.box {
+    background: transparent;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-style: groove;
+    border-color: darkgrey;
+}
+
+.buttadd{
+    border-radius: 100px;
+    margin-left: 15px;
+    background-color: rgba(33, 23, 115, 1);
+    color: aliceblue;
+}
+
+.buttradius {
+    border-radius: 100px;
+    background-color: rgba(33, 23, 115, 1);
+    color: aliceblue;
+}
+
+.buttaddin{
+    border-radius: 100px;
+    background-color: rgba(33, 23, 115, 1);
+    color: aliceblue;
+    
+}
+
+.thead-inverse{ 
+    background-color: cornflowerblue;
+    color: rgba(33, 23, 115, 1);
+}
+
+#borders{
+    border-radius: 1px 50px 30px ;
+    background: gray;
+    color: black;
+    border-color: aqua;
+    
+}
+
+#backgroundall {
+    background-image: url("../img/1.jpg");
+    background-repeat: repeat;
+}
+
+.border{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 50dp;
+    padding: 5px;
+}
+
+#fruits th{
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#fruits th.asc:after{
+    content:'▲';
+    display:inline-block;
+    padding:0 .5em;
+    color:white;
+}
+#fruits th.desc:after{
+    content:'▼';
+    display:inline-block;
+    padding:0 .5em;
+    color:white;
+}
+#central{
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+.start{
+    text-align: center;
+    font-size: 20px;
+}
+
+.end{
+    text-align: center;
+        font-size: 20px;
+
+}
+
+.wordcol{
+    color: aliceblue;
+}
+
+.table-hover{
+    color: black;
+}
+
+.logoimage{
+    width: auto;
+    height: auto;
+}
+
+
+.logoutbutt{
+    margin-bottom: 13px;
+}
+
+.searchtable{
+    border: 1px solid #888;
+}
+
+.margin{
+    margin-left: 20px;
+}
+
+.margsearch{
+    margin-left: 16px;
+}
+
+.primary-color-dark{
+    background:#0d47a1;
+    color: white;
+    text-align: right;
+    margin-top: 483px;
+}
+ 
+.FOOT{
+    color: white;
+    
+} 
+
+ 
+ .icon-ul { list-style-type:none !important; margin:0px; padding:0px;}
+ .icon-ul li { line-height:75px; width:100%; float:left;}
+ .icon { float:left; margin-right:5px;}
+ 
+ 
+ .copyright { min-height:40px; background-color:#000000;}
+ .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
+ .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
+ .post p { font-size:12px; color:#FFF; line-height:20px;}
+ .post p span { display:block; color:#8f8f8f;}
+ .bottom_ul { list-style-type:none; float:right; margin-bottom:0px;}
+ .bottom_ul li { float:left; line-height:40px;}
+ .bottom_ul li:after { content:"/"; color:#FFF; margin-right:8px; margin-left:8px;}
+ .bottom_ul li a { color:#FFF;  font-size:12px;}
+
+.txtsize{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+
+.cd-add-to-cart {
+  display: inline-block;
+    margin: 10px;
+  padding: 0.5em 0.5em;
+  background: rgba(33, 23, 115, 1);
+  border-radius: 50em;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.cd-add-to-cart:hover {
+  background: #42a2e1;
+}
+.cd-add-to-cart:active {
+  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border: 10px;
+}
+
+.boxmarg{
+    border-right: 200px;
+    border-left: 200px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ui-datepicker-calendar {
+   display: none;
+}
+.ui-datepicker-month {
+   display: none;
+}
+.ui-datepicker-next,.ui-datepicker-prev {
+  display:none;
+}
+
+.btn{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 11px;}
+#return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}

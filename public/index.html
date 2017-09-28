@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/toaster.min.css">
+</head>
+
+<body>
+    <div class="login-dark" data-ng-controller="loginCtrl">
+        <form>
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><img src="assets/img/logo_xfab.png"/>
+                                           </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="user" placeholder="User Name" data-ng-model="email">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password" data-ng-model="password">
+            </div>
+            <div class="form-group">
+<!--                <button class="btn btn-primary btn-block" type="submit">Log In</button>-->
+                <button class="btn btn-primary btn-block" data-ng-click="signInWithEmailAndPassword(email, password)">Log In</button>
+            </div>
+            <a href="#" class="forgot">Forgot your email or password?</a>
+            <div>{{errorMsg}}</div>
+        
+        </form>
+    </div>
+    <!-- Angular -->
+    <script src="assets/js/angular.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <script src="assets/js/angular-route.min.js"></script>
+    <script src="assets/js/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/"></script>
+    <script src="assets/js/toaster.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="create/create.js"></script>
+    <script src="Searchdowntime/sdt.js"></script>
+    <script src="downtime/downtime.js"></script>
+    <script src="maintain/maintain.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="profile/profile.js"></script>
+    <script src="assets/js/angular-sanitize.js"></script>
+        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+
+    
+</body>
+
+</html>

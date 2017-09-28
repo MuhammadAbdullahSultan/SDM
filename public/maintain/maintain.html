@@ -1,0 +1,175 @@
+<div class="page-header">
+   <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#!maintain">Maintain</a>
+        </li>
+        <li class="breadcrumb-item active">Maintain system and equipment</li>
+    </ol>
+</div>
+<div>
+   <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+         <button type="button" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
+      </div>
+   </div>
+   <br/>
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+       <div class="box">
+           <div class="table-responsive">
+      <table id="fruits" class="table table-hover">
+         <thead class = "thead">
+            <tr>
+                <th class="sortable asc">Equipment Name</th>
+                <th class="sortable">System</th>
+                <th class="sortable">Description</th>        
+                <th class="sortable">Group</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr id="row1" data-ng-repeat = "equipments in data | offset: currentPage*unitsInPage | limitTo: unitsInPage track by $index">
+               <td id="name_row1">{{equipments.$id}}</td>
+               <td id="country_row1">{{equipments.system}}</td>
+               <td id="age_row1"><p>{{equipments.description}}</p></td>
+               <td id="group_row1">{{equipments.group}}</td>
+               <td>
+                  <a data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></a>
+                   
+                  <a id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></a>
+                   
+                  <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
+                   
+               </td>
+                
+                
+            </tr>
+         </tbody>
+         
+      </table>
+               </div>
+           </div>
+   </div>
+    
+</div>
+
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal For adding Equipment-->
+<div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
+   <div class="modal-dialog modal-lg">
+         <div class="modal-content txtsize">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Edit {{data[indexValue].$id}}</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditSystem">System</label>
+                            <input type="text" data-ng-model="data[indexValue].system" class="form-control" id="toEditSystem" >
+                        </div>
+                    </div>
+                <br/>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditDesc">Description</label>
+                            <textarea type="text" data-ng-model="data[indexValue].description" class="form-control" id="toEditDesc" ></textarea>
+                        </div>
+                    </div>  
+                <br/>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditGroup">Group</label>
+                            <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" >
+                        </div>
+                    </div>
+                
+                
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-dismissible alert-success" data-ng-if="editComplete">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Save Complete</strong>
+                </div>
+            <button type="button" class="btn btn-primary" data-ng-click="saveEquipment()">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+   </div>
+</div>
+
+<!-- Modal For adding Equipment-->
+<div class="modal fade" role="dialog" id="addEquipment" aria-hidden="true" tabindex="-1">
+   <div class="modal-dialog modal-lg">
+       <form>
+         <div class="modal-content txtsize">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title ">Add Equipment</h4>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                     <h5>Equipment</h5>
+                     <input type="text" class="form-control txtsize" id="equi" placeholder="e.g ABC-A0-12" data-ng-model="equipmentToAdd" maxlength="9" pattern="[A-Z]{3}[-][A-Z]{1}[0-9]{1}[-][0-9]{2}">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <h5>Description</h5>
+                           <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 characters"><textarea></textarea> <span id='remainingC'></span></textarea>
+                           <p id="count"></p>
+                  </div>
+               
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                     <h5>System</h5>
+                     <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                     <h5>Group</h5>
+                     <input list="browsers" name="browser" class="form-control txtsize" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
+                     <datalist id="browsers">
+                        <option value="Mechanical">
+                        <option value="">
+                        <option value="">
+                        <option value="">
+                        <option value="">
+                         <input type="text" id="other" placeholder="Other Group"/>   
+                     </datalist>
+<!--
+                      <ul class="nav" role="navigation">
+    <li class="dropdown"> <a id="searchType" role="button" class="form-control" data-toggle="dropdown" data-ng-model="groupToAdd">Select Group<b class="caret"></b></a>
+
+        <ul class="dropdown-menu" id="browsers" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1">Group A</a>
+
+            </li>
+            <li role="presentation" class="form-control"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1">Group B</a>
+
+            </li>
+            <li role="presentation" class="form-control"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1">Group C</a>
+
+            </li>
+            <li role="presentation" class="form-control"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="other" placeholder="Other Group"/><button>+</button></a>
+
+            </li>
+        </ul>
+    </li>
+</ul>
+-->
+                  </div>
+               
+            </div>
+                
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-ng-click="writeUserData()">Add</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+          </div>
+           </form>
+   </div>
+</div>
