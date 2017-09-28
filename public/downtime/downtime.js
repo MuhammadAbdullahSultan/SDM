@@ -52,11 +52,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
      $scope.allSystems = [];
      $scope.allDT = [];
     
-    window.onload = function () {
-        angular.forEach ($scope.allDT , function (a) {
-        console.log(a.start);
-        })
-    }
     
         
     
@@ -151,17 +146,30 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         var newref = firebase.database().ref();
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
-    
+        var push = false;
+    var startDate = new Date();
         dtlist.$loaded().then(function(dtdata) {
                 $scope.dtdata = dtdata;
                 console.log($scope.dtdata);
                 angular.forEach ($scope.dtdata , function (d) {
-                    angular.forEach (d , function (e) {
-                    console.log(e);
-                    $scope.allDT.push(e);
-                    console.log($scope.allDT);
+                    angular.forEach (d , function (e) {                        
+//                    console.log(e.start);
+//                    var startDate = new Date(e.start);
+//                    var format = startDate.format("yyyy.mm.dd HH:ii");
+//                    console.log(format);
+                        
+                        if(e != null) {
+                            $scope.allDT.push(e);
+                            var push = true;
+                            console.log($scope.allDT);
+                            angular.forEach ($scope.allDT, function (all) {
+                                var dateString = moment.unix(all.start).format("MM/DD/YYYY HH:m");
+                                console.log(dateString);
+                            })
+                        }
                     
                 })
+
                 });
             
 //            var startDate = new Date($scope.);
