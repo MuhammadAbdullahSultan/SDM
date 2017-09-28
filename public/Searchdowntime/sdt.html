@@ -6,91 +6,105 @@
         <li class="breadcrumb-item active">My Dashboard</li>
     </ol>
 </div>    
-    <br>
 
+<button class="btn btn-primary" role="button" style="margin:2px" data-ng-click="resetGraph()">Reset</button>
+
+<div class="row">
+
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     
-    <div class="row txtsize">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrl">
-        
-                <div class="col-xs-12 txtsize">
-
+    <div class="card mb-3">
+   <div class="card-header">
+      <i class="fa fa-area-chart"></i> System
+   </div>
+   <div class="card-body">
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl" style="font-size: 13px">
                 System Downtime (Hour)
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+                
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-            </div>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
-            <div class="col-xs-12 border" id="chartStyle">
+            <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
         </div>
         
         
         
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 txtsize" data-ng-controller="myCtrlPercent">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent" style="font-size: 15px">
             
-            <div class="col-xs-12">
             System Downtime Percentage(%)
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-            </div>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
                 
-            <div class="col-xs-12 border" id="chartStyle">
+            <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
             
         </div>
     
     </div>
-
+    </div>
+</div>
+    
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    
+    <div class="card mb-3">
+   <div class="card-header">
+      <i class="fa fa-area-chart"></i> Equipment
+   </div>
+   <div class="card-body">
     <div class="row" style="margin-left: 5px, margin-right: 5px">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrl">
-        
-                <div class="col-xs-12 txtsize">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl">
 
                 Equipment Downtime (Hour)
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-                <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-            </div>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
-            <div class="col-xs-12 border" id="chartStyle">
+            <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
         </div>
        
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" data-ng-controller="myCtrlPercent">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent">
             
-            <div class="col-xs-12 txtsize">
-
             Equipment Downtime Percentage (%) 
             
-            <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></a>
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-            <a class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></a>
-                            
-            </div>
-            
-            <div class="col-xs-12 border" id="chartStyle">
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                                        
+            <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>        
         </div>
         
         
     </div>
+    </div>
+</div>
+
+    
+</div>
+
+</div>
+
+
 <hr/>
 
-<form>
-    
-    <div class="container">
+<form style="margin-left: 15px">
+
     <form action="" class="form-horizontal"  role="form">
-        <fieldset>
-            
-			<div class="form-group">
-                <label for="dtp_input1" class="col-md-2 control-label">Select Year</label>
-                <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy" data-ng-model="yearFilter">
-                    <input class="form-control" size="16" type="text" value="" readonly data-ng-model="yearFilter">
+            <div class="row">
+			<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="dtp_input1" class="col-md-10 control-label">Select Year</label>
+                <div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy" data-ng-model="yearFilter">
+                    <input class="form-control" type="text" value="" readonly data-ng-model="yearFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input1" value="" />
@@ -98,29 +112,32 @@
                 <br/>
             </div>
             
-            <div class="form-group">
-                <label for="dtp_input2" class="col-md-2 control-label">Select Month</label>
-                <div class="input-group date form_date col-md-5" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
-                    <input class="form-control" size="16" type="text" value="" readonly data-ng-model="monthFilter">
+            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="dtp_input2" class="col-md-10 control-label">Select Month</label>
+                <div class="input-group date form_date col-md-12" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
+                    <input class="form-control" type="text" value="" readonly data-ng-model="monthFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                 </div>
-				<input type="hidden" id="dtp_input2" value="" /><br/>
+				<input type="hidden" id="dtp_input2" value="" />
+                {{monthFilter}}
+
+                <br/>
             </div>
             
-            <div class="form-group">
-                <label for="dtp_input3" class="col-md-2 control-label">Select Date</label>
-                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" value="" readonly data-ng-model="dayFilter">
+            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="dtp_input3" class="col-md-10 control-label">Select Day</label>
+                <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" type="text" value="" readonly data-ng-model="dayFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                 </div>
-				<input type="hidden" id="dtp_input3" value="" /><br/>
+				<input type="hidden" id="dtp_input3" value="" />
+                {{dayFilter}}
+                <br/>
             </div>
-			
-        </fieldset>
-        <input type="reset" class="btn btn-primary" role="button" style="margin:20px" data-ng-click="resetGraph()"/>
-    </form>
-</div>
-    
+			    </div>
+        
+        </form>    
+
 </form>
 
 <div class="modal fade" id="viewGraph">
