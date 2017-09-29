@@ -50,7 +50,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //  }
      $scope.allEquipments = [];
      $scope.allSystems = [];
-     $scope.allDT = [{}];
+     $scope.allDT = [];
     
     
         
@@ -149,22 +149,24 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         var push = false;
     var startDate = new Date();
         dtlist.$loaded().then(function(dtlist) {
-                $scope.dtdata = dtlist;
-//                console.log($scope.dtdata);
-                angular.forEach (dtlist , function (d) {
-//                    console.log(d);
-                    angular.forEach (d , function (e) {                        
-//                    console.log(e.start);
-//                    var startDate = new Date(e.start);
-//                    var format = startDate.format("yyyy.mm.dd HH:ii");
-//                    console.log(format);
-                        
-                        if(e != null) {
-                            $scope.allDT.push(e);
-                            var push = true;
-//                          
-                        }
-                    })
+                $scope.dtdata = dtlist; // Getting Downtime node
+                angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
+                    var newref1 = firebase.database().ref().child("downtime"); // creating new reference
+                    var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
+                    var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
+                    
+                    newdtlist.$loaded().then(function(newdtlist) {
+//                            console.log(newdtlist);
+                        angular.forEach (newdtlist, function (n) {
+                            
+                            $scope.allDT.push(n);
+                            console.log($scope.allDT.length);
+
+                            console.log($scope.allDT);
+//                            console.log(n);
+                        });
+                    });
+
 
                 });
             
@@ -252,6 +254,21 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //    if (tbody.children().length == 0) {
 //        tbody.html("<tr>NO DATA TO SHOW</tr>");
 //    }
+    
+    $(function () {
+        
+        var obj = $('#pagination').twbsPagination({
+            totalPages: $scope.allDT.length,
+            visiblePages: 5,
+            currentPage: 1,
+            itemsOnPage: 4,
+
+            onPageClick: function (event, page) {
+                console.info(page);
+            }
+        });
+        console.info(obj.data());
+    });
     
 
 }]);

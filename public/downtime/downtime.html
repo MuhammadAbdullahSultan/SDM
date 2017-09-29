@@ -255,7 +255,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d.start != null || d.end != null">
+                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index">
                      <td headers = "equipment">{{d.equipment}}</td>
                      <td headers = "start">{{d.start | cmdate: 'dd/mm/yyyy HH:m'}}</td>
                      <td headers = "end">{{d.end | cmdate: 'dd/mm/yyyy HH:m'}}</td>
@@ -263,10 +263,11 @@
                   </tr>
                </tbody>
                 
-                {{hours}}
                 
                 <tfoot>
-                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination" boundary-links="true" force-ellipses="true"></ul>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination" id="pagination"></ul>
+                    </nav>
                 </tfoot>
             </table>
           </div>
