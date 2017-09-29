@@ -28,38 +28,38 @@
          <thead class = "thead">
             <tr>
                 <th class="sortable asc">
-                    <a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">
+                    <a href="" data-ng-click="sortType = 'equipment'; sortReverse = !sortReverse">
                         Equipment 
-                        <span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </th>
                 <th class="sortable">
-                <a href="" ng-click="sortType = 'system'; sortReverse = !sortReverse">
+                <a href="" data-ng-click="sortType = 'system'; sortReverse = !sortReverse">
                         System 
-                        <span ng-show="sortType == 'system' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'system' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'system' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'system' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </th>
                 <th class="sortable">
-                <a href="" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                <a href="" data-ng-click="sortType = 'description'; sortReverse = !sortReverse">
                         Description 
-                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </th>        
                 <th class="sortable">
-                <a href="" ng-click="sortType = 'group'; sortReverse = !sortReverse">
+                <a href="" data-ng-click="sortType = 'group'; sortReverse = !sortReverse">
                         Group 
-                        <span ng-show="sortType == 'group' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'group' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'group' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'group' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </th>
                <th></th>
             </tr>
          </thead>
          <tbody>
-            <tr id="row1" data-ng-repeat = "equipments in data | orderBy:sortType:sortReverse | filter: obj track by $index">
+            <tr id="row1" data-ng-repeat = "equipments in data | orderBy:sortType:sortReverse | filter: search track by $index">
                <td id="name_row1">{{equipments.$id}}</td>
                <td id="country_row1">{{equipments.system}}</td>
                <td id="age_row1"><p>{{equipments.description}}</p></td>
@@ -80,25 +80,19 @@
              <container>
              <div class="row" style="margin-left: 2px">
                  
-                 <div class="col-xs-5"  style="margin-right: 15px">
+                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"  style="margin-right: 15px">
                  
                     <nav aria-label="Page navigation">
                         <ul class="pagination" id="pagination"></ul>
                     </nav>
                  
                  </div>
-                 <div class="col-xs-3">
-                               <div id="custom-search-input">
-                                    <div class="input-group">
-                                        <input type="text" class="search-query form-control" placeholder="Search equipment" data-ng-model=""/>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-info" type="button">
-                                                    <span class=" fa fa-search"></span>
-                                                </button>
-                                            </span>
-                                    </div>
-                                </div>
-                 
+                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-md-offset-6">
+                   <div id="custom-search-input">
+                        <div class="input-group">
+                            <input type="text" class="search-query form-control" placeholder="Search" data-ng-model="search"/>
+                        </div>
+                    </div>
                  </div>
              </div>
             </container>
@@ -185,7 +179,12 @@
                <div class="row">
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                      <h5>Equipment</h5>
-                     <input type="text" class="form-control txtsize" id="equi" placeholder="e.g ABC-A0-12" data-ng-model="equipmentToAdd" maxlength="9" pattern="[A-Z]{3}[-][A-Z]{1}[0-9]{1}[-][0-9]{2}">
+                     <input list="equipments" name="myEquipments" type="text" class="form-control txtsize" id="equi" placeholder="e.g ABC-A0-12" data-ng-model="equipmentToAdd" maxlength="9" pattern="[A-Z]{3}[-][A-Z]{1}[0-9]{1}[-][0-9]{2}">
+                      <datalist id="equipments">
+                        <option data-ng-repeat="e in data">{{e.$id}}</option>
+                      </datalist>
+                      
+<!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
                   </div>
                    
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -201,21 +200,12 @@
                    
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <h5>Group</h5>
-                     
-                        <ul class="nav" role="navigation">
-                            <li class="dropdown"> <a id="searchType" role="button" class="dropdown-toggle" data-toggle="dropdown" data-ng-model="groupToAdd">Select Group<b class="caret"></b></a>
-
-                                <ul class="dropdown-menu" id="browsers" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1">Mechanical</a>
-                                    </li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Other Group"/><span></span><button>+</button></a>
-
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                  </div>
+                     <input list="browsers" name="browser" class="form-control" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
+                     <datalist id="browsers">
+                        <option value="Mechanical">
+                         <input type="text" id="other" placeholder="Other Group"/>   
+                     </datalist>
+                   </div>
                
             </div>
                 
