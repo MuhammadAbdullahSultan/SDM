@@ -26,9 +26,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.writeUserData = function () {
         var isEmpty = false;
         
-        angular.forEach ($scope.data , function (d) {
-            
-    });
         if($scope.equipmentToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please enter an equipment"});
         } else if ($scope.descToAdd === undefined) {
@@ -72,10 +69,11 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
  //maximum character in description   
     $('textarea').keypress(function(){
 
-    if(this.value.length > 100){
+    if(this.value.length == 50){
         return false;
+    } else {
+        $("#remainingC").html("Remaining characters : " + (49 - this.value.length));
     }
-    $("#remainingC").html("Remaining characters : " +(50 - this.value.length));
 });
     
      $('.dropdown-menu input').click(function (e) {
@@ -92,10 +90,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     $scope.saveEquipment = function () {
         
         var isEmpty = false;
-        
-        angular.forEach ($scope.data , function (d) {
-            
-    });
+    
         if($scope.data[$scope.indexValue].system === "") {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please enter a system"});
         } else if ($scope.data[$scope.indexValue].description === "") {
@@ -123,7 +118,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
         list.$remove(item).then (function (deletedData) {
             console.log(deletedData);
         });
-    }
+    };
     
     
         var ref = firebase.database().ref();
@@ -135,6 +130,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
             $scope.data = data;
             console.log($scope.data[0].$id);
             angular.forEach ($scope.data , function (d) {
+            console.log(d);
         $scope.equipment1 = d.$id;
         angular.forEach (d.system, function (e) {
             $scope.system1 = e;
@@ -144,40 +140,40 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
             $scope.error = error;
         });
     
-    $(document).ready(function() {
-  $('th').each(function(col) {
-    $(this).hover(
-    function() { $(this).addClass('focus'); },
-    function() { $(this).removeClass('focus'); }
-  );
-    $(this).click(function() {
-      if ($(this).is('.asc')) {
-        $(this).removeClass('asc');
-        $(this).addClass('desc selected');
-        sortOrder = -1;
-      }
-      else {
-        $(this).addClass('asc selected');
-        $(this).removeClass('desc');
-        sortOrder = 1;
-      }
-      $(this).siblings().removeClass('asc selected');
-      $(this).siblings().removeClass('desc selected');
-      var arrData = $('table').find('tbody >tr:has(td)').get();
-      arrData.sort(function(a, b) {
-        var val1 = $(a).children('td').eq(col).text().toUpperCase();
-        var val2 = $(b).children('td').eq(col).text().toUpperCase();
-        if($.isNumeric(val1) && $.isNumeric(val2))
-        return sortOrder == 1 ? val1-val2 : val2-val1;
-        else
-           return (val1 < val2) ? -sortOrder : (val1 > val2) ? sortOrder : 0;
-      });
-      $.each(arrData, function(index, row) {
-        $('tbody').append(row);
-      });
-    });
-  });
-}); 
+//    $(document).ready(function() {
+//  $('th').each(function(col) {
+//    $(this).hover(
+//    function() { $(this).addClass('focus'); },
+//    function() { $(this).removeClass('focus'); }
+//  );
+//    $(this).click(function() {
+//      if ($(this).is('.asc')) {
+//        $(this).removeClass('asc');
+//        $(this).addClass('desc selected');
+//        sortOrder = -1;
+//      }
+//      else {
+//        $(this).addClass('asc selected');
+//        $(this).removeClass('desc');
+//        sortOrder = 1;
+//      }
+//      $(this).siblings().removeClass('asc selected');
+//      $(this).siblings().removeClass('desc selected');
+//      var arrData = $('table').find('tbody >tr:has(td)').get();
+//      arrData.sort(function(a, b) {
+//        var val1 = $(a).children('td').eq(col).text().toUpperCase();
+//        var val2 = $(b).children('td').eq(col).text().toUpperCase();
+//        if($.isNumeric(val1) && $.isNumeric(val2))
+//        return sortOrder == 1 ? val1-val2 : val2-val1;
+//        else
+//           return (val1 < val2) ? -sortOrder : (val1 > val2) ? sortOrder : 0;
+//      });
+//      $.each(arrData, function(index, row) {
+//        $('tbody').append(row);
+//      });
+//    });
+//  });
+//}); 
     
     
     // Counting characters in text area.
