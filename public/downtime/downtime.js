@@ -16,7 +16,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd HH:ii'
+        format: 'yyyy.mm.dd hh:ii'
     });
 	$('.form_date').datetimepicker({
         weekStart: 1,
@@ -77,11 +77,13 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             toaster.pop({type: 'warning', title: "End Time Empty", body: "Please enter an end time"});
         } else {
             
-            var start = new Date($scope.startDT);
-            var startDTunix = start.getTime() / 1000;
+            console.log($scope.startDT);
+            console.log($scope.endDT);
+            var start = $scope.startDT;
+            var startDTunix = new Date(start).getTime();
             
-            var end = new Date($scope.endDT);
-            var endDTunix = end.getTime() / 1000;
+            var end = $scope.endDT;
+            var endDTunix = new Date(end).getTime();
             
             console.log(startDTunix);
             console.log(endDTunix);
@@ -160,9 +162,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                         angular.forEach (newdtlist, function (n) {
                             
                             $scope.allDT.push(n);
-                            console.log($scope.allDT.length);
+                            
+//                            console.log(hours);
+//                            console.log($scope.allDT.length);
 
-                            console.log($scope.allDT);
+//                            console.log($scope.allDT);
 //                            console.log(n);
                         });
                     });
@@ -179,6 +183,46 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }).catch(function(error) {
                 $scope.error = error;
             });
+    $scope.execute = function () {
+//        var startDate = new Date($scope.allDT[2].start * 1000);
+//        var startYear = startDate.getFullYear();
+//        var startMonth = startDate.
+//        var starthours = startDate.getHours();
+//        var startminutes = "0" + startDate.getMinutes();
+//        // Seconds part from the timestamp
+//        var startseconds = "0" + startDate.getSeconds();
+//        var formatedstart = starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
+//        console.log(formatedstart);
+//        var end = new Date($scope.allDT[2].end);
+//        var hours = Math.abs(start - end) / 36e5;
+        
+        var end = new Date($scope.allDT[1].end);
+        var start = new Date($scope.allDT[1].start);
+//        var s = new Date(0);
+//        var e = new Date(0);
+//        s.setUTCSeconds(start);
+//        e.setUTCSeconds(end);
+        console.log(start);
+        console.log(end);
+        
+        var hours = Math.abs(end - start) / 36e5;
+        
+        console.log(hours);
+    }
+    
+    function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
+  return time;
+}
+    
             
 
     
@@ -269,6 +313,8 @@ app.directive('customzdatetime', function () {
 app.filter('cmdate', [
     '$filter', function($filter) {
         return function(input, format) {
+            var s = new Date (0);
+            format = s.setUTCSeconds(input);
             return $filter('date')(new Date(input), format);
         };
     }
