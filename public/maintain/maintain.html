@@ -117,13 +117,13 @@
                   </div>
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                         <h5>Description</h5>
-                           <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 characters"><textarea></textarea> <span id='remainingC'></span></textarea>
+                           <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 alphanumeric characters" required pattern="[a-zA-Z0-9]{3,}"><textarea></textarea> <span id='remainingC'></span></textarea>
                            <p id="count"></p>
                   </div>
                
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <h5>System</h5>
-                     <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
+                     <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Alphanumeric" data-ng-model="systemToAdd" required pattern="[a-zA-Z0-9]{3,}">
                   </div>
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <h5>Group</h5>

@@ -18,13 +18,13 @@
         <div class="card-body">
             <form>
             <label for="currentPass">Enter Current Password</label>
-            <input type="password" class="form-control" data-ng-model="currentPass" id="currentPass"/>
+            <input type="password" class="form-control" data-ng-model="currentPass" id="currentPass" required pattern="[a-zA-Z0-9]{6,}"/>
 
             <label for="newPass">Enter New Password</label>
-            <input type="password" class="form-control" data-ng-model="newPassword" placeholder="More than 6 alphanumeric characters"/>
+            <input type="password" class="form-control" data-ng-model="newPassword" placeholder="More than 6 alphanumeric characters" required pattern="[a-zA-Z0-9]{6,}"/>
 
             <label for="newPass">Repeat New Password</label>
-            <input type="password" class="form-control" data-ng-model="newPasswordrepeat" placeholder="Ensure the password as entered above"/>
+            <input type="password" class="form-control" data-ng-model="newPasswordrepeat" placeholder="Ensure the password as entered above" required pattern="[a-zA-Z0-9]{6,}"/>
             
             <br/>
             <div class="form-group">
