@@ -27,15 +27,39 @@
       <table id="fruits" class="table table-hover">
          <thead class = "thead">
             <tr>
-                <th class="sortable asc">Equipment Name</th>
-                <th class="sortable">System</th>
-                <th class="sortable">Description</th>        
-                <th class="sortable">Group</th>
+                <th class="sortable asc">
+                    <a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">
+                        Equipment 
+                        <span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="sortable">
+                <a href="" ng-click="sortType = 'system'; sortReverse = !sortReverse">
+                        System 
+                        <span ng-show="sortType == 'system' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'system' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th class="sortable">
+                <a href="" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                        Description 
+                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>        
+                <th class="sortable">
+                <a href="" ng-click="sortType = 'group'; sortReverse = !sortReverse">
+                        Group 
+                        <span ng-show="sortType == 'group' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'group' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
                <th></th>
             </tr>
          </thead>
          <tbody>
-            <tr id="row1" data-ng-repeat = "equipments in data | filter: obj track by $index">
+            <tr id="row1" data-ng-repeat = "equipments in data | orderBy:sortType:sortReverse | filter: obj track by $index">
                <td id="name_row1">{{equipments.$id}}</td>
                <td id="country_row1">{{equipments.system}}</td>
                <td id="age_row1"><p>{{equipments.description}}</p></td>
