@@ -119,10 +119,21 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label for="toEditGroup">Group</label>
-                            <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" >
+                            <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" readonly/>
+                                <ul class="nav" role="navigation">
+                                <li class="dropdown"> <a id="searchType" role="button" class="dropdown-toggle" data-toggle="dropdown" data-ng-model="groupToAdd"><b class="caret"></b></a>
+
+                                    <ul class="dropdown-menu" id="browsers" role="menu">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1">Mechanical</a>
+                                        </li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Other Group"/><span></span><button>+</button></a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                
                 
             </div>
             <div class="modal-footer">
