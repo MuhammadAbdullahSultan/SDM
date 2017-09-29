@@ -232,29 +232,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     //PAGINATION//
     
-        $scope.totalItems = $scope.data.length;
-      $scope.currentPage = 1;
-
-      $scope.setPage = function (pageNo) {
-        $scope.currentPage = pageNo;
-      };
-
-      $scope.pageChanged = function() {
-        $log.log('Page changed to: ' + $scope.currentPage);
-      };
-
-      $scope.maxSize = 5;
-      $scope.bigTotalItems = 175;
-      $scope.bigCurrentPage = 1; 
-    
-    // CHECK FOR EMPTY DATA IN TABLE
-    
-//    var tbody = $("#downtimeData tbody");
-//
-//    if (tbody.children().length == 0) {
-//        tbody.html("<tr>NO DATA TO SHOW</tr>");
-//    }
-    
     $(function () {
         
         var obj = $('#pagination').twbsPagination({

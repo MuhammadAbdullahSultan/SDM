@@ -47,6 +47,24 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         }
         
 };
+    
+        //PAGINATION//
+
+        $(function () {
+
+            var obj = $('#pagination').twbsPagination({
+                totalPages: $scope.data.length,
+                visiblePages: 5,
+                currentPage: 1,
+                itemsOnPage: 4,
+
+                onPageClick: function (event, page) {
+                    console.info(page);
+                }
+            });
+            console.info(obj.data());
+        });
+    
     //checkboxes table  
         $('.selectallAO').click(function() {
         this.checked ? $('.checkboxAO').prop('checked', true) : $('.checkboxAO').prop('checked', false);
