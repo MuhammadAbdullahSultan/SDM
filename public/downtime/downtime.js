@@ -50,7 +50,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //  }
      $scope.allEquipments = [];
      $scope.allSystems = [];
-     $scope.allDT = [];
+     $scope.allDT = [{}];
     
     
         
@@ -148,10 +148,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         var dtlist = $firebaseArray(dtdata);
         var push = false;
     var startDate = new Date();
-        dtlist.$loaded().then(function(dtdata) {
-                $scope.dtdata = dtdata;
-                console.log($scope.dtdata);
-                angular.forEach ($scope.dtdata , function (d) {
+        dtlist.$loaded().then(function(dtlist) {
+                $scope.dtdata = dtlist;
+//                console.log($scope.dtdata);
+                angular.forEach (dtlist , function (d) {
+//                    console.log(d);
                     angular.forEach (d , function (e) {                        
 //                    console.log(e.start);
 //                    var startDate = new Date(e.start);
@@ -161,14 +162,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                         if(e != null) {
                             $scope.allDT.push(e);
                             var push = true;
-                            console.log($scope.allDT);
-                            angular.forEach ($scope.allDT, function (all) {
-                                var dateString = moment.unix(all.start).format("MM/DD/YYYY HH:m");
-                                console.log(dateString);
-                            })
+//                          
                         }
-                    
-                })
+                    })
 
                 });
             
@@ -275,4 +271,12 @@ app.directive('customzdatetime', function () {
         }
     };
 });
+
+app.filter('cmdate', [
+    '$filter', function($filter) {
+        return function(input, format) {
+            return $filter('date')(new Date(input), format);
+        };
+    }
+]);
 

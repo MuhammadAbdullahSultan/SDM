@@ -255,10 +255,10 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d != null">
+                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d.start != null || d.end != null">
                      <td headers = "equipment">{{d.equipment}}</td>
-                     <td headers = "start">{{d.start}}</td>
-                     <td headers = "end">{{d.end}}</td>
+                     <td headers = "start">{{d.start | cmdate: 'dd/mm/yyyy HH:m'}}</td>
+                     <td headers = "end">{{d.end | cmdate: 'dd/mm/yyyy HH:m'}}</td>
                      <td headers = "type">{{d.type}}</td>
                   </tr>
                </tbody>
