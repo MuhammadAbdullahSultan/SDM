@@ -98,19 +98,10 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
         } else if ($scope.data[$scope.indexValue].group === "") {
             toaster.pop({type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group"});
         } else {
-//            firebase.database().ref('AllEquipments/' + $scope.editEquipment).set({
-//            system: $scope.data[$scope.indexValue].system,
-//            description: $scope.data[$scope.indexValue].description,
-//            group: $scope.data[$scope.indexValue].group
-//            });
             list.$save($scope.indexValue).then (function (data) {
             toaster.pop({type: 'Success', title: "Success", body: "Equipment " +$scope.data[$scope.indexValue].$id +" was edited"});
             });
-            
         }
-        
-        
-        
     };
     
     $scope.deleteEquipment = function () {
@@ -153,47 +144,8 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
 });
     
     // SORTING ALGORITHM
-    
-    $(function() {
-		$("table").tablesorter({debug: true})
-		$("a.append").click(appendData);
-		
-		
-	});
 	
-	var lastStudent = 23;
-	var limit = 999999999;
 	
-	function appendData() {
-		
-		var tdTagStart = '<td>';
-		var tdTagEnd = '</td>';
-		var sex = ['male','female'];
-		var major = ['Mathematics','Languages'];
-		
-		
-		for(var i = 0; i < limit; i++) { 
-			var rnd = i % 2;
-			var row = '<tr>';	
-			row += tdTagStart + 'student' + (lastStudent++) + tdTagEnd;
-			row += tdTagStart + major[rnd] + tdTagEnd;
-			row += tdTagStart + sex[rnd] + tdTagEnd;
-			
-			row += tdTagStart +  randomNumber() + tdTagEnd;
-			row += tdTagStart +  randomNumber() + tdTagEnd;
-			row += tdTagStart +  randomNumber() + tdTagEnd;
-			row += tdTagStart +  randomNumber() + tdTagEnd;
-			
-			row += '</tr>';
-			
-			$("table/tbody:first").append(row);
-			
-		};
-		
-		
-		$("table").trigger('update');
-		return false;
-	}
 	
 	function randomNumber() {
 		return Math.floor(Math.random()*101)

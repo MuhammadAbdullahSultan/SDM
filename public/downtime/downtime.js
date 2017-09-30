@@ -14,8 +14,21 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     // Hour Chart
     
+    $scope.allEquipments = [];
+    $scope.allSystems = [];
+    $scope.allDT = [];
     
+    // -------------------------------------------------------------------------------------------------------
+    // LABELS
+    // -------------------------------------------------------------------------------------------------------    
     
+    $scope.equipmentLabels = [];
+    
+    // -------------------------------------------------------------------------------------------------------
+    // Chart Data
+    // -------------------------------------------------------------------------------------------------------
+    
+    $scope.chartData = [];
     
     $('.form_datetime').datetimepicker({
         todayBtn:  1,
@@ -50,11 +63,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.notEmptyOrNull = function(item){
   return !(item.name_fr === null || item.name_fr.trim().length === 0)
 }
-     $scope.allEquipments = [];
-     $scope.allSystems = [];
-     $scope.allDT = [];
+     
     
-    $scope.labels = [];
+    
         
         $scope.chartOptions = {
             title: {
@@ -114,18 +125,20 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         
     $scope.hourCalculation = function () {
         
+        
+        
         angular.forEach ($scope.allDT , function (date) {
             
             
         });
     }
     
-
+    // -------------------------------------------------------------------------------------------------------
     // For adding downtime
+    // -------------------------------------------------------------------------------------------------------
     $scope.manageDowntime = function () {
         
-    
-        
+        // VAlIDATION
         if($scope.addEquipment === null) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please select an equipment from the dropdown"});
         } else if ($scope.type === null) {
@@ -163,10 +176,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.startDT = "";
             $scope.endDT = "";
         }
-        
-        
     };
     
+    
+        
         var ref = firebase.database().ref();
         var data = ref.child("AllEquipments");
         var list = $firebaseArray(data);
@@ -192,8 +205,36 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.error = error;
         });
     
-    //FOR DOWN TIME RETRIEVE
-    
+    $scope.showDT = function () {        
+        var newref = firebase.database().ref();
+        var dtdata = newref.child("downtime");
+        var dtlist = $firebaseArray(dtdata);
+        var push = false;
+        var startDate = new Date();
+        dtlist.$loaded().then(function(dtlist) {
+        $scope.dtdata = dtlist; // Getting Downtime node
+        angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
+            var newref1 = firebase.database().ref().child("downtime"); // creating new reference
+            var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
+            var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
+
+            newdtlist.$loaded().then(function(newdtlist) {
+                angular.forEach (newdtlist, function (n) {
+                                    
+                    
+                });
+            });
+                });
+            
+                
+            }).catch(function(error) {
+                $scope.error = error;
+            });
+        
+    }
+    // -------------------------------------------------------------------------------------------------------
+    //RETRIEVING ALL DOWNTIMES
+    // -------------------------------------------------------------------------------------------------------
         var newref = firebase.database().ref();
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
@@ -209,6 +250,18 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             newdtlist.$loaded().then(function(newdtlist) {
                 angular.forEach (newdtlist, function (n) {
                     $scope.allDT.push(n);
+                    $scope.equipmentLabels.push(n.equipment);
+                    
+                    var start = new Date (n.start);
+                    var end = new Date (n.end);
+                    
+                    var hours = Math.abs(end - start) / 36e5;
+                    
+                    
+                    $scope.chartData.push(hours);
+                    console.log($scope.equipmentLabels);
+                    console.log($scope.chartData);
+                    
                 });
             });
                 });
@@ -217,30 +270,16 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }).catch(function(error) {
                 $scope.error = error;
             });
+    
+    // -------------------------------------------------------------------------------------------------------
+    // TESTING HOUR CONVERSION
+    // -------------------------------------------------------------------------------------------------------
     $scope.execute = function () {
-//        var startDate = new Date($scope.allDT[2].start * 1000);
-//        var startYear = startDate.getFullYear();
-//        var startMonth = startDate.
-//        var starthours = startDate.getHours();
-//        var startminutes = "0" + startDate.getMinutes();
-//        // Seconds part from the timestamp
-//        var startseconds = "0" + startDate.getSeconds();
-//        var formatedstart = starthours + ':' + startminutes.substr(-2) + ':' + startseconds.substr(-2);
-//        console.log(formatedstart);
-//        var end = new Date($scope.allDT[2].end);
-//        var hours = Math.abs(start - end) / 36e5;
-        
         var end = new Date($scope.allDT[1].end);
         var start = new Date($scope.allDT[1].start);
-//        var s = new Date(0);
-//        var e = new Date(0);
-//        s.setUTCSeconds(start);
-//        e.setUTCSeconds(end);
         console.log(start);
         console.log(end);
-        
         var hours = Math.abs(end - start) / 36e5;
-        
         console.log(hours);
     }
     

@@ -13,6 +13,10 @@
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
    </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-ng-click="execute()">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
+   </div>
 </div>
 <br/>
 
@@ -76,7 +80,7 @@
                 <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
             <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="allDT" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
         </div>
        
