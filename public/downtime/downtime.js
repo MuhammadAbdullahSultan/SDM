@@ -303,19 +303,18 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     var date = new Date();
                     var getYear = date.getFullYear();
                     
+                    
                     $scope.totalDaysInYear = days_of_a_year(getYear);
-                    
-                    $scope.totalOperationTime = $scope.totalDaysInYear * 24;
-                    
-                    
+                    $scope.totalOperationTime = $scope.totalDaysInYear * 24;      
                     $scope.totalDownTime = 0;
-        
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
-                        $scope.totalDownTime += $scope.chartData[x];
+                        $scope.totalDownTime = $scope.chartData[x];
                     }
-                    
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
                     $scope.percentageData.push($scope.percentage);
+                    console.log($scope.percentageData);                    
+                    
+                    
                     
                     
                     
@@ -332,10 +331,18 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
                 });
             
-                
+            
             }).catch(function(error) {
                 $scope.error = error;
             });
+    
+    $scope.load = function () {
+        
+        
+        
+    }
+    
+    
     
     
     // -------------------------------------------------------------------------------------------------------
