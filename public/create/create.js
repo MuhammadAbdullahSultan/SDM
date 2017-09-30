@@ -57,7 +57,9 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             firebase.database().ref("users/" + uid).set($scope.email);
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
-        }).catch(function(error) {
+            })
+          
+          .catch(function(error) {
             $scope.error = error;
             toaster.pop({type: 'error', title: "Error", body: error});
         });

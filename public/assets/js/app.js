@@ -109,6 +109,8 @@ app.factory("Auth", ["$firebaseAuth",
 ]);
 
 app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', function ($scope, $rootScope, $firebaseObject, Auth) {
+            'use strict';
+    
            $scope.createUser = function() {
               $scope.message = null;
               $scope.error = null;
@@ -125,8 +127,10 @@ app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', f
 
 
 
-app.controller("loginCtrl", ["$scope", "Auth",
-    function ($scope, Auth) {
+app.controller("loginCtrl", ["$scope", "Auth", 'toaster',
+    function ($scope, Auth, toaster) {
+        'use strict';
+                             
         $scope.signin = {}
         $scope.signin.state = false
         $scope.signin.uid = null
@@ -140,7 +144,9 @@ app.controller("loginCtrl", ["$scope", "Auth",
                 console.log ($scope.email);
                 $scope.signin.profile = {}
                 console.log("user.uid " + $scope.signin.uid);
-                    document.location.href= "dashboard.html#!/sdt";
+                document.location.href= "dashboard.html#!/sdt";
+                toaster.pop({type: 'success', title: "Logged in", body: 'Welcome to System Downtime Monitoring!'});
+                
 //                user.providerData.forEach(function(profile) {
 //                    $scope.signin.profile.provider = profile.providerId;
 //                    $scope.signin.profile.uid = profile.uid;
@@ -152,6 +158,8 @@ app.controller("loginCtrl", ["$scope", "Auth",
                 $scope.signin.state = false
                 $scope.signin.uid = null
                 document.location.href= "index.html#!/home";
+                toaster.pop({type: 'success', title: "Logged out", body: 'You have logged out from the system'});
+
             }
         })
 
@@ -159,17 +167,28 @@ app.controller("loginCtrl", ["$scope", "Auth",
         $scope.signout = function() {
             Auth.$signOut()
             document.location.href= "index.html#!/home";
+
         };
 
         // signin with email
         $scope.signInWithEmailAndPassword = function(email, password) {
+            
+            if($scope.email == undefined) {
+            toaster.pop({type: 'error', title: "Error", body: 'Empty Email Field'});
+                return;
+            }
+
+            if($scope.password == undefined) {
+                toaster.pop({type: 'error', title: "Error", body: 'Empty Password Field'});
+                return;
+            }
             Auth.$signInWithEmailAndPassword(email, password).catch(function(error) {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                
-                $scope.errorCod = error.code;
-                $scope.errorMsg = error.message;
+                toaster.pop({type: 'error', title: "Error", body: error.message});
             });
+            
+            
+            
+            
         };
       }
     

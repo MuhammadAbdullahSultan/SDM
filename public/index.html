@@ -29,15 +29,16 @@
                 <button class="btn btn-primary btn-block" data-ng-click="signInWithEmailAndPassword(email, password)">Log In</button>
             </div>
             <a href="#" class="forgot">Forgot your email or password?</a>
-            <div>{{errorMsg}}</div>
         
         </form>
     </div>
+                <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
+
     
     <footer class="sticky-footer">
       <div class="footcontainer">
         <div class="text-center">
-          <small>Copyright © Your Website 2017, Disclaimer: This website best works at 1360 x 768</small>
+          <small>Copyright © Your Website 2017, Disclaimer: This website best displays at 1360 x 768</small>
         </div>
       </div>
     </footer>
