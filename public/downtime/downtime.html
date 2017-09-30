@@ -60,6 +60,7 @@
     
 </div>
 -->
+    
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     
     <div class="card mb-3">
@@ -71,13 +72,15 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="downtimeCtrl">
 
                 Equipment Downtime (Hour)
+            
                 <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer" id="save"><span class="fa fa-fw fa-file-image-o"></span></button>
             
             
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="download" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+            
             
             <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hour" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>
         </div>
        
@@ -87,10 +90,10 @@
             
             <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
                                         
             <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>        
         </div>
         

@@ -12,6 +12,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function ($scope, $firebaseObject, $firebaseArray) {
     'use strict';
     
+    
+    //export Canvas to PDF
+    
+    
     $('.form_datetime').datetimepicker({
         //language:  'fr',
         weekStart: 1,

@@ -373,3 +373,11 @@ li a:hover {
         z-index: 3;   
     }
 
+/*Canvas to PDF*/
+
+#canvas {
+    
+}
+#background {
+    display: none;
+}

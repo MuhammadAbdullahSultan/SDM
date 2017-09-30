@@ -12,6 +12,58 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     'use strict';
     
+    //Canvas to PDF
+    
+
+    
+    $scope.downloadHour = function () {
+        var d_canvas = document.getElementById('hour');
+
+            $('#download').click(function() {       
+                html2canvas($("#hour"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('sample-file.pdf');
+                    }
+                });
+            });
+    }
+    
+    $scope.downloadPercentage = function () {
+        var d_canvas = document.getElementById('percent');
+
+            $('#downloadper').click(function() {       
+                html2canvas($("#percent"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('sample-file.pdf');
+                    }
+                });
+            });
+    }
+    
+    $scope.downloadHourDash = function () {
+        var d_canvas = document.getElementById('hourdash');
+
+            $('#downloaddash').click(function() {       
+                html2canvas($("#hourdash"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('sample-file.pdf');
+                    }
+                });
+            });
+    }
+    
     // Hour Chart
     
     $scope.allEquipments = [];
@@ -69,10 +121,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     
         $("#save").click(function() {
- 	    $("#myBtn").get(0).toBlob(function(blob) {
+ 	    $("#canvas").get(0).toBlob(function(blob) {
             saveAs(blob, "chart_1.png");
                 });
         });
+    
+    
     
     // -------------------------------------------------------------------------------------------------------
     // CHART
@@ -107,7 +161,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                 else {
                     
                     $(document).ready(function(){
-                    $("#myBtn").click(function(){
+                    $("#canvas").click(function(){
                         $("#viewGraph").modal(); 
                         
                         });
@@ -386,20 +440,20 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     //PAGINATION//
     
-    $(function () {
-        
-        var obj = $('#pagination').twbsPagination({
-            totalPages: $scope.allDT.length,
-            visiblePages: 5,
-            currentPage: 1,
-            itemsOnPage: 4,
-
-            onPageClick: function (event, page) {
-                console.info(page);
-            }
-        });
-        console.info(obj.data());
-    });
+//    $(function () {
+//        
+//        var obj = $('#pagination').twbsPagination({
+//            totalPages: $scope.allDT.length,
+//            visiblePages: 5,
+//            currentPage: 1,
+//            itemsOnPage: 4,
+//
+//            onPageClick: function (event, page) {
+//                console.info(page);
+//            }
+//        });
+//        console.info(obj.data());
+//    });
     
 
 }]);

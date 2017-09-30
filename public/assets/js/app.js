@@ -68,7 +68,7 @@ app.controller('myCtrlPercent', ['$scope', '$http', function ($scope, $http) {
                  // else...
                 else {
                     $(document).ready(function(){
-                    $("#myBtn").click(function(){
+                    $("#hour").click(function(){
                         $("#viewGraph").modal(); 
                         
                         });
