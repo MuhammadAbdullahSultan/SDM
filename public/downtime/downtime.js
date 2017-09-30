@@ -12,6 +12,11 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     'use strict';
     
+    // Hour Chart
+    
+    
+    
+    
     $('.form_datetime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
@@ -45,31 +50,81 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.notEmptyOrNull = function(item){
   return !(item.name_fr === null || item.name_fr.trim().length === 0)
 }
-    
-//    $scope.onEquipmentChange = function(item){
-//   // once user is selected equipment, we take 1st key from second list
-//    var key =  Object.keys($scope.add[$scope.currentEquipment].$id)[0]
-//
-//    $scope.currentSystem = $scope.add[$scope.currentEquipment].system;   
-//  }
      $scope.allEquipments = [];
      $scope.allSystems = [];
      $scope.allDT = [];
     
-    
+    $scope.labels = [];
         
+        $scope.chartOptions = {
+            title: {
+                display: true,
+                text: "",
+                fontSize: 20,
+            },
+            
+            legend: {
+                text: "Hello"
+            },
+            
+            tooltips: {
+                enabled: false
+            },
+            
+            onClick: function(event, elem) {
+                 var chartele = elem[0];
+                 if (!chartele) {return;} // check and return if not clicked on bar/data
+                 // else...
+                else {
+                    
+                    $(document).ready(function(){
+                    $("#myBtn").click(function(){
+                        $("#viewGraph").modal(); 
+                        
+                        });
+                    });
+                    
+                }
+        
+              },
+            
+            scales: {
+                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: ''
+                    },
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: ''
+                    },
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                }   
+            }]
+            }
+            }
+        
+        
+    $scope.hourCalculation = function () {
+        
+        angular.forEach ($scope.allDT , function (date) {
+            
+            
+        });
+    }
     
-    
-    
-    
+
     // For adding downtime
     $scope.manageDowntime = function () {
         
-        var doesExist = false;
-        angular.forEach ($scope.data , function (d) {
-        angular.forEach (d.equipments, function (e) {
-        })
-    });
+    
         
         if($scope.addEquipment === null) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please select an equipment from the dropdown"});
@@ -119,16 +174,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         // for adding
         list.$loaded().then(function(data) {
                 $scope.add = data;
-                
-//                angular.forEach ($scope.add , function (d) {
-//
-//                  $scope.allSystems.push(d.$id);  
-//                    console.log(d.equipments);
-//                    angular.forEach (d.equipments, function (e) {
-//                        $scope.allEquipments.push(e.equipment);
-//                        console.log(e.system);
-//                    })
-//                });
             }).catch(function(error) {
                 $scope.error = error;
             });
@@ -153,36 +198,21 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
         var push = false;
-    var startDate = new Date();
+        var startDate = new Date();
         dtlist.$loaded().then(function(dtlist) {
-                $scope.dtdata = dtlist; // Getting Downtime node
-                angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
-                    var newref1 = firebase.database().ref().child("downtime"); // creating new reference
-                    var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
-                    var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
-                    
-                    newdtlist.$loaded().then(function(newdtlist) {
-//                            console.log(newdtlist);
-                        angular.forEach (newdtlist, function (n) {
-                            
-                            $scope.allDT.push(n);
-                            
-//                            console.log(hours);
-//                            console.log($scope.allDT.length);
+        $scope.dtdata = dtlist; // Getting Downtime node
+        angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
+            var newref1 = firebase.database().ref().child("downtime"); // creating new reference
+            var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
+            var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
 
-//                            console.log($scope.allDT);
-//                            console.log(n);
-                        });
-                    });
-
-
+            newdtlist.$loaded().then(function(newdtlist) {
+                angular.forEach (newdtlist, function (n) {
+                    $scope.allDT.push(n);
+                });
+            });
                 });
             
-//            var startDate = new Date($scope.);
-//                        
-//            var startFormat = startDate.format("yyyy.mm.dd HH:ii");
-            
-//            console.log(startFormat);
                 
             }).catch(function(error) {
                 $scope.error = error;
@@ -227,56 +257,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
   return time;
 }
     
-            
 
-    
-//    $(document).ready(function () {
-//    
-//
-//        $('#datetimepicker1').datetimepicker({
-//            viewMode: 'years',
-//            format: 'DD/MM/YYYY hh:mm'
-            
-            
-//            if ($scope.startDT > $.now()) 
-//            {
-//            toaster.pop({type: 'warning', title: "Start Time Empty", body: "Please enter a start time"});
-//            }
-//        }
-//        }); 
-        
-//        $('#datetimepicker3').datetimepicker({
-//            viewMode: 'years',
-//            format: 'DD/MM/YYYY hh:mm'
-//
-//        });
-//        
-//        $('#datetimepickerSearch').datetimepicker({
-//            viewMode: 'years',
-//            format: 'DD/MM/YYYY'
-//
-//        });
-//        
-//        
-//        $("#datetimepicker1").on("dp.change", function() {
-//
-//        $scope.startDT = $("#datetimepicker1").val();
-//
-//    });
-//        
-//        $("#datetimepicker3").on("dp.change", function() {
-//
-//        $scope.endDT = $("#datetimepicker3").val();
-//
-//    });
-//        
-//        $("#datetimepickerSearch").on("dp.change", function() {
-//
-//        $scope.start = $("#datetimepickerSearch").val();
-//
-//    });
-//        
-//});
     
     //PAGINATION//
     
@@ -297,22 +278,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
 
 }]);
-
-app.directive('customzdatetime', function () {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function (scope, element, attrs, ngModelCtrl) {
-            element.datetimepicker({
-                debug: false,
-                format: 'DD-MM-YYYY hh:mm'
-            }).on('dp.change', function (e) {
-                ngModelCtrl.$setViewValue(e.date);
-                scope.$apply();
-            });
-        }
-    };
-});
 
 app.filter('cmdate', [
     '$filter', function($filter) {

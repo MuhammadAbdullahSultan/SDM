@@ -40,64 +40,7 @@ $('#return-to-top').click(function() {      // When arrow is clicked
 }]);
 
 app.controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
-        $scope.labels = ['Equipment 1', 'Equipment 2', 'Equipment 3', 'Equipment 4'];
         
-        $scope.chartOptions = {
-            title: {
-                display: true,
-                text: "",
-                fontSize: 20,
-            },
-            
-            legend: {
-                text: "Hello"
-            },
-            
-            tooltips: {
-                enabled: false
-            },
-            
-            onClick: function(event, elem) {
-                 var chartele = elem[0];
-                 if (!chartele) {return;} // check and return if not clicked on bar/data
-                 // else...
-                else {
-                    
-                    $(document).ready(function(){
-                    $("#myBtn").click(function(){
-                        $("#viewGraph").modal(); 
-                        
-                        });
-                    });
-                    
-                }
-        
-              },
-            
-            scales: {
-                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: ''
-                    },
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: ''
-                    },
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }   
-            }]
-            }
-            }
-    
-    $scope.data = [5, 6, 7, 12];
 }]);
 
 app.controller('myCtrlPercent', ['$scope', '$http', function ($scope, $http) {
