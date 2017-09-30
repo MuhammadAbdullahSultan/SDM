@@ -24,10 +24,22 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.message;
     
     $scope.writeUserData = function () {
-        var isEmpty = false;
+        var exists = false;
+        
+
+        
+        for(var i = 0 ; i < $scope.data.length ; i++) {
+            if($scope.equipmentToAdd === $scope.data[i].$id) {
+                toaster.pop({type: 'warning', title: "Equipment Exists", body: "The equipment already exists"});
+                return;
+            }
+            break;
+        }
         
         if($scope.equipmentToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please enter an equipment"});
+        } else if($scope.equipmentToAdd === $scope.data) {
+            
         } else if ($scope.descToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Description Empty", body: "Please fill in the description"});
         } else if ($scope.systemToAdd === undefined) {
