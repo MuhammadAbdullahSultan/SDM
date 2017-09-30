@@ -74,7 +74,7 @@
                 <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer" id="save"><span class="fa fa-fw fa-file-image-o"></span></button>
             
             
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
             <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
@@ -182,7 +182,7 @@
     
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')"><span class="fa fa-fw fa-file-excel-o"></span></button>
     
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
     
 <!--  Export to Excel  -->
     <script>
@@ -298,33 +298,14 @@
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data</div>
         <div class="card-body">
-          <div class="table-responsive">
+          <div class="table-responsive" id="HTMLtoPDF">
             <table class="table table-bordered" id="exTable" border="1" width="100%" cellspacing="0">
               <thead class="lockedRecordsBg">
                   <tr>
-                     <th class="sortable asc">
-                      
-                      <a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">
-                        Equipment 
-                        <span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span>
-                       </a>
-                         
-                      </th>
-                      
-                      
+                     <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment<span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a></th>
                      <th id="start">Start</th>
                      <th id="end">End</th>
-                      
-                     <th class="sortable">
-                      
-                      <a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">
-                        Type 
-                        <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span>
-                       </a>
-                      
-                      </th>
+                     <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>
                   </tr>
                </thead>
                <tbody>
@@ -337,11 +318,13 @@
                </tbody>
                 
                 
+<!--
                 <tfoot>
                     <nav aria-label="Page navigation">
                         <ul class="pagination" id="pagination"></ul>
                     </nav>
                 </tfoot>
+-->
             </table>
           </div>
         </div>

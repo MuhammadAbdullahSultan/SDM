@@ -9,7 +9,7 @@ specialElementHandlers = {
 margins = {
     top: 50,
     left: 60,
-    width: 545
+    width: 600
   };
 pdf.fromHTML(
   	source // HTML string or DOM elem ref.
