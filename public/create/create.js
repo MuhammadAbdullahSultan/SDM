@@ -9,7 +9,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', function ($scope, $rootScope, $firebaseObject, Auth, toaster) {
+app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', '$firebaseArray' , function ($scope, $rootScope, $firebaseObject, Auth, toaster, $firebaseArray) {
     
     // Change user password
     $scope.changePassword = function () {
@@ -38,6 +38,21 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         });
     };
     
+        var ref = firebase.database().ref();
+        var data = ref.child("users");
+        var list = $firebaseArray(data);
+        
+        
+        list.$loaded().then(function(data) {
+            $scope.allUsers = data;
+            console.log(data);
+//            angular.forEach (data , function (d) {
+//            console.log(d);
+//    });
+        }).catch(function(error) {
+            $scope.error = error;
+        });
+    
     // Create new user
     $scope.createUser = function() {
         
@@ -50,11 +65,11 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             toaster.pop({type: 'error', title: "Error", body: 'Empty Password Field'});
             return;
         }
-      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
+      Auth.$createUserWithEmailAndPassword($scope.toAddEmail, $scope.password)
         .then(function(firebaseUser) {
           // Store user into database
             var uid = firebaseUser.uid;
-            firebase.database().ref("users/" + uid).set($scope.email);
+            firebase.database().ref("users/" + uid).set($scope.toAddEmail);
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
             })

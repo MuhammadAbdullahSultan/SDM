@@ -9,3 +9,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
+
+app.controller('manualCtrl', ['$scope', function ($scope) {
+    
+}]);
+

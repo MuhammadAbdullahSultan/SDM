@@ -17,10 +17,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <label for="email">Email</label>
-            <input type="email" ng-model="email" class="form-control" id="email" placeholder="e.g: abc123@def456.com" >
+            <input type="email" ng-model="toAddEmail" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6" id="email" placeholder="e.g: abc123@def456.com" >
 
             <label for="password">Password</label>
-            <input type="password" ng-model="password" class="form-control" id="password" placeholder="More than 6 alphanumeric characters" >
+            <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6" id="password" placeholder="More than 6 alphanumeric characters" >
             
             <br>
              
@@ -36,17 +36,15 @@
     <table class="table table-hover">
         <thead>
                     <tr>
-                      <th>List of Existing Users</th>
-                        <th></th>
+                      <th>List of Existing Users Emails</th>
+                        
                     </tr>
         </thead>
                   <tbody>
-                    <tr>
-                        <td>User 1</td>
+                    <tr data-ng-repeat="d in allUsers">
+                        <td>{{d.$value}}</td>
                         
-                        <td>
-                        <button id="deactivate" class="btn btn-danger cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" onclick="deleteUser">Deactivate <span class="fa fa-times"></span></button>
-                        </td>
+                        
 
                     </tr>
                     
