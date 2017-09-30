@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="myApp" data-ng-controller="loginCtrl">
+<html data-ng-app="myApp" data-ng-controller="loginCtrl" id="page-top">
 
 <head>
     <meta charset="utf-8">
@@ -91,10 +91,16 @@
     </nav>
     <!-- Example DataTables Card-->
     <div class="content-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid" >
             
-            <div data-ng-view=""></div>
+            <div data-ng-view="">
+            
+            </div>
             <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
+            
+            
+
+            
         </div>
     </div>
     
@@ -158,9 +164,13 @@
         </div>
       </div>
     </footer>
+    
     <!-- Scroll to Top Button-->
+<!--
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
     </a>
+-->
+    
 
 </html>
