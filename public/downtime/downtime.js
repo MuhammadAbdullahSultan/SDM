@@ -119,12 +119,23 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     // download to jpg
     // -------------------------------------------------------------------------------------------------------
-    
-        $("#save").click(function() {
- 	    $("#canvas").get(0).toBlob(function(blob) {
-            saveAs(blob, "chart_1.png");
+        
+    $scope.downloadImgHr = function () {
+        $("#saveImgHr").click(function() {
+ 	    $("#hour").get(0).toBlob(function(blob) {
+            saveAs(blob, "hour_chart.jpeg");
                 });
         });
+    }
+    
+    $scope.downloadImgPer = function () {
+        $("#saveImgPer").click(function() {
+ 	    $("#percent").get(0).toBlob(function(blob) {
+            saveAs(blob, "percentage_chart.jpeg");
+                });
+        });
+    }
+        
     
     
     
