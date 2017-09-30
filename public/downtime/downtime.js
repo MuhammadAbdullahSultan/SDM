@@ -64,12 +64,30 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
   return !(item.name_fr === null || item.name_fr.trim().length === 0)
 }
      
+    // -------------------------------------------------------------------------------------------------------
+    // download to jpg
+    // -------------------------------------------------------------------------------------------------------
     
+        $("#save").click(function() {
+ 	    $("#myBtn").get(0).toBlob(function(blob) {
+            saveAs(blob, "chart_1.png");
+                });
+        });
     
-        
+    // -------------------------------------------------------------------------------------------------------
+    // CHART
+    // -------------------------------------------------------------------------------------------------------    
+
         $scope.chartOptions = {
+            data: {
+            datasets: [{
+                fillColor: "rgba(14,72,100,1)",
+                strokeColor: "brown",
+                borderWidth: 1
+            }]
+        },
             title: {
-                display: true,
+                display: false,
                 text: "",
                 fontSize: 20,
             },
@@ -79,7 +97,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             },
             
             tooltips: {
-                enabled: false
+                enabled: true
             },
             
             onClick: function(event, elem) {
@@ -98,6 +116,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                 }
         
               },
+            
             
             scales: {
                 yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
@@ -232,6 +251,27 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
         
     }
+    $scope.percentageData = [];
+    $scope.percentageLables = ['SHIT'];
+    
+    window.onload = function () {
+        
+                console.log($scope.percentageData);
+
+    }
+    
+    $scope.calculateTotalOperation = function () {
+        
+    
+    console.log($scope.totalDownTime);
+        
+        
+        console.log($scope.percentage);
+                        console.log($scope.percentageData);
+
+    }
+    
+    
     // -------------------------------------------------------------------------------------------------------
     //RETRIEVING ALL DOWNTIMES
     // -------------------------------------------------------------------------------------------------------
@@ -259,8 +299,34 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     
                     
                     $scope.chartData.push(hours);
-                    console.log($scope.equipmentLabels);
-                    console.log($scope.chartData);
+                    
+                    var date = new Date();
+                    var getYear = date.getFullYear();
+                    
+                    $scope.totalDaysInYear = days_of_a_year(getYear);
+                    
+                    $scope.totalOperationTime = $scope.totalDaysInYear * 24;
+                    
+                    
+                    $scope.totalDownTime = 0;
+        
+                    for(var x = 0 ; x < $scope.chartData.length ; x++) {
+                        $scope.totalDownTime += $scope.chartData[x];
+                    }
+                    
+                    $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
+                    $scope.percentageData.push($scope.percentage);
+                    
+                    
+                    
+                    
+                    
+                    
+//                    console.log(days_of_a_year(totalOperationTime));
+                    
+                    
+//                    console.log($scope.equipmentLabels);
+//                    console.log($scope.chartData);
                     
                 });
             });
@@ -270,6 +336,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }).catch(function(error) {
                 $scope.error = error;
             });
+    
+    
+    // -------------------------------------------------------------------------------------------------------
+    // Check for days in year
+    // -------------------------------------------------------------------------------------------------------   
+    
+    function days_of_a_year(year) 
+        {
+          return isLeapYear(year) ? 366 : 365;
+        }
+    function isLeapYear(year) {
+         return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+    }
     
     // -------------------------------------------------------------------------------------------------------
     // TESTING HOUR CONVERSION
