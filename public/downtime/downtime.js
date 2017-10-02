@@ -14,7 +14,34 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     //Canvas to PDF
     
-
+    $('#start').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+    });
+    
+    $('#end').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+    });
+    
+    $('#filter').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        startView: 4,
+        format: "dd/mm/yyyy"
+    });
     
     $scope.downloadHour = function () {
         var d_canvas = document.getElementById('hour');
@@ -81,6 +108,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     
     $scope.chartData = [];
+    $('#remove').datetimepicker('remove');
+    
+    $('#dtFilter').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'dd/mm/yyyy',
+        startView: 2,
+        minView: 4
+    });
     
     $('#remove').datetimepicker('remove');
     
@@ -222,6 +262,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     // For adding downtime
     // -------------------------------------------------------------------------------------------------------
+    $scope.reload = function () {
+        window.location.href
+    }
     $scope.manageDowntime = function () {
         
         // VAlIDATION
@@ -270,7 +313,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.startDT = undefined;
             $scope.endDT = undefined;
             $scope.dtDescription = undefined;
+            
         }
+        document.location.href= "dashboard.html#!/downtime";
     };
     
     
