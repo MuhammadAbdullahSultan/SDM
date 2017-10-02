@@ -225,12 +225,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         // VAlIDATION
         if($scope.addEquipment === null) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please select an equipment from the dropdown"});
+            return;
         } else if ($scope.type === null) {
             toaster.pop({type: 'warning', title: "Type not selected", body: "Please select the type of maintenance"});
+            return;
         } else if ($scope.startDT === undefined) {
             toaster.pop({type: 'warning', title: "Start Time Empty", body: "Please enter a start time"});
+            return;
         } else if ($scope.endDT === undefined) {
             toaster.pop({type: 'warning', title: "End Time Empty", body: "Please enter an end time"});
+            return;
+        } else if ($scope.dtDescription === undefined) {
+            toaster.pop({type: 'warning', title: "Description Empty", body: "Please enter a description for the downtime"});
+            return;
         } else {
             
             console.log($scope.startDT);
@@ -251,6 +258,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             firebase.database().ref('downtime/' + $scope.addEquipment).push({
             equipment: $scope.addEquipment,
             type : $scope.type,
+            description: $scope.dtDescription,
             start: $scope.startDT,
             end: $scope.endDT
             });
@@ -259,6 +267,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.type = undefined;
             $scope.startDT = undefined;
             $scope.endDT = undefined;
+            $scope.dtDescription = undefined;
         }
     };
     
