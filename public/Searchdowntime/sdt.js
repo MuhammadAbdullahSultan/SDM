@@ -5,7 +5,15 @@ app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.when('/sdt', {
         templateUrl: 'searchdowntime/sdt.html',
-        controller: 'sdtCtrl'
+        controller: 'sdtCtrl',
+        resolve: {
+      // controller will not be loaded until $waitForSignIn resolves
+      // Auth refers to our $firebaseAuth wrapper in the factory below
+      "currentAuth": ["Auth", function(Auth) {
+        // $waitForSignIn returns a promise so the resolve waits for it to complete
+        return Auth.$requireSignIn();
+      }]
+    }
     });
 }]);
 

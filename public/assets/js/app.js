@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual']);
+var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual', 'login']);
 
 var config = {
     apiKey: "AIzaSyDlZwVsbxI6V161f7ZcyCsy_mg4-GRFwxo",
@@ -15,10 +15,21 @@ var config = {
   };
 
 firebase.initializeApp(config);
+
+app.run(["$rootScope", "$location", function($rootScope, $location) {
+  $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+    // We can catch the error thrown when the $requireSignIn promise is rejected
+    // and redirect the user back to the home page
+    if (error === "AUTH_REQUIRED") {
+      $location.path("/login");
+    }
+  });
+}]);
+
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.otherwise({
-        redirectTo: '/sdt'
+        redirectTo: '/login'
     });
     
     $(document).ready(function(){
@@ -41,65 +52,6 @@ $('#return-to-top').click(function() {      // When arrow is clicked
 
 app.controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
         
-}]);
-
-app.controller('myCtrlPercent', ['$scope', '$http', function ($scope, $http) {
-            $scope.labelsPercent = ['Equipment 1', 'Equipment 2', 'Equipment 3', 'Equipment 4'];
-//        $scope.series = ['Hello'];
-        $scope.chartOptionsPercent = {
-            title: {
-                display: true,
-                text: "",
-                fontSize: 20
-            },
-            legend: {
-                text: "Hello"
-            },
-            
-            tooltips: {
-                enabled: false
-            },
-            
-            onClick: function(event, elem) {
-                 var chartele = elem[0];
-                 if (!chartele) {
-                     return;
-                 } // check and return if not clicked on bar/data
-                 // else...
-                else {
-                    $(document).ready(function(){
-                    $("#hour").click(function(){
-                        $("#viewGraph").modal(); 
-                        
-                        });
-                    }); 
-                }
-                    
-              },
-            
-            scales: {
-                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: ''
-                    },
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: ''
-                    },
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }   
-            }]
-            }
-            }
-    $scope.dataPercent = [5, 6, 7, 12];
 }]);
 
 app.factory("Auth", ["$firebaseAuth",
@@ -127,14 +79,14 @@ app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', f
 
 
 
-app.controller("loginCtrl", ["$scope", "Auth", 'toaster',
-    function ($scope, Auth, toaster) {
+app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebaseArray', '$firebaseObject',
+    function ($scope, Auth, toaster,$location, $firebaseArray, $firebaseObject) {
         'use strict';
                              
         $scope.signin = {}
         $scope.signin.state = false
         $scope.signin.uid = null
-
+        
         // add auth state listener
         Auth.$onAuthStateChanged(function(user) {
             if (user) {
@@ -144,30 +96,23 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster',
                 console.log ($scope.email);
                 $scope.signin.profile = {}
                 console.log("user.uid " + $scope.signin.uid);
-                document.location.href= "dashboard.html#!/sdt";
-                toaster.pop({type: 'success', title: "Logged in", body: 'Welcome to System Downtime Monitoring!'});
+//                document.location.href= "dashboard.html#!/sdt";
                 
-//                user.providerData.forEach(function(profile) {
-//                    $scope.signin.profile.provider = profile.providerId;
-//                    $scope.signin.profile.uid = profile.uid;
-//                    $scope.signin.profile.name = profile.displayName;
-//                    $scope.signin.profile.email = profile.email;
-//                    $scope.signin.profile.photoURL = profile.photoURL;
-//                })
             } else {
                 $scope.signin.state = false
                 $scope.signin.uid = null
-                document.location.href= "index.html#!/home";
-                toaster.pop({type: 'success', title: "Logged out", body: 'You have logged out from the system'});
+//                document.location.href= "/home";
+                $location.path("/login");
 
             }
         })
 
         // signout
         $scope.signout = function() {
-            Auth.$signOut()
-            document.location.href= "index.html#!/home";
-
+            Auth.$signOut();
+//            document.location.href= "/login";
+            $location.path("/login");
+            toaster.pop({type: 'success', title: "Logged out", body: 'You have logged out from the system'});
         };
 
         // signin with email
@@ -182,7 +127,28 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster',
                 toaster.pop({type: 'error', title: "Error", body: 'Empty Password Field'});
                 return;
             }
-            Auth.$signInWithEmailAndPassword(email, password).catch(function(error) {
+            Auth.$signInWithEmailAndPassword(email, password).then (function(firebaseuser) {
+                
+                
+                var ref = firebase.database().ref();
+                var data = ref.child("userState").child(firebaseuser.uid);
+                var list = $firebaseObject(data);
+                
+                
+                list.$loaded().then(function(data) {
+                    console.log(data);
+                    if(data.$value === false) {
+                        toaster.pop({type: "warning", title: "ERROR", body: "Your account has not been activated"});
+                        Auth.$signOut();
+                    } else {
+                        toaster.pop({type: 'success', title: "Logged in", body: 'Welcome to System Downtime Monitoring!'});
+                        $location.path("/sdt");
+                    }
+                }).catch (function(error) {
+                    
+                toaster.pop({type: 'error', title: "Error", body: error});
+                });
+            }).catch(function(error) {
                 toaster.pop({type: 'error', title: "Error", body: error.message});
             });
             

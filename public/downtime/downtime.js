@@ -5,7 +5,15 @@ app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.when('/downtime', {
         templateUrl: 'downtime/downtime.html',
-        controller: 'downtimeCtrl'
+        controller: 'downtimeCtrl',
+        resolve: {
+          // controller will not be loaded until $waitForSignIn resolves
+          // Auth refers to our $firebaseAuth wrapper in the factory below
+          "currentAuth": ["Auth", function(Auth) {
+            // $waitForSignIn returns a promise so the resolve waits for it to complete
+            return Auth.$requireSignIn();
+          }]
+        }
     })
 }]);
 
@@ -129,7 +137,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		autoclose: 1,
 		todayHighlight: 1,
         format: 'yyyy.mm.dd hh:ii',
-        endDate: '+0d'
+        endDate: '+1d'
 
     });
 	$('.form_date').datetimepicker({
@@ -287,16 +295,13 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             return;
         } else {
             
-            console.log($scope.startDT);
-            console.log($scope.endDT);
+
             var start = $scope.startDT;
             var startDTunix = new Date(start).getTime();
             
             var end = $scope.endDT;
             var endDTunix = new Date(end).getTime();
             
-            console.log(startDTunix);
-            console.log(endDTunix);
             $scope.startDT = startDTunix;
             $scope.endDT = endDTunix;
             
@@ -375,24 +380,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         
     }
     $scope.percentageData = [];
-    $scope.percentageLables = ['SHIT'];
-    
-    window.onload = function () {
-        
-                console.log($scope.percentageData);
 
-    }
     
-    $scope.calculateTotalOperation = function () {
-        
-    
-    console.log($scope.totalDownTime);
-        
-        
-        console.log($scope.percentage);
-                        console.log($scope.percentageData);
-
-    }
     
     
     // -------------------------------------------------------------------------------------------------------
@@ -437,7 +426,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //                    console.log(firstDay);
 //                    console.log(getYear);
 //                    console.log(today);
-                    console.log(difference);
+//                    console.log(difference);
 //                    console.log(differenceDays);
                     
                     
@@ -445,14 +434,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     
                     $scope.totalDaysInYear = days_of_a_year(getYear);
                     $scope.totalOperationTime = difference * 24;
-                    console.log($scope.totalOperationTime);
                     $scope.totalDownTime = 0;
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
                         $scope.totalDownTime = $scope.chartData[x];
                     }
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
                     $scope.percentageData.push($scope.percentage);
-                    console.log($scope.percentageData);                    
                     
                     
                     

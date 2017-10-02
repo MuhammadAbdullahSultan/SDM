@@ -5,39 +5,20 @@ app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.when('/create', {
         templateUrl: 'create/create.html',
-        controller: 'createUserCtrl'
+        controller: 'createUserCtrl',
+        resolve: {
+          // controller will not be loaded until $waitForSignIn resolves
+          // Auth refers to our $firebaseAuth wrapper in the factory below
+          "currentAuth": ["Auth", function(Auth) {
+            // $waitForSignIn returns a promise so the resolve waits for it to complete
+            return Auth.$requireSignIn();
+          }]
+        }
     });
 }]);
 
 app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', '$firebaseArray' , function ($scope, $rootScope, $firebaseObject, Auth, toaster, $firebaseArray) {
-    
-    // Change user password
-    $scope.changePassword = function () {
         
-        // check for password match
-        if ($scope.newPassword != $scope.repeatNewPassword) {
-            toaster.pop({type: 'error', title: "Password mismatch", body: 'Both passwords must match'});
-            // returns outside if no match i.e. will not change password unless function called again
-            return;
-        }
-        
-        var userData = Auth.EmailAuthProvider.credential($scope.email, $scope.currentPassword);
-        firebase.auth().currentUser.reauthenticate(credentials)
-            .then(function() {
-                Auth.$updatePassword($scope.newPassword)
-                    .then(function(){
-                    toaster.pop({type: 'success', title: "Success", body: 'Password changed'});
-                });
-        })
-            // Any error will log an error
-            .catch(function(error) {
-                console.error(error);
-            // Create a toaster error message
-            toaster.pop({type: 'error', title: "Error", body: error.message});
-            $scope.$apply();
-        });
-    };
-    
         var ref = firebase.database().ref();
         var data = ref.child("users");
         var list = $firebaseArray(data);
@@ -51,6 +32,16 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
 //    });
         }).catch(function(error) {
             $scope.error = error;
+        });
+    
+        var ref2 = firebase.database().ref();
+        var data2 = ref2.child("userState");
+        var list2 = $firebaseArray(data2);
+        
+        list2.$loaded().then(function (data) {
+            $scope.userStates = data;
+        }).catch (function (error) {
+            toaster.pop({type: 'error', title: "Error", body: error});
         });
     
     // Create new user
@@ -70,15 +61,42 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
           // Store user into database
             var uid = firebaseUser.uid;
             firebase.database().ref("users/" + uid).set($scope.toAddEmail);
+            firebase.database().ref("userState/" + uid).set(false);
+            
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
+                    Auth.$signOut();
+
             })
-          
           .catch(function(error) {
             $scope.error = error;
             toaster.pop({type: 'error', title: "Error", body: error});
         });
     };
+    
+    $scope.activateUser = function (id) {
+        console.log(id);
+        var toSave = $scope.userStates.$getRecord(id);
+        toSave.$value = true;
+        $scope.userStates.$save(toSave).then(function () {
+            toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
+        }).catch (function (error) {
+            toaster.pop({type: 'error', title: "Error", body: error});
+        });
+        
+    }
+    
+    $scope.deactivateUser = function (id) {
+        console.log(id);
+        var toSave = $scope.userStates.$getRecord(id);
+        toSave.$value = false;
+        $scope.userStates.$save(toSave).then(function () {
+            toaster.pop({type: 'success', title: "Account deactivated", body: "The Account has been successfully deactivated"});
+        }).catch (function (error) {
+            toaster.pop({type: 'error', title: "Error", body: error});
+        });
+        
+    }
     
     //delete User
     $scope.deleteUser = function () {
