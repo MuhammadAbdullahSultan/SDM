@@ -80,5 +80,13 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         });
     };
     
+    //delete User
+    $scope.deleteUser = function () {
+        var item = list[$scope.indexValue];
+        list.$remove(item).then (function (deletedData) {
+            console.log(deletedData);
+        });
+    };
+    
     
 }]);
