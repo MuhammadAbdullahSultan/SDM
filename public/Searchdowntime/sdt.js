@@ -13,6 +13,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
     'use strict';
     
     
+    $('#datepicker').datepicker();
+    
     //export Canvas to PDF
     
     
