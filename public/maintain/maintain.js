@@ -53,6 +53,10 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     group: $scope.groupToAdd
                 });
             toaster.pop({type: 'Success', title: "New Equipment", body: "A new equipment was added"});
+            $scope.equipmentToAdd="";
+            $scope.descToAdd="";
+            $scope.systemToAdd="";
+            $scope.groupToAdd="";
         }
         
 };
