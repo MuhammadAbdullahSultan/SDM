@@ -108,31 +108,22 @@
 
 <hr/>
 
-<input id="datepicker" width="276" />
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome'
-        });
-    </script>
-
 <form style="margin-left: 15px">
 
     <form action="" class="form-horizontal"  role="form">
             <div class="row">
 			<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="dtp_input1" class="col-md-10 control-label">Select Year</label>
-                <div class="input-group date form_date col-md-12" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy" data-ng-model="yearFilter">
+                <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy" data-ng-model="yearFilter">
                     <input class="form-control" type="text" value="" readonly data-ng-model="yearFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input1" value="" />
                 <br/>
             </div>
-            
             <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="dtp_input2" class="col-md-10 control-label">Select Month</label>
-                <div class="input-group date form_date col-md-12" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
+                <div class="input-group date col-md-12" id="month" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
                     <input class="form-control" type="text" value="" readonly data-ng-model="monthFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                 </div>

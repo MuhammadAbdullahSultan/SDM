@@ -11,11 +11,32 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function ($scope, $firebaseObject, $firebaseArray) {
     'use strict';
-    
-    
-    $('#datepicker').datepicker();
-    
+        
     //export Canvas to PDF
+    $('#month').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'MM yyyy',
+        startView: 4,
+        minView: 3
+    });
+    
+    $('#year').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy',
+        startView: 4,
+        minView: 4
+    });
+    
     
     
     $('.form_datetime').datetimepicker({
@@ -26,7 +47,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
 		todayHighlight: 1,
 		startView: 2,
 		forceParse: 0,
-        showMeridian: 1
+        showMeridian: 1,
+        orientation: "top left"
     });
 	$('.form_date').datetimepicker({
 //        language:  'fr',
