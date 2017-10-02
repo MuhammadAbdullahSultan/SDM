@@ -121,7 +121,7 @@
          <div class="panel panel-default">
             <div class="panel-body">
                <div class="row">
-                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
                      <label for="selectequ">Select equipment list:</label>
                      <select class="form-control" id="selectequ" data-ng-model="equipment">
                         <option selected value="">All</option>
@@ -321,6 +321,7 @@
                      <th id="equipment">Equipment</th>
                      <th id="start">Start</th>
                      <th id="end">End</th>
+                     <th id="desc">Description</th>
                      <th id="type">Type</th>
 <!--                     <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>-->
                   </tr>
@@ -330,6 +331,7 @@
                      <td headers = "equipment">{{d.equipment}}</td>
                      <td headers = "start">{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
                      <td headers = "end">{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
+                      <td headers="desc">{{d.description}}</td>
                      <td headers = "type">{{d.type}}</td>
                   </tr>
                </tbody>
