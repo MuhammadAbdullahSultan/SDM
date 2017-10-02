@@ -129,7 +129,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		autoclose: 1,
 		todayHighlight: 1,
         format: 'yyyy.mm.dd hh:ii',
-        startDate: "2017-02-12 8:00"
+        endDate: '+0d'
+
     });
 	$('.form_date').datetimepicker({
         weekStart: 1,
