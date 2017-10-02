@@ -11,6 +11,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function ($scope, $firebaseObject, $firebaseArray) {
     'use strict';
+    
+    $('#remove').datetimepicker('remove');
         
     //export Canvas to PDF
     $('#month').datetimepicker({
