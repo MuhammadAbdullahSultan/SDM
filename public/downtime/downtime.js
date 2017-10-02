@@ -368,9 +368,26 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     var date = new Date();
                     var getYear = date.getFullYear();
                     
+                    var firstDay = new Date(getYear,0,1);
+                    var today = new Date (date.getTime());
+                    
+                    var difference = (Math.abs(firstDay - today) / 36e5) / 24;
+                    
+//                    var differenceDays = difference/24;
+                    
+                    
+//                    console.log(firstDay);
+//                    console.log(getYear);
+//                    console.log(today);
+                    console.log(difference);
+//                    console.log(differenceDays);
+                    
+                    
+                    
                     
                     $scope.totalDaysInYear = days_of_a_year(getYear);
-                    $scope.totalOperationTime = $scope.totalDaysInYear * 24;      
+                    $scope.totalOperationTime = difference * 24;
+                    console.log($scope.totalOperationTime);
                     $scope.totalDownTime = 0;
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
                         $scope.totalDownTime = $scope.chartData[x];
