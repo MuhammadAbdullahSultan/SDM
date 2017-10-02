@@ -82,6 +82,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     $scope.chartData = [];
     
+    $('#remove').datetimepicker('remove');
+    
     $('.form_datetime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
