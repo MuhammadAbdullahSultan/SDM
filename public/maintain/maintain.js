@@ -38,14 +38,16 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         
         if($scope.equipmentToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Equipment Field Empty", body: "Please enter an equipment"});
-        } else if($scope.equipmentToAdd === $scope.data) {
-            
+            return;
         } else if ($scope.descToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Description Empty", body: "Please fill in the description"});
+            return;
         } else if ($scope.systemToAdd === undefined) {
             toaster.pop({type: 'warning', title: "System Field Empty", body: "Please enter a system"});
+            return;
         } else if ($scope.groupToAdd === undefined) {
             toaster.pop({type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group"});
+            return;
         } else {
             firebase.database().ref('AllEquipments/' + $scope.equipmentToAdd).set({
                     system: $scope.systemToAdd,
@@ -53,10 +55,10 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     group: $scope.groupToAdd
                 });
             toaster.pop({type: 'Success', title: "New Equipment", body: "A new equipment was added"});
-            $scope.equipmentToAdd="";
-            $scope.descToAdd="";
-            $scope.systemToAdd="";
-            $scope.groupToAdd="";
+            $scope.equipmentToAdd= undefined;
+            $scope.descToAdd= undefined;
+            $scope.systemToAdd= undefined;
+            $scope.groupToAdd= undefined;
         }
         
 };

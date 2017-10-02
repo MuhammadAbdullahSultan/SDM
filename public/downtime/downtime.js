@@ -255,10 +255,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             end: $scope.endDT
             });
             toaster.pop({type: 'Success', title: "Downtime Added", body: "A new downtime was added"});
-            $scope.addEquipment = "";
-            $scope.type = "";
-            $scope.startDT = "";
-            $scope.endDT = "";
+            $scope.addEquipment = undefined;
+            $scope.type = undefined;
+            $scope.startDT = undefined;
+            $scope.endDT = undefined;
         }
     };
     
