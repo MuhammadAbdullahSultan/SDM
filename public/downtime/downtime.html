@@ -121,25 +121,28 @@
          <div class="panel panel-default">
             <div class="panel-body">
                <div class="row">
-                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize" id="equipList">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
                      <label for="selectequ">Select equipment list:</label>
-                     <select class="form-control" id="selectequ" data-ng-model="obj.equipment">
+                     <select class="form-control" id="selectequ" data-ng-model="equipment">
                         <option selected value="">All</option>
                         <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
                      </select>
                   </div>
-                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize" id="equipList">
-                     <label for="date">Select date (year, month, day, hour:minute)</label>
+<!--
+                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
+                     <label for="date">Select date</label>
                       
-                                <div class="input-group date form_datetime" data-date="" data-date-format="dd/MM//yyyy HH:ii" data-link-field="dtp_input6">
-                                    <input class="form-control" size="16" type="text" value="" readonly data-ng-model="start">
+                                <div class="input-group date form_datetime" id="dtFilter" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input6">
+                                    <input class="form-control" size="16" type="text" value="" data-ng-model="start">
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                                 </div>
                                 <input type="hidden" id="dtp_input6" value="" /><br/>
-                      
+                        {{filterTime}}
                   </div>
+-->
                   <br>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize" id="Type">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
                      <label for="type">Select type:</label>
                      <br/>
                      <input type = "radio" name="type" data-ng-model = "type" value = "Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
@@ -313,14 +316,17 @@
             <table class="table table-bordered" id="exTable" border="1" width="100%" cellspacing="0">
               <thead class="lockedRecordsBg">
                   <tr>
-                     <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment<span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a></th>
+<!--                     <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment<span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a></th>-->
+                      
+                     <th id="equipment">Equipment</th>
                      <th id="start">Start</th>
                      <th id="end">End</th>
-                     <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                     <th id="type">Type</th>
+<!--                     <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>-->
                   </tr>
                </thead>
                <tbody>
-                  <tr data-ng-repeat="d in allDT | orderBy:sortType:sortReverse | filter: equipment | filter: type | filter: obj | filter: start track by $index">
+                  <tr data-ng-repeat="d in allDT | orderBy:sortType:sortReverse | filter: type | filter: equipment track by $index">
                      <td headers = "equipment">{{d.equipment}}</td>
                      <td headers = "start">{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
                      <td headers = "end">{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
