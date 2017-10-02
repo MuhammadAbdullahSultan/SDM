@@ -25,12 +25,12 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     //Auto capitalize Equipment input
     $(document).ready(function() {
-    $("input, textarea").keyup(function() {
+    $('#equi').keyup(function() {
         var val = $(this).val()
         $(this).val(val.toUpperCase());
     });
     
-    $('input[type="text"]').on('keypress', function() { 
+    $('#equi').on('keypress', function() { 
         var $this = $(this), value = $this.val(); 
         if (value.length === 1) { 
             $this.val( value.charAt(0).toUpperCase() );
