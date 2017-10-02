@@ -79,4 +79,6 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             toaster.pop({type: 'error', title: "Error", body: error});
         });
     };
+    
+    
 }]);
