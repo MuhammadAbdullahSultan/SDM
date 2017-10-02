@@ -135,6 +135,9 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
             toaster.pop({type: 'Success', title: "Success", body: "Equipment " +$scope.data[$scope.indexValue].$id +" was edited"});
             });
         }
+        
+        $("#editEquipment .close").click();
+
     };
     
     $scope.deleteEquipment = function () {
