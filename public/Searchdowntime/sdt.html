@@ -108,11 +108,13 @@
 
 <hr/>
 
-<div class="container">
-  <div class="input-group date">
-      <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
-  </div>
-</div>
+<input id="datepicker" width="276" />
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome'
+        });
+    </script>
 
 <form style="margin-left: 15px">
 
