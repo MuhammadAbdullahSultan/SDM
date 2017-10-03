@@ -395,6 +395,13 @@
                      <td headers = "end">{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
                       <td headers="desc">{{d.description}}</td>
                      <td headers = "type">{{d.type}}</td>
+                     <td>
+                   
+                   
+                   <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button><button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
+                
+                
+                </td> 
                   </tr>
                </tbody>
                 
@@ -431,4 +438,62 @@
   </div>
     
     </div>
+</div>
+    
+<!-- Modal For editing Equipment-->
+<div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
+   <div class="modal-dialog modal-lg">
+         <div class="modal-content txtsize">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Edit {{data[indexValue].$id}}</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditSystem">System</label>
+                            <input type="text" data-ng-model="data[indexValue].system" class="form-control" id="toEditSystem" >
+                        </div>
+                    </div>
+                <br/>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditDesc">Description</label>
+                            <textarea type="text" data-ng-model="data[indexValue].description" class="form-control" id="toEditDesc" ></textarea>
+                        </div>
+                    </div>  
+                <br/>
+
+                    <div class="row">
+                        
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="toEditGroup">Group</label>
+                            <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" readonly/>
+                                <ul class="nav" role="navigation">
+                                <li class="dropdown"> <a id="searchType" role="button" class="dropdown-toggle" data-toggle="dropdown" data-ng-model="groupToAdd"><b class="caret"></b></a>
+
+                                    <ul class="dropdown-menu" id="browsers" role="menu">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1">Mechanical</a>
+                                        </li>
+                                        <li data-ng-repeat="g in groupA">{{g.group}}</li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Add new group" ng-model="groot"/><span></span><button class="btn btn-primary" type="button" data-ng-click="addGroup()">+</button></a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-dismissible alert-success" data-ng-if="editComplete">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Save Complete</strong>
+                </div>
+            <button type="button" class="btn btn-info" data-ng-click="saveEquipment()">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span></button>
+            </div>
+         </div>
+   </div>
 </div>
