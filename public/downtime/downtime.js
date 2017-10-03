@@ -116,6 +116,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     
     $scope.chartData = [];
+    
+    
     $('#remove').datetimepicker('remove');
     
     $('#dtFilter').datetimepicker({
@@ -258,6 +260,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }
             }
         
+        $scope.getFilteredData = function () {
+            var equipment = lowercase(document.getElementById("").value);
+        }
+        
         
     $scope.hourCalculation = function () {
         
@@ -322,7 +328,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.dtDescription = undefined;
             
         }
-        document.location.href= "dashboard.html#!/downtime";
     };
     
     
@@ -381,28 +386,28 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     }
     $scope.percentageData = [];
 
+    $scope.refreshData = function () {
+//        for (var i = 0 ; i < $scope.chartData.length ; i++) {
+//            $scope.chartData = $scope.chartData[i];
+//            console.log($scope.chartData[i])
+//        }
+    }
+           
     
-    
-    
-    // -------------------------------------------------------------------------------------------------------
-    //RETRIEVING ALL DOWNTIMES
-    // -------------------------------------------------------------------------------------------------------
-        var newref = firebase.database().ref();
-        var dtdata = newref.child("downtime");
-        var dtlist = $firebaseArray(dtdata);
-        var push = false;
-        var startDate = new Date();
-        dtlist.$loaded().then(function(dtlist) {
-        $scope.dtdata = dtlist; // Getting Downtime node
-        angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
+$scope.refreshList = function () {
+    angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
             var newref1 = firebase.database().ref().child("downtime"); // creating new reference
             var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
             var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
 
-            newdtlist.$loaded().then(function(newdtlist) {
+            newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
                     $scope.allDT.push(n);
                     $scope.equipmentLabels.push(n.equipment);
+                    
+//                    console.log(n);
+                    
+                    
                     
                     var start = new Date (n.start);
                     var end = new Date (n.end);
@@ -419,22 +424,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     var today = new Date (date.getTime());
                     
                     var difference = (Math.abs(firstDay - today) / 36e5) / 24;
-                    
-//                    var differenceDays = difference/24;
-                    
-                    
-//                    console.log(firstDay);
-//                    console.log(getYear);
-//                    console.log(today);
-//                    console.log(difference);
-//                    console.log(differenceDays);
-                    
-                    
-                    
-                    
+
                     $scope.totalDaysInYear = days_of_a_year(getYear);
                     $scope.totalOperationTime = difference * 24;
                     $scope.totalDownTime = 0;
+                    
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
                         $scope.totalDownTime = $scope.chartData[x];
                     }
@@ -443,35 +437,41 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     
                     
                     
-                    
-                    
-                    
-                    
-                    
-//                    console.log(days_of_a_year(totalOperationTime));
-                    
-                    
-//                    console.log($scope.equipmentLabels);
-//                    console.log($scope.chartData);
-                    
                 });
             });
                 });
+}
+    
+    // -------------------------------------------------------------------------------------------------------
+    //RETRIEVING ALL DOWNTIMES
+    // -------------------------------------------------------------------------------------------------------
+    
+        var newref = firebase.database().ref();
+        var dtdata = newref.child("downtime");
+        var dtlist = $firebaseArray(dtdata);
+        var push = false;
+        var startDate = new Date();
+    
+        
+        dtlist.$loaded().then(function(dtlist) {
+        $scope.dtdata = dtlist; // Getting Downtime node
+            
+            $scope.refreshList();
+            
+            dtlist.$watch(function(event) {
+                $scope.percentageData = [];
+                $scope.allDT = [];
+                $scope.equipmentLabels = [];
+                $scope.chartData = [];
+                $scope.dtdata = dtlist; // Getting Downtime node
+                $scope.refreshList();
+            });
             
             
             }).catch(function(error) {
                 $scope.error = error;
             });
-    
-    $scope.load = function () {
-        
-        
-        
-    }
-    
-    
-    
-    
+
     // -------------------------------------------------------------------------------------------------------
     // Check for days in year
     // -------------------------------------------------------------------------------------------------------   
@@ -483,52 +483,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     function isLeapYear(year) {
          return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
     }
-    
-    // -------------------------------------------------------------------------------------------------------
-    // TESTING HOUR CONVERSION
-    // -------------------------------------------------------------------------------------------------------
-    $scope.execute = function () {
-        var end = new Date($scope.allDT[1].end);
-        var start = new Date($scope.allDT[1].start);
-        console.log(start);
-        console.log(end);
-        var hours = Math.abs(end - start) / 36e5;
-        console.log(hours);
-    }
-    
-    function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
-  var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
-  return time;
-}
-    
-
-    
-    //PAGINATION//
-    
-//    $(function () {
-//        
-//        var obj = $('#pagination').twbsPagination({
-//            totalPages: $scope.allDT.length,
-//            visiblePages: 5,
-//            currentPage: 1,
-//            itemsOnPage: 4,
-//
-//            onPageClick: function (event, page) {
-//                console.info(page);
-//            }
-//        });
-//        console.info(obj.data());
-//    });
-    
-
 }]);
 
 app.filter('cmdate', [

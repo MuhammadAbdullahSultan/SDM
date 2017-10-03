@@ -276,7 +276,7 @@
         tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
 
         var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
+        var msie = ua.indexOf("MSIE");
 
         if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
 
@@ -364,7 +364,7 @@
             </div>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-ng-click="manageDowntime()"><span class="fa fa-plus"></span>
+            <button type="button" class="btn btn-info" data-ng-click="manageDowntime(); refreshData();"><span class="fa fa-plus"></span>
             </button>
             <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span></button>
          </div>

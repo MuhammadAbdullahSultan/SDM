@@ -47,14 +47,21 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 })
     
     //AddGroup
-    
+    $scope.groupA = [];
     var gref = firebase.database().ref();
     var gdata = gref.child('group');
     var glist = $firebaseArray(gdata);
     glist.$loaded().then(function(gg){
-        console.log(gg);
-        $scope.groupA.push(gg.group);
-    })
+//        console.log(gg);
+        
+        angular.forEach(gg, function (g) {
+//            console.log(g);
+            $scope.groupA.push(g.group);
+            console.log($scope.groupA);
+        })
+    }).catch (function (error){
+        console.log(error);
+    });
     
     $scope.addGroup = function(){
         firebase.database().ref('group/').push({

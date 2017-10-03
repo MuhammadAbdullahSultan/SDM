@@ -285,17 +285,36 @@
                      <h5>System</h5>
                      <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
                   </div>
-                   
+<!--
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <h5>Group</h5>
                      <input list="browsers" name="browser" class="form-control" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
                      <datalist id="browsers">
-                         <option value="Mechanical"></option>
-                         <option data-ng-repeat="g in groupA">{{g.group}}</option>
+                         <option data-ng-repeat="g in groupA" value="g"></option>
                          <input type="text" id="other" placeholder="Add new group" ng-model="groot"/>
-                         <button type="button" class="btn btn-primary" data-ng-model="addGroup()">+</button>    
+                         <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>    
                      </datalist>
                    </div>
+-->
+                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                     <h5>Group</h5>
+                     <input list="group" name="myGroup" type="text" class="form-control txtsize" id="equi" data-ng-model="groupToAdd" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)">
+                      <datalist id="group">
+                        <option data-ng-repeat="e in groupA">{{e}}</option>
+                      </datalist>
+                       
+                       
+                      
+<!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
+                  </div>
+                   
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <input type="text" id="other" placeholder="Add new group" ng-model="groot" class="form-control"/>
+                        </div>
+                   
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>
+                        </div>
                
             </div>
                 
