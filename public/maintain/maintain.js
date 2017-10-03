@@ -46,6 +46,23 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     });
 })
     
+    //AddGroup
+    
+    var gref = firebase.database().ref();
+    var gdata = gref.child('group');
+    var glist = $firebaseArray(gdata);
+    glist.$loaded().then(function(gg){
+        console.log(gg);
+        $scope.groupA.push(gg.group);
+    })
+    
+    $scope.addGroup = function(){
+        firebase.database().ref('group/').push({
+            group: $scope.groot
+        });
+        
+    }
+    
     //Sort
     
     $(document).ready(function() {

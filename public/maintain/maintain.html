@@ -156,7 +156,7 @@
             </tr>
          </thead>
          <tbody>
-            <tr id="row1" data-ng-repeat = "equipments in data | orderBy:sortType:sortReverse | filter: search track by $index">
+            <tr id="row1" data-ng-repeat = "equipments in data | filter: search track by $index">
                <td id="name_row1">{{equipments.$id}}</td>
                <td id="country_row1">{{equipments.system}}</td>
                <td id="age_row1"><p>{{equipments.description}}</p></td>
@@ -172,7 +172,6 @@
             </tr>
          </tbody>
          <tfoot>
-             <container>
              <div class="row" style="margin-left: 2px">
                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-md-offset-6">
                    <div id="custom-search-input">
@@ -183,7 +182,6 @@
                     </div>
                  </div>
              </div>
-            </container>
              
          </tfoot>
          
@@ -223,6 +221,7 @@
                 <br/>
 
                     <div class="row">
+                        
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label for="toEditGroup">Group</label>
                             <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" readonly/>
@@ -232,7 +231,8 @@
                                     <ul class="dropdown-menu" id="browsers" role="menu">
                                         <li role="presentation"><a role="menuitem" tabindex="-1">Mechanical</a>
                                         </li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Other Group"/><span></span><button>+</button></a>
+                                        <li data-ng-repeat="g in groupA">{{g.group}}</li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Add new group" ng-model="groot"/><span></span><button class="btn btn-primary" type="button" data-ng-click="addGroup()">+</button></a>
 
                                         </li>
                                     </ul>
@@ -290,8 +290,10 @@
                      <h5>Group</h5>
                      <input list="browsers" name="browser" class="form-control" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
                      <datalist id="browsers">
-                        <option value="Mechanical">
-                         <input type="text" id="other" placeholder="Other Group"/>   
+                         <option value="Mechanical"></option>
+                         <option data-ng-repeat="g in groupA">{{g.group}}</option>
+                         <input type="text" id="other" placeholder="Add new group" ng-model="groot"/>
+                         <button type="button" class="btn btn-primary" data-ng-model="addGroup()">+</button>    
                      </datalist>
                    </div>
                
