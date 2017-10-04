@@ -51,6 +51,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         format: "dd/mm/yyyy"
     });
     
+    //////////////////DOWNLOAD DATA INTO PDF
+    
     $scope.downloadHour = function () {
         var d_canvas = document.getElementById('hour');
 
