@@ -29,14 +29,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // PAGINATION
     // -------------------------------------------------------------------------------------------------------
     
-    var sortingOrder = 'name';
-    $scope.sortingOrder = sortingOrder;
-    $scope.reverse = false;
-    $scope.filteredItems = [];
-    $scope.groupedItems = [];
-    $scope.itemsPerPage = 5;
-    $scope.pagedItems = [];
-    $scope.currentPage = 0;
+    
     
     $scope.message;
     
@@ -177,13 +170,13 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //    }
 //});
     
-//     $('.dropdown-menu input').click(function (e) {
-//     e.stopPropagation();
-// });
-//$('.dropdown-menu li').click(function(){
-// 
-//$('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).text()));
-//});
+     $('.dropdown-menu input').click(function (e) {
+     e.stopPropagation();
+ });
+$('.dropdown-menu li').click(function(){
+ 
+$('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).text()));
+});
     
     
     $scope.update = function (index) {
@@ -261,7 +254,14 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     // init
     
-    
+    var sortingOrder = 'name';
+    $scope.sortingOrder = sortingOrder;
+    $scope.reverse = false;
+    $scope.filteredItems = [];
+    $scope.groupedItems = [];
+    $scope.itemsPerPage = 5;
+    $scope.pagedItems = [];
+    $scope.currentPage = 0;
 
     var searchMatch = function (haystack, needle) {
         if (!needle) {
