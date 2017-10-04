@@ -376,7 +376,7 @@
           <i class="fa fa-table"></i> Downtime Data</div>
         <div class="card-body">
           <div class="table-responsive" id="HTMLtoPDF">
-            <table class="table table-bordered" id="exTable" border="1" width="100%" cellspacing="0" ui-jq="dataTable">
+            <table class="table table-bordered" id="exTable" >
               <thead class="lockedRecordsBg">
                   <tr>
                      <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment<span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a></th>
@@ -385,6 +385,7 @@
                      <th id="end">End</th>
                      <th id="desc">Description</th>
                      <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type<span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                      <th></th>
                   </tr>
                </thead>
                <tbody>
@@ -397,7 +398,7 @@
                      <td>
                    
                    
-                   <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update($index); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
+                   <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update($indexDTValue); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
                 
                 
                 </td> 
