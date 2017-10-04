@@ -51,14 +51,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         format: "dd/mm/yyyy"
     });
     
-    //////////DELETE DOWNTIME
     
-    $scope.deleteDowntime = function () {
-        var item = list[$scope.indexValue];
-        list.$remove(item).then (function (deletedData) {
-            console.log(deletedData);
-        });
-    };
     
     //////////////////DOWNLOAD DATA INTO PDF
     
@@ -409,6 +402,22 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
         
     }
+    
+    
+    //////////DELETE DOWNTIME
+    $scope.update = function (indexDT) {
+        $scope.indexDTValue = indexDT;
+    };
+    
+    $scope.deleteDowntime = function () {
+        var item = list[$scope.indexDTValue];
+        list.$remove(item).then (function () {
+            
+        });
+    };
+    
+    /////////////////////////////
+    
     $scope.percentageData = [];
 
     $scope.refreshData = function () {
