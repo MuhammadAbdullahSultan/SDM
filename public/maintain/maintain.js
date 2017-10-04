@@ -30,7 +30,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     
     
-    
     $scope.message;
     
     //Auto capitalize Equipment input
@@ -222,16 +221,18 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
         var data = ref.child("AllEquipments");
         var list = $firebaseArray(data);
         
-        
+        $scope.data = [];
         list.$loaded().then(function(data) {
-            $scope.data = data;
-            console.log($scope.data);
+        $scope.data.push(data);
             angular.forEach ($scope.data , function (d) {
-        $scope.equipment1 = d.$id;
+//        $scope.equipment1 = d.$id;
+                
+//                $scope.data.push(d);
+                console.log(d);
         angular.forEach (d.system, function (e) {
             $scope.system1 = e;
         })
-        });
+    });
         }).catch(function(error) {
             $scope.error = error;
         });
@@ -262,6 +263,12 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     $scope.itemsPerPage = 5;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
+    
+    
+    console.log($scope.filteredItems);
+    console.log($scope.groupedItems);
+    console.log($scope.pagedItems);
+
 
     var searchMatch = function (haystack, needle) {
         if (!needle) {

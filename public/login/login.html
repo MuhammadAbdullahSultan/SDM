@@ -1,29 +1,29 @@
+<link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+<div class="login-dark" data-ng-controller="loginCtrl">
+    <form>
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><img src="assets/img/logo_xfab.png" />
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="user" placeholder="User Name" data-ng-model="email">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password" data-ng-model="password">
+        </div>
+        <div class="form-group">
+            <!--                <button class="btn btn-primary btn-block" type="submit">Log In</button>-->
+            <button class="btn btn-primary btn-block" data-ng-click="signInWithEmailAndPassword(email, password)">Log In</button>
+        </div>
+        <a href="#" class="forgot">Forgot your email or password?</a>
 
-    <div class="login-dark" data-ng-controller="loginCtrl">
-        <form>
-            <h2 class="sr-only">Login Form</h2>
-            <div class="illustration"><img src="assets/img/logo_xfab.png"/></div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="user" placeholder="User Name" data-ng-model="email">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password" data-ng-model="password">
-            </div>
-            <div class="form-group">
-<!--                <button class="btn btn-primary btn-block" type="submit">Log In</button>-->
-                <button class="btn btn-primary btn-block" data-ng-click="signInWithEmailAndPassword(email, password)">Log In</button>
-            </div>
-            <a href="#" class="forgot">Forgot your email or password?</a>
-        
-        </form>
-    </div>
-    <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
+    </form>
+</div>
+<toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
 
-    
+
 <!--
     <footer class="sticky-footer">
       <div class="footcontainer">
@@ -33,5 +33,3 @@
       </div>
     </footer>
 -->
-    
-

@@ -1,88 +1,90 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32"/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="#!sdt">
-                        <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Downtime">
-                    <a class="nav-link" href="#!downtime">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Manage Downtime</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Equipment">
-                    <a class="nav-link" href="#!maintain">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Manage Equipment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage User">
-                    <a class="nav-link" href="#!create">
-                        <i class="fa fa-fw fa-user"></i>
-                        <span class="nav-link-text">Manage User</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="User Manual">
-                    <a class="nav-link" href="#!manual">
-                        <i class="fa fa-fw fa-book"></i>
-                        <span class="nav-link-text">User Manual</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                  <a class="nav-link text-center" id="sidenavToggler">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" />
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#!sdt">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Downtime">
+                <a class="nav-link" href="#!downtime">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">Manage Downtime</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Equipment">
+                <a class="nav-link" href="#!maintain">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Manage Equipment</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage User">
+                <a class="nav-link" href="#!create">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span class="nav-link-text">Manage User</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="User Manual">
+                <a class="nav-link" href="#!manual">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span class="nav-link-text">User Manual</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
                     <i class="fa fa-fw fa-angle-left"></i>
-                  </a>
-                </li>
-              </ul>
-            <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item">
-                    <label class="nav-link">
-                        {{email}}</label>
-                </li>
-                <li class="nav-item">
-                    <a href="#!profile" class="nav-link">
-                        <i class="fa fa-fw fa-cog"></i>Setting</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-ng-click="signout();">
-                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <label class="nav-link">
+                    {{email}}</label>
+            </li>
+            <li class="nav-item">
+                <a href="#!profile" class="nav-link">
+                    <i class="fa fa-fw fa-cog"></i>Setting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-ng-click="signout();">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="content-wrapper">
     <div class="container-fluid">
-    <div class="page-header">
-   <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-         <a href="#!downtime">Manage Downtime</a>
-      </li>
-      <li class="breadcrumb-item active">Search and add downtime</li>
-   </ol>
-</div>
-<div>
-<div class="row">
-</div>
-<div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
-   </div>
-</div>
-<br/>
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#!downtime">Manage Downtime</a>
+                </li>
+                <li class="breadcrumb-item active">Search and add downtime</li>
+            </ol>
+        </div>
+        <div>
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <br/>
 
-<div class="row">
+            <div class="row">
 
-<!--
+                <!--
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     
     <div class="card mb-3">
@@ -124,75 +126,79 @@
     
 </div>
 -->
-    
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    
-    <div class="card mb-3">
-   <div class="card-header">
-      <i class="fa fa-area-chart"></i> Equipment
-   </div>
-   <div class="card-body">
-    <div class="row" style="margin-left: 5px, margin-right: 5px">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-                Equipment Downtime (Hour)
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export graph (JPEG) to computer" id="saveImgHr" data-ng-click="downloadImgHr()"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="download" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-            
-            
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hour" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-area-chart"></i> Equipment
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-left: 5px, margin-right: 5px">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                                    Equipment Downtime (Hour)
+
+                                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export graph (JPEG) to computer" id="saveImgHr" data-ng-click="downloadImgHr()"><span class="fa fa-fw fa-file-image-o"></span>
+                                    </button>
+
+
+                                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="download" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span>
+                                    </button>
+
+
+                                    <div class="col-xs-10 border" id="chartStyle">
+                                        <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hour" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                                    Equipment Downtime Percentage (%)
+
+                                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPer()" title="Export graph (JPEG) to computer" id="saveImgPer"><span class="fa fa-fw fa-file-image-o"></span>
+                                    </button>
+
+                                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+                                    </button>
+
+                                    <div class="col-xs-10 border" id="chartStyle">
+                                        <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
-        </div>
-       
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            
-            Equipment Downtime Percentage (%) 
-            
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPer()" title="Export graph (JPEG) to computer" id="saveImgPer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-                                        
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>        
-        </div>
-        
-        
-    </div>
-    </div>
-</div>
 
-    
-</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
+                        Search Downtime <span class="fa fa-fw fa-search"></span>
+                    </button>
+                </div>
+            </div>
 
-</div>
-    
-    <div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
-      Search Downtime <span class="fa fa-fw fa-search"></span>
-      </button>
-   </div>
-</div>
-    
-<div class="row" style="margin-top: 10px">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="filter-panel" class="collapse filter-panel">
-         <div class="panel panel-default">
-            <div class="panel-body">
-               <div class="row">
-                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
-                     <label for="selectequ">Select equipment list:</label>
-                     <select class="form-control" id="selectequ" data-ng-model="equipment">
-                        <option selected value="">All</option>
-                        <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
-                     </select>
-                  </div>
-<!--
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="filter-panel" class="collapse filter-panel">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
+                                        <label for="selectequ">Select equipment list:</label>
+                                        <select class="form-control" id="selectequ" data-ng-model="equipment">
+                                            <option selected value="">All</option>
+                                            <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
+                                        </select>
+                                    </div>
+                                    <!--
                   <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
                      <label for="date">Select date</label>
                       
@@ -205,23 +211,23 @@
                         {{filterTime}}
                   </div>
 -->
-                  <br>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
-                     <label for="type">Select type:</label>
-                     <br/>
-                     <input type = "radio" name="type" data-ng-model = "type" value = "Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" value = "Preventive Maintenance" />Preventive Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" value = "Standby" />Standby &nbsp; &nbsp;
-                     <input type = "radio" name="allType" data-ng-model = "type" checked="checked" id="all"/>All &nbsp;
-                  </div>
-               </div>
+                                    <br>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
+                                        <label for="type">Select type:</label>
+                                        <br/>
+                                        <input type="radio" name="type" data-ng-model="type" value="Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
+                                        <input type="radio" name="type" data-ng-model="type" value="Preventive Maintenance" />Preventive Maintenance &nbsp; &nbsp;
+                                        <input type="radio" name="type" data-ng-model="type" value="Standby" />Standby &nbsp; &nbsp;
+                                        <input type="radio" name="allType" data-ng-model="type" checked="checked" id="all" />All &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</div>
-<hr/>
-<!--
+            <hr/>
+            <!--
 <div class="row">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
       <div class="box">
@@ -249,199 +255,203 @@
    </div>
 </div>
 -->
-    
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')"><span class="fa fa-fw fa-file-excel-o"></span></button>
-    
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-    
-<!--  Export to Excel  -->
-    <script>
-    function exportToExcel(tableID){
-        var tab_text="<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
-        var textRange; var j=0;
-        tab = document.getElementById(tableID); // id of table
 
-        for(j = 0 ; j < tab.rows.length ; j++)
-        {
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')"><span class="fa fa-fw fa-file-excel-o"></span>
+            </button>
 
-            tab_text=tab_text;
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+            </button>
 
-            tab_text=tab_text+tab.rows[j].innerHTML.toUpperCase()+"</tr>";
-            //tab_text=tab_text+"</tr>";
-        }
+            <!--  Export to Excel  -->
+            <script>
+                function exportToExcel(tableID) {
+                    var tab_text = "<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
+                    var textRange;
+                    var j = 0;
+                    tab = document.getElementById(tableID); // id of table
 
-        tab_text= tab_text+"</table>";
-        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-        tab_text= tab_text.replace(/<img[^>]*>/gi,""); //remove if u want images in your table
-        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
+                    for (j = 0; j < tab.rows.length; j++) {
 
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE");
+                        tab_text = tab_text;
 
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+                        tab_text = tab_text + tab.rows[j].innerHTML.toUpperCase() + "</tr>";
+                        //tab_text=tab_text+"</tr>";
+                    }
 
-        {
-            txtArea1.document.open("txt/html","replace");
-            txtArea1.document.write( 'sep=,\r\n' + tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa=txtArea1.document.execCommand("SaveAs",true,"sudhir123.txt");
-        }
+                    tab_text = tab_text + "</table>";
+                    tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+                    tab_text = tab_text.replace(/<img[^>]*>/gi, ""); //remove if u want images in your table
+                    tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
 
-        else {
-           sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-        }
+                    var ua = window.navigator.userAgent;
+                    var msie = ua.indexOf("MSIE");
 
-        return (sa);
-    }
-    </script>
-<!-- ENDS HERE-->
-    
-    <br>
-    <br>
-<div class="modal fade" id="manageDT">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content txtsize">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Add Downtime </h4>
-         </div>
-         <div class="modal-body">
-            <div class="row">
-               <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="equipList">
-                  <label for="selectequ">Select Equipment</label>
-                  <select class="form-control" id="selectequ" data-ng-model="addEquipment">
-                     <option value="" disabled="" selected="" style="display: none">Select Equipment</option>
-                     <option data-ng-repeat="eq in add track by $index" >{{eq.$id}}</option>
-                  </select>
-                  <!--                <p data-ng-model="add[$indexFor(addEquipment)].system"></p>-->
-               </div>
-               <!--
+                    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+
+                    {
+                        txtArea1.document.open("txt/html", "replace");
+                        txtArea1.document.write('sep=,\r\n' + tab_text);
+                        txtArea1.document.close();
+                        txtArea1.focus();
+                        sa = txtArea1.document.execCommand("SaveAs", true, "sudhir123.txt");
+                    } else {
+                        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                    }
+
+                    return (sa);
+                }
+            </script>
+            <!-- ENDS HERE-->
+
+            <br>
+            <br>
+            <div class="modal fade" id="manageDT">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content txtsize">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Add Downtime </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="equipList">
+                                    <label for="selectequ">Select Equipment</label>
+                                    <select class="form-control" id="selectequ" data-ng-model="addEquipment">
+                                        <option value="" disabled="" selected="" style="display: none">Select Equipment</option>
+                                        <option data-ng-repeat="eq in add track by $index">{{eq.$id}}</option>
+                                    </select>
+                                    <!--                <p data-ng-model="add[$indexFor(addEquipment)].system"></p>-->
+                                </div>
+                                <!--
                   {{addEquipment}}
                   
                   {{toStore}}
                   <br>
                   {{add[$indexFor(addEquipment)].system}}
                   -->
-                
-                
-               <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="Type">
-                  <label for="searchType">Search by Type:</label>
-                  <select class="form-control" id="searchType" data-ng-model="type">
-                     <option value="" disabled="" selected="" style="display: none">Select type of maintenance</option>
-                     <option>Corrective Maintenance</option>
-                     <option>Preventive Maintenance</option>
-                     <option>Standby</option>
-                  </select>
-               </div>
-                
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="description">Description</label>
-                    <textarea type="text" data-ng-model="dtDescription" class="form-control" id="description" ></textarea>
-                </div>
-                
-                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for="dtp_input4" class="control-label">Start Time</label>
-                        <div class="input-group date form_starttime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
-                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT">
-                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
-                        </div>
-                    <br/>
-                </div>
 
-                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for="dtp_input5" class="control-label">End Time</label>
-                        <div class="input-group date form_endtime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
-                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="endDT">
-                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="Type">
+                                    <label for="searchType">Search by Type:</label>
+                                    <select class="form-control" id="searchType" data-ng-model="type">
+                                        <option value="" disabled="" selected="" style="display: none">Select type of maintenance</option>
+                                        <option>Corrective Maintenance</option>
+                                        <option>Preventive Maintenance</option>
+                                        <option>Standby</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="description">Description</label>
+                                    <textarea type="text" data-ng-model="dtDescription" class="form-control" id="description"></textarea>
+                                </div>
+
+                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="dtp_input4" class="control-label">Start Time</label>
+                                    <div class="input-group date form_starttime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
+                                        <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT">
+                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                        <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                                    </div>
+                                    <br/>
+                                </div>
+
+                                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="dtp_input5" class="control-label">End Time</label>
+                                    <div class="input-group date form_endtime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
+                                        <input class="form-control" size="16" type="text" value="" readonly data-ng-model="endDT">
+                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                        <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                                    </div>
+                                    <br/>
+                                </div>
+
                             </div>
-                            <br/>
                         </div>
-                
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-ng-click="manageDowntime(); refreshData();"><span class="fa fa-plus"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-ng-click="manageDowntime(); refreshData();"><span class="fa fa-plus"></span>
-            </button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-times"></span></button>
-         </div>
-      </div>
-   </div>
-</div>
-    
-    <div>
-        <div class="card-header">
-          <i class="fa fa-table"></i> Downtime Data</div>
-        <div class="card-body">
-          <div class="table-responsive" id="HTMLtoPDF">
-            <table class="table table-bordered" id="exTable" >
-              <thead class="lockedRecordsBg">
-                  <tr>
-                     <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment  <span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a></th>
-                      
-                     <th id="start">Start</th>
-                     <th id="end">End</th>
-                     <th id="desc">Description</th>
-                     <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type  <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a></th>
-                      <th></th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr data-ng-repeat="d in allDT | orderBy:sortType:sortReverse | filter: type | filter: equipment track by $index">
-                     <td headers = "equipment">{{d.equipment}}</td>
-                     <td headers = "start">{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
-                     <td headers = "end">{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
-                      <td headers="desc">{{d.description}}</td>
-                     <td headers = "type">{{d.type}}</td>
-                     <td>
-                   
-                   
-                   <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update($indexDTValue); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
-                
-                
-                </td> 
-                  </tr>
-               </tbody>
-                
-                
-<!--
+
+            <div>
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Downtime Data</div>
+                <div class="card-body">
+                    <div class="table-responsive" id="HTMLtoPDF">
+                        <table class="table table-bordered" id="exTable">
+                            <thead class="lockedRecordsBg">
+                                <tr>
+                                    <th class="sortable asc"><a href="" ng-click="sortType = 'equipment'; sortReverse = !sortReverse">Equipment  <span ng-show="sortType == 'equipment' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'equipment' && sortReverse" class="fa fa-caret-up"></span></a>
+                                    </th>
+
+                                    <th id="start">Start</th>
+                                    <th id="end">End</th>
+                                    <th id="desc">Description</th>
+                                    <th class="sortable"><a href="" ng-click="sortType = 'type'; sortReverse = !sortReverse">Type  <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span><span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span></a>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="d in allDT | orderBy:sortType:sortReverse | filter: type | filter: equipment track by $index">
+                                    <td headers="equipment">{{d.equipment}}</td>
+                                    <td headers="start">{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                    <td headers="end">{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                    <td headers="desc">{{d.description}}</td>
+                                    <td headers="type">{{d.type}}</td>
+                                    <td>
+
+
+                                        <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update($indexDTValue); deleteDowntime();"><span class="fa fa-trash-o"></span>
+                                        </button>
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+
+
+                            <!--
                 <tfoot>
                     <nav aria-label="Page navigation">
                         <ul class="pagination" id="pagination"></ul>
                     </nav>
                 </tfoot>
 -->
-            </table>
-          </div>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+            <div class="modal fade" id="viewGraph">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content txtsize">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Downtime Description</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{dtDescription}}
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-      </div>
-    
-<div class="modal fade" id="viewGraph">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content txtsize">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         <h4 class="modal-title">Downtime Description</h4>
-       </div>
-       <div class="modal-body">
-         {{dtDescription}}
-           
-       </div>
-       <div class="modal-footer">
-           <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
-       </div>
-     </div>
-   </div>
-  </div>
-    
     </div>
-</div>
-    
-<!-- Modal For editing Equipment-->
-<!--
+
+    <!-- Modal For editing Equipment-->
+    <!--
 <div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
    <div class="modal-dialog modal-lg">
          <div class="modal-content txtsize">

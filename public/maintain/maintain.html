@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" /></a>
+    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" />
+    </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,16 +74,21 @@
         <div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
+                    <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span>
+                    </button>
                 </div>
             </div>
             <br/>
             <div class="row">
                 <div class="col-md-3 col-md-offset-9">
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span></button>
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span>
+                    </button>
 
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+                    </button>
                 </div>
+                <p data-ng-repeat="asd in data">{{asd.$id}}</p>
+
 
                 <!--  Export to Excel  -->
                 <script>
@@ -140,15 +146,19 @@
                                 <div class="table-responsive" id="HTMLtoPDF">
                                     <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable">
                                         <thead class="lockedRecordsBg">
-                                        <tr>
-                                            <th class="id">Equipment&nbsp;<a href="" ng-click="sort_by('id')"><i class="icon-sort"></i></a></th>
-                                            <th class="name">System&nbsp;<a href="" ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
-                                            <th class="description">Description&nbsp;<a href="" ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
-                                            <th class="field3">Group&nbsp;<a href="" ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
-                                        </tr>
-                                    </thead>
+                                            <tr>
+                                                <th class="id">Equipment&nbsp;<a href="" ng-click="sort_by('id')"><i class="icon-sort"></i></a>
+                                                </th>
+                                                <th class="name">System&nbsp;<a href="" ng-click="sort_by('name')"><i class="icon-sort"></i></a>
+                                                </th>
+                                                <th class="description">Description&nbsp;<a href="" ng-click="sort_by('description')"><i class="icon-sort"></i></a>
+                                                </th>
+                                                <th class="field3">Group&nbsp;<a href="" ng-click="sort_by('field3')"><i class="icon-sort"></i></a>
+                                                </th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
-                                            <tr data-ng-repeat="equipments in data[currentPage] | filter: query | orderBy:sortingOrder:reverse track by $index">
+                                            <tr data-ng-repeat="equipments in data">
                                                 <td>{{equipments.$id}}</td>
                                                 <td>{{equipments.system}}</td>
                                                 <td>
@@ -156,40 +166,36 @@
                                                 </td>
                                                 <td>{{equipments.group}}</td>
 
-                                                <td class="row">
+                                                <td>
 
-                                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                        <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button>
-                                                    </div>
+                                                        <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span>
+                                                        </button>
 
-                                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                        <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
-                                                    </div>
+                                                        <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span>
+                                                        </button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                    <td colspan="6">
-                            <ul class="pagination">
-                                <li ng-class="{disabled: currentPage == 0}" class="page-item">
-                                    <a href ng-click="prevPage()" class="page-link">« Prev</a>
-                                </li>
-                                <li ng-repeat="n in range(pagedItems.length)"
-                                    ng-class="{active: n == currentPage}"
-                                ng-click="setPage()" class="page-item">
-                                    <a href ng-bind="n + 1" class="page-link">1</a>
-                                </li>
-                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}" class="page-item">
-                                    <a href ng-click="nextPage()" class="page-link">Next »</a>
-                                </li>
-                            </ul>
-                    </td>
-                                            
+                                            <td colspan="6">
+                                                <ul class="pagination">
+                                                    <li data-ng-class="{disabled: currentPage == 0}" class="page-item">
+                                                        <a href ng-click="prevPage()" class="page-link">« Prev</a>
+                                                    </li>
+                                                    <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()" class="page-item">
+                                                        <a href data-ng-bind="n + 1" class="page-link">1</a>
+                                                    </li>
+                                                    <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}" class="page-item">
+                                                        <a href data-ng-click="nextPage()" class="page-link">Next »</a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+
                                             <div class="input-append">
-                <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
-            <span class="add-on"><i class="icon-search"></i></span>
-            </div>
-                </tfoot>
+                                                <input type="text" data-ng-model="query" data-ng-change="search()" class="input-large search-query" placeholder="Search">
+                                                <span class="add-on"><i class="icon-search"></i></span>
+                                            </div>
+                                        </tfoot>
 
                                     </table>
                                 </div>
@@ -243,12 +249,12 @@
                                 <strong>Save Complete</strong>
                             </div>
                             <button type="button" class="btn btn-info" data-ng-click="saveEquipment()">Save</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span></button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Modal For adding Equipment-->
             <div class="modal fade" role="dialog" id="addEquipment" aria-hidden="true" tabindex="-1">
                 <div class="modal-dialog modal-lg">
@@ -266,6 +272,8 @@
                                         <datalist id="equipments">
                                             <option data-ng-repeat="e in data">{{e.$id}}</option>
                                         </datalist>
+                                        
+                                        
 
                                         <!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
                                     </div>
@@ -273,7 +281,8 @@
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                                         <h5>Description</h5>
                                         <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 characters">
-                                            <textarea></textarea> <span id='remainingC'></span></textarea>
+                                            <textarea></textarea> <span id='remainingC'></span>
+                                        </textarea>
                                         <p id="count"></p>
                                     </div>
 
@@ -313,8 +322,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span></button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span></button>
+                                    <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>

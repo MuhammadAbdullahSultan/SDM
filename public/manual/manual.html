@@ -1,136 +1,149 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32"/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="#!sdt">
-                        <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Downtime">
-                    <a class="nav-link" href="#!downtime">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Manage Downtime</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Equipment">
-                    <a class="nav-link" href="#!maintain">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Manage Equipment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage User">
-                    <a class="nav-link" href="#!create">
-                        <i class="fa fa-fw fa-user"></i>
-                        <span class="nav-link-text">Manage User</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="User Manual">
-                    <a class="nav-link" href="#!manual">
-                        <i class="fa fa-fw fa-book"></i>
-                        <span class="nav-link-text">User Manual</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                  <a class="nav-link text-center" id="sidenavToggler">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" />
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#!sdt">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Downtime">
+                <a class="nav-link" href="#!downtime">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">Manage Downtime</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Equipment">
+                <a class="nav-link" href="#!maintain">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Manage Equipment</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage User">
+                <a class="nav-link" href="#!create">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span class="nav-link-text">Manage User</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="User Manual">
+                <a class="nav-link" href="#!manual">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span class="nav-link-text">User Manual</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
                     <i class="fa fa-fw fa-angle-left"></i>
-                  </a>
-                </li>
-              </ul>
-            <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item">
-                    <label class="nav-link">
-                        {{email}}</label>
-                </li>
-                <li class="nav-item">
-                    <a href="#!profile" class="nav-link">
-                        <i class="fa fa-fw fa-cog"></i>Setting</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-ng-click="signout();">
-                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <label class="nav-link">
+                    {{email}}</label>
+            </li>
+            <li class="nav-item">
+                <a href="#!profile" class="nav-link">
+                    <i class="fa fa-fw fa-cog"></i>Setting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-ng-click="signout();">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
 <div class="content-wrapper">
     <div class="container-fluid">
-    <div class="page-header">
-   <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#manual" >User Manual</a>
-        </li>
-        <li class="breadcrumb-item active">Read before use</li>
-    </ol>
-</div>
-<div>
-   
-    <p><i>Thank you for using System Downtime Monitoring. Please read before use the system of Downtime and Equipment and also User.</i></p>
-    <br>
-    <br>
-    
-     
-    
-    
-     <div class="row" style="margin-left: 5px, margin-right: 5px">   
-     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-         <p><span style="font-weight: bold;"> <i class="fa fa-fw fa-dashboard fa-3x"></i></span></p>
-     <p style="text-align: justify"><b>Dashboard:</b><br> Primary page to view summary of Downtime and Equipment by Hour and Percentage. Summary of Downtime and Equipment can be exported in Excel and PDF file. There is a column below where User would select year, month, day to search. To view the Downtime description, please select any of the graph bar chart, it will pop-up the Downtime description. Refresh button will bring back to original display of graph.  </p>
-    
-     <hr/>
-         
-      
-    </div>
-    
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-          
-          <p><span style="font-weight: bold;"><i class="fa fa-fw fa-area-chart fa-3x"></i></span></p> 
-     <p style="text-align: justify"><b>Manage Downtime:</b><br> Displays summary of Downtime and Equipment by Hour and Percentage. In Add Downtime, select equipment followed by select type of maintenance (Corrective Maintenance, Preventive Maintenance, or Standby), start time at any period and end time. Do take note that end time would only accept current date. No future date input allowed. Once all keyed in, a new Downtime will be added.</p><p>Under Search Downtime, select equipment list, select type and select date. The graph would then plot the Downtime data that was searched.</p>
-        
-         <hr/>
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#manual">User Manual</a>
+                </li>
+                <li class="breadcrumb-item active">Read before use</li>
+            </ol>
+        </div>
+        <div>
 
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-        
-        <p><span style="font-weight: bold;"><i class="fa fa-fw fa-table fa-3x"></i></span></p>
-        
-     <p style="text-align: justify"><b>Manage Equipment:</b><br> This page displays maintenance of Downtime System and Equipment. User would add new equipment to the table with correct format of Equipment Name with description that requires not more than 50 characters. User would also to insert system name and select a group based on the requirement</p>
-    
-         <hr/>
-
-     
-    </div>
-     
-     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-         
-         <p class="col-xs-4 col-xs-offset-4"><span style="font-weight: bold;"><i class="fa fa-fw fa-user fa-3x"></i></span></p>
-         
-     <p style="text-align: justify"><b>Manage User:</b><br> Create new user with Email and Password that requires more than 6 alphanumeric characters. Once created, the List of Existing Users displays the user created and would be able deactivate the account whenever required.</p> 
-    
-         <hr/>
-
-     
-    </div>
-     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-         
-         <p><span style="font-weight: bold;"><i class="fa fa-fw fa-cog fa-3x"></i></span></p>
-     <p style="text-align: justify"><b>Profile:</b><br> Profile allows user to change password whenever required</p> 
-    
-    </div>
-    
-</div>
+            <p><i>Thank you for using System Downtime Monitoring. Please read before use the system of Downtime and Equipment and also User.</i>
+            </p>
+            <br>
+            <br>
 
 
 
+
+            <div class="row" style="margin-left: 5px, margin-right: 5px">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                    <p><span style="font-weight: bold;"> <i class="fa fa-fw fa-dashboard fa-3x"></i></span>
+                    </p>
+                    <p style="text-align: justify"><b>Dashboard:</b>
+                        <br> Primary page to view summary of Downtime and Equipment by Hour and Percentage. Summary of Downtime and Equipment can be exported in Excel and PDF file. There is a column below where User would select year, month, day to search. To view the Downtime description, please select any of the graph bar chart, it will pop-up the Downtime description. Refresh button will bring back to original display of graph. </p>
+
+                    <hr/>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+
+                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-area-chart fa-3x"></i></span>
+                    </p>
+                    <p style="text-align: justify"><b>Manage Downtime:</b>
+                        <br> Displays summary of Downtime and Equipment by Hour and Percentage. In Add Downtime, select equipment followed by select type of maintenance (Corrective Maintenance, Preventive Maintenance, or Standby), start time at any period and end time. Do take note that end time would only accept current date. No future date input allowed. Once all keyed in, a new Downtime will be added.</p>
+                    <p>Under Search Downtime, select equipment list, select type and select date. The graph would then plot the Downtime data that was searched.</p>
+
+                    <hr/>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+
+                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-table fa-3x"></i></span>
+                    </p>
+
+                    <p style="text-align: justify"><b>Manage Equipment:</b>
+                        <br> This page displays maintenance of Downtime System and Equipment. User would add new equipment to the table with correct format of Equipment Name with description that requires not more than 50 characters. User would also to insert system name and select a group based on the requirement</p>
+
+                    <hr/>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+
+                    <p class="col-xs-4 col-xs-offset-4"><span style="font-weight: bold;"><i class="fa fa-fw fa-user fa-3x"></i></span>
+                    </p>
+
+                    <p style="text-align: justify"><b>Manage User:</b>
+                        <br> Create new user with Email and Password that requires more than 6 alphanumeric characters. Once created, the List of Existing Users displays the user created and would be able deactivate the account whenever required.</p>
+
+                    <hr/>
+
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+
+                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-cog fa-3x"></i></span>
+                    </p>
+                    <p style="text-align: justify"><b>Profile:</b>
+                        <br> Profile allows user to change password whenever required</p>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
-</div>

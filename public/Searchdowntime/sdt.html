@@ -1,65 +1,66 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32"/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="#!sdt">
-                        <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Downtime">
-                    <a class="nav-link" href="#!downtime">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Manage Downtime</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Equipment">
-                    <a class="nav-link" href="#!maintain">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Manage Equipment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage User">
-                    <a class="nav-link" href="#!create">
-                        <i class="fa fa-fw fa-user"></i>
-                        <span class="nav-link-text">Manage User</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="User Manual">
-                    <a class="nav-link" href="#!manual">
-                        <i class="fa fa-fw fa-book"></i>
-                        <span class="nav-link-text">User Manual</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                  <a class="nav-link text-center" id="sidenavToggler">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" />
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#!sdt">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Downtime">
+                <a class="nav-link" href="#!downtime">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">Manage Downtime</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Equipment">
+                <a class="nav-link" href="#!maintain">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Manage Equipment</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage User">
+                <a class="nav-link" href="#!create">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span class="nav-link-text">Manage User</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="User Manual">
+                <a class="nav-link" href="#!manual">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span class="nav-link-text">User Manual</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
                     <i class="fa fa-fw fa-angle-left"></i>
-                  </a>
-                </li>
-              </ul>
-            <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item">
-                    <label class="nav-link">
-                        {{email}}</label>
-                </li>
-                <li class="nav-item">
-                    <a href="#!profile" class="nav-link">
-                        <i class="fa fa-fw fa-cog"></i>Setting</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-ng-click="signout();">
-                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <label class="nav-link">
+                    {{email}}</label>
+            </li>
+            <li class="nav-item">
+                <a href="#!profile" class="nav-link">
+                    <i class="fa fa-fw fa-cog"></i>Setting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-ng-click="signout();">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <!--
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -69,26 +70,27 @@
 -->
 <div class="content-wrapper">
     <div class="container-fluid">
-        
-        <div class="page-header txtsize" >
-   <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#sdt">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Viewing my dashboard</li>
-       <li>
-           
-           <button href="#" style="margin-left: 15px" class="btn btn-primary cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Refresh the search" onClick="window.location.reload()"><span class="fa fa-fw fa-refresh"></span></button>
-       </li>
-    </ol>
-</div>  
 
-<br>
-<br>
+        <div class="page-header txtsize">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#sdt">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Viewing my dashboard</li>
+                <li>
 
-<div class="row">
+                    <button href="#" style="margin-left: 15px" class="btn btn-primary cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Refresh the search" onClick="window.location.reload()"><span class="fa fa-fw fa-refresh"></span>
+                    </button>
+                </li>
+            </ol>
+        </div>
 
-<!--
+        <br>
+        <br>
+
+        <div class="row">
+
+            <!--
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     
     <div class="card mb-3">
@@ -130,34 +132,38 @@
     
 </div>
 -->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="downtimeCtrl">
-    <div class="row">
-        
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="downtimeCtrl">
+                <div class="row">
 
-                Equipment Downtime (Hour)
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadHourDash()" id="downloaddash" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-            
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hourdash" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-        </div>
-       
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            
-            Equipment Downtime Percentage (%) 
-            
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPer()" title="Export graph (JPEG) to computer" id="saveImgPer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-                                        
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>        
-        </div>
-<!--
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        Equipment Downtime (Hour)
+                        <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span>
+                        </button>
+
+                        <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadHourDash()" id="downloaddash" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+                        </button>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border" id="chartStyle">
+                            <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hourdash" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        Equipment Downtime Percentage (%)
+
+                        <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPer()" title="Export graph (JPEG) to computer" id="saveImgPer"><span class="fa fa-fw fa-file-image-o"></span>
+                        </button>
+
+                        <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+                        </button>
+
+                        <div class="col-xs-10 border" id="chartStyle">
+                            <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                        </div>
+                    </div>
+                    <!--
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent">
             
             Equipment Downtime Percentage (%) 
@@ -171,82 +177,82 @@
             </div>        
         </div>
 -->
-        
-        
-    </div>
-    
-</div>
-
-</div>
 
 
-<hr/>
-
-<form style="margin-left: 15px">
-
-    <form action="" class="form-horizontal"  role="form">
-            <div class="row">
-			<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(monthFilter == undefined || monthFilter == '') && (dayFilter == undefined || dayFilter == '')">
-                <label for="dtp_input1" class="col-md-10 control-label">Select Start Downtime Year</label>
-                <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy">
-                    <input class="form-control" type="text" value="" data-ng-model="yearFilter">
-					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                 </div>
-				<input type="hidden" id="dtp_input1" value="" />
-                <br/>
+
             </div>
-            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show = "(yearFilter == undefined || yearFilter == '') && (dayFilter == undefined || dayFilter == '')">
-                <label for="dtp_input2" class="col-md-10 control-label">Select Start Downtime Month</label>
-                <div class="input-group date col-md-12" id="month" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
-                    <input class="form-control" type="text" value="" data-ng-model="monthFilter">
-					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+
+        </div>
+
+
+        <hr/>
+
+        <form style="margin-left: 15px">
+
+            <form action="" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(monthFilter == undefined || monthFilter == '') && (dayFilter == undefined || dayFilter == '')">
+                        <label for="dtp_input1" class="col-md-10 control-label">Select Start Downtime Year</label>
+                        <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy">
+                            <input class="form-control" type="text" value="" data-ng-model="yearFilter">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" />
+                        <br/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (dayFilter == undefined || dayFilter == '')">
+                        <label for="dtp_input2" class="col-md-10 control-label">Select Start Downtime Month</label>
+                        <div class="input-group date col-md-12" id="month" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
+                            <input class="form-control" type="text" value="" data-ng-model="monthFilter">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input2" value="" />
+
+                        <br/>
+                    </div>
+
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (monthFilter == undefined || monthFilter == '')">
+                        <label for="dtp_input3" class="col-md-10 control-label">Select Start Downtime Day</label>
+                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" type="text" value="" data-ng-model="dayFilter">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" />
+                        <br/>
+                    </div>
                 </div>
-				<input type="hidden" id="dtp_input2" value="" />
 
-                <br/>
-            </div>
-            
-            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (monthFilter == undefined || monthFilter == '')">
-                <label for="dtp_input3" class="col-md-10 control-label">Select Start Downtime Day</label>
-                <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd" >
-                    <input class="form-control" type="text" value="" data-ng-model="dayFilter" >
-					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+            </form>
+
+        </form>
+
+
+
+        <div class="modal fade" id="viewGraph">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content txtsize">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Downtime Description</h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-				<input type="hidden" id="dtp_input3" value="" />
-                <br/>
             </div>
-			    </div>
-        
-        </form>    
-
-</form>
+        </div>
 
 
 
-<div class="modal fade" id="viewGraph">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content txtsize">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         <h4 class="modal-title">Downtime Description</h4>
-       </div>
-       <div class="modal-body">
-         ...
-           
-       </div>
-       <div class="modal-footer">
-           <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
-       </div>
-     </div>
-   </div>
-  </div>
-  
 
 
-        
-    
     </div>
 </div>
