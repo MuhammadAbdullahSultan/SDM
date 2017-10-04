@@ -133,15 +133,29 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     });
     
     $('#remove').datetimepicker('remove');
+//    $('#start').datetimepicker('setStartDate');
+//    $('#end').datetimepicker('setEndDate', '.form_endtime');
+
     
-    $('.form_datetime').datetimepicker({
+    $('.form_starttime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
         format: 'yyyy.mm.dd hh:ii',
-        endDate: '+1d'
+        endDate: '+0d'
+    
+    });
+
+    
+    $('.form_endtime').datetimepicker({
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+        format: 'yyyy.mm.dd hh:ii',
+        endDate: '+0d'
 
     });
+    
 	$('.form_date').datetimepicker({
         weekStart: 1,
         todayBtn:  1,
