@@ -142,48 +142,38 @@
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
        <div class="box">    
            <div class="table-responsive" id="HTMLtoPDF">
-      <table class="table table-hover" id="exTable">
+      <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" ui-jq="dataTable" ui-options="dataTableOpt">
          <thead class="lockedRecordsBg">
             <tr>
-                <th class="sortable asc">Equipment</th>
-                <th class="sortable">System</th>
-                <th class="sortable">Description</th>        
-                <th class="sortable">Group</th>
-                
-               <th>
-                
-                </th>
+                <th>Equipment</th>
+                <th>System</th>
+                <th>Description</th>        
+                <th>Group</th>
             </tr>
          </thead>
          <tbody>
-            <tr id="row1" data-ng-repeat = "equipments in data | filter: search track by $index">
-               <td id="name_row1">{{equipments.$id}}</td>
-               <td id="country_row1">{{equipments.system}}</td>
-               <td id="age_row1"><p>{{equipments.description}}</p></td>
-               <td id="group_row1">{{equipments.group}}</td>
+            <tr data-ng-repeat = "equipments in data track by $index">
+               <td>{{equipments.$id}}</td>
+               <td>{{equipments.system}}</td>
+               <td><p>{{equipments.description}}</p></td>
+               <td>{{equipments.group}}</td>
              
-               <td>
+               <td class="row">
+                   
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button>
+                        </div>
+                       
+                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                           <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
+                        </div>
                    
                    
-                   <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button><button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
                 
                 
                 </td> 
             </tr>
          </tbody>
-         <tfoot>
-             <div class="row" style="margin-left: 2px">
-                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-md-offset-6">
-                   <div id="custom-search-input">
-                        <div class="input-group">
-                            <input type="text" class="search-query form-control" placeholder="Search" data-ng-model="search"/>
-                        </div>
-                       <br>
-                    </div>
-                 </div>
-             </div>
-             
-         </tfoot>
          
       </table>
                </div>

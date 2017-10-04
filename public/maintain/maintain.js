@@ -1,5 +1,5 @@
 /*global angular*/
-var app = angular.module('maintain', ['ngRoute', 'firebase']);
+var app = angular.module('maintain', ['ngRoute', 'firebase','ui.bootstrap','ui.utils']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
@@ -17,17 +17,14 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.filter("offset", function () {
-	return function (input, start) {
-        if (!input || !input.length) { return; }
-		start = parseInt(start, 10);
-		return input.slice(start);
-	};
-});
-
 app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
-    $scope.unitsInPage = 6;
-	$scope.currentPage = 0;
+    
+    $scope.dataTableOpt = {
+   //custom datatable options 
+  // or load data through ajax call also
+  "aLengthMenu": [[10, 50, 100,-1], [10, 50, 100,'All']],
+  };
+
     'use strict';
     $scope.message;
     
@@ -226,7 +223,6 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
         
         list.$loaded().then(function(data) {
             $scope.data = data;
-            console.log($scope.data[0].$id);
             angular.forEach ($scope.data , function (d) {
             console.log(d);
         $scope.equipment1 = d.$id;
