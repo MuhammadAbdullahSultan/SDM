@@ -35,13 +35,13 @@
                     </td>
                 </tfoot>
                 <tbody>
-                    <tr data-ng-repeat="equipments in data[currentPage] | filter: query | orderBy:sortingOrder:reverse track by $index">
-                        <td>{{equipments.$id}}</td>
-                        <td>{{equipments.system}}</td>
-                        <td>
-                            <p>{{equipments.description}}</p>
-                        </td>
-                        <td>{{equipments.group}}</td>
+                    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.field3}}</td>
+                        <td>{{item.field4}}</td>
+                        <td>{{item.field5}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -25,14 +25,15 @@ app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($sco
         
         $scope.data = [];
         list.$loaded().then(function(data) {
-        $scope.data.push(data);
-            angular.forEach ($scope.data , function (d) {
+        
+            angular.forEach (data , function (d) {
 //        $scope.equipment1 = d.$id;
-                
-//                $scope.data.push(d);
-                console.log(d);
-        angular.forEach (d.system, function (e) {
-            $scope.system1 = e;
+                $scope.data.push(d);
+        angular.forEach (d, function (e) {
+//            $scope.system1 = e;
+//                $scope.data.push(e);
+//                            console.log($scope.data);
+
         })
     });
         }).catch(function(error) {
@@ -61,6 +62,8 @@ app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($sco
         {"id":"19","name":"name 19","description":"description 1","field3":"field3 19","field4":"field4 19","field5 ":"field5 19"}, 
         {"id":"20","name":"name 20","description":"description 1","field3":"field3 20","field4":"field4 20","field5 ":"field5 20"}
     ];
+    
+//    console.log($scope.items);
     // init
     $scope.sortingOrder = sortingOrder;
     $scope.reverse = false;
@@ -71,7 +74,7 @@ app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($sco
     $scope.currentPage = 0;
     
         
-    
+    console.log($scope.items);
     
     var searchMatch = function (haystack, needle) {
         if (!needle) {
@@ -83,6 +86,10 @@ app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($sco
     // init the filtered items
     $scope.search = function () {
         $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+//            console.log(item);
+//            console.log($scope.filteredItems);
+//            console.log($scope.groupedItems);
+//            console.log($scope.pagedItems);
             for(var attr in item) {
                 if (searchMatch(item[attr], $scope.query))
                     return true;

@@ -216,38 +216,37 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     
     // -------------------------------------------------------------------------------------------------------
     // Loading all equipment
-    // -------------------------------------------------------------------------------------------------------    
+    // -------------------------------------------------------------------------------------------------------
+    $scope.data = [];
+    $scope.equipmentsLoaded = function () {
         var ref = firebase.database().ref();
         var data = ref.child("AllEquipments");
-        var list = $firebaseArray(data);
+        $scope.list = $firebaseArray(data);
         
-        $scope.data = [];
-        list.$loaded().then(function(data) {
-        $scope.data.push(data);
-            angular.forEach ($scope.data , function (d) {
-//        $scope.equipment1 = d.$id;
-                
-//                $scope.data.push(d);
-                console.log(d);
-        angular.forEach (d.system, function (e) {
-            $scope.system1 = e;
-        })
-    });
+        
+        $scope.list.$loaded().then(function(data) {
+            angular.forEach (data , function (d) {
+                $scope.data.push(d);
+                console.log($scope.data);
+        });
         }).catch(function(error) {
             $scope.error = error;
         });
+    }
     
     
+    $scope.equipmentsLoaded();
+        
     
+    
+//    console.log($scope.list);
     // Counting characters in text area.
     
     $("textarea").keyup(function(){
     $("#remainingC").text("Characters left: " + (50 - $(this).val().length));
     });
     
-    // SORTING ALGORITHM
 	
-    
     
     // -------------------------------------------------------------------------------------------------------
     // PAGINATION/SORT/SEARCH
@@ -265,9 +264,9 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     $scope.currentPage = 0;
     
     
-    console.log($scope.filteredItems);
-    console.log($scope.groupedItems);
-    console.log($scope.pagedItems);
+//    console.log($scope.filteredItems);
+//    console.log($scope.groupedItems);
+//    console.log($scope.pagedItems);
 
 
     var searchMatch = function (haystack, needle) {
@@ -281,6 +280,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     $scope.search = function () {
         $scope.filteredItems = $filter('filter')($scope.data, function (item) {
             for(var attr in item) {
+//                console.log(item);
                 if (searchMatch(item[attr], $scope.query))
                     return true;
             }
