@@ -437,6 +437,7 @@ $scope.refreshList = function () {
             newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
                     $scope.allDT.push(n);
+                    console.log($scope.allDT);
                     $scope.equipmentLabels.push(n.equipment);
                     
 //                    console.log(n);

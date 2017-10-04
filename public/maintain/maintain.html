@@ -1,272 +1,287 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32"/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="#!sdt">
-                        <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Downtime">
-                    <a class="nav-link" href="#!downtime">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Manage Downtime</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage Equipment">
-                    <a class="nav-link" href="#!maintain">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Manage Equipment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="Manage User">
-                    <a class="nav-link" href="#!create">
-                        <i class="fa fa-fw fa-user"></i>
-                        <span class="nav-link-text">Manage User</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-placement="right" title="User Manual">
-                    <a class="nav-link" href="#!manual">
-                        <i class="fa fa-fw fa-book"></i>
-                        <span class="nav-link-text">User Manual</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                  <a class="nav-link text-center" id="sidenavToggler">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo_xfab.png" height="32" /></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#!sdt">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Downtime">
+                <a class="nav-link" href="#!downtime">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">Manage Downtime</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage Equipment">
+                <a class="nav-link" href="#!maintain">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Manage Equipment</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="Manage User">
+                <a class="nav-link" href="#!create">
+                    <i class="fa fa-fw fa-user"></i>
+                    <span class="nav-link-text">Manage User</span>
+                </a>
+            </li>
+            <li class="nav-item" data-placement="right" title="User Manual">
+                <a class="nav-link" href="#!manual">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span class="nav-link-text">User Manual</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
                     <i class="fa fa-fw fa-angle-left"></i>
-                  </a>
-                </li>
-              </ul>
-            <ul class="navbar-nav ml-auto">
-                
-                <li class="nav-item">
-                    <label class="nav-link">
-                        {{email}}</label>
-                </li>
-                <li class="nav-item">
-                    <a href="#!profile" class="nav-link">
-                        <i class="fa fa-fw fa-cog"></i>Setting</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-ng-click="signout();">
-                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <label class="nav-link">
+                    {{email}}</label>
+            </li>
+            <li class="nav-item">
+                <a href="#!profile" class="nav-link">
+                    <i class="fa fa-fw fa-cog"></i>Setting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-ng-click="signout();">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="content-wrapper">
     <div class="container-fluid">
-    <div class="page-header">
-   <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#!maintain">Manage Equipment</a>
-        </li>
-        <li class="breadcrumb-item active">Maintaining system and equipment</li>
-    </ol>
-</div>
-<div>
-   <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-         <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
-      </div>
-   </div>
-   <br/>
-    <div class="row">
-       <div class="col-md-3 col-md-offset-9">
-       <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span></button>
-    
-        <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-        </div>  
-        
-        <!--  Export to Excel  -->
-    <script>
-    function exportToExcel(tableID){
-        var tab_text="<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
-        var textRange; var j=0;
-        tab = document.getElementById(tableID); // id of table
-
-        for(j = 0 ; j < tab.rows.length ; j++)
-        {
-
-            tab_text=tab_text;
-
-            tab_text=tab_text+tab.rows[j].innerHTML.toUpperCase()+"</tr>";
-            //tab_text=tab_text+"</tr>";
-        }
-
-        tab_text= tab_text+"</table>";
-        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-        tab_text= tab_text.replace(/<img[^>]*>/gi,""); //remove if u want images in your table
-        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
-
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-
-        {
-            txtArea1.document.open("txt/html","replace");
-            txtArea1.document.write( 'sep=,\r\n' + tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa=txtArea1.document.execCommand("SaveAs",true,"sudhir123.txt");
-        }
-
-        else {
-           sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-        }
-
-        return (sa);
-    }
-    </script>
-<!-- ENDS HERE-->
-        
-        
-    </div>
-    <br>
-    <div class="card mb-3">
-   <div class="card-header">
-      <i class="fa fa-table"></i> Equipment Data
-       
-       
-   </div>
-   <div class="card-body">
-       <div class="row">
-    
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-       <div class="box">    
-           <div class="table-responsive" id="HTMLtoPDF">
-      <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" ui-jq="dataTable" ui-options="dataTableOpt">
-         <thead class="lockedRecordsBg">
-            <tr>
-                <th>Equipment</th>
-                <th>System</th>
-                <th>Description</th>        
-                <th>Group</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr data-ng-repeat = "equipments in data track by $index">
-               <td>{{equipments.$id}}</td>
-               <td>{{equipments.system}}</td>
-               <td><p>{{equipments.description}}</p></td>
-               <td>{{equipments.group}}</td>
-             
-               <td class="row">
-                   
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button>
-                        </div>
-                       
-                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                           <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
-                        </div>
-                   
-                   
-                
-                
-                </td> 
-            </tr>
-         </tbody>
-         
-      </table>
-               </div>
-           </div>
-   </div>
-       </div>
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#!maintain">Manage Equipment</a>
+                </li>
+                <li class="breadcrumb-item active">Maintaining system and equipment</li>
+            </ol>
         </div>
-</div>
-
-
-<!-- Trigger the modal with a button -->
-
-<!-- Modal For editing Equipment-->
-<div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
-   <div class="modal-dialog modal-lg">
-         <div class="modal-content txtsize">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-               <h4 class="modal-title">Edit {{data[indexValue].$id}}</h4>
-            </div>
-            <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditSystem">System</label>
-                            <input type="text" data-ng-model="data[indexValue].system" class="form-control" id="toEditSystem" >
-                        </div>
-                    </div>
-                <br/>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditDesc">Description</label>
-                            <textarea type="text" data-ng-model="data[indexValue].description" class="form-control" id="toEditDesc" ></textarea>
-                        </div>
-                    </div>  
-                <br/>
-
-                    <div class="row">
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditGroup">Group</label>
-                            <input list="wte" name="myGroup" type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)"/>
-                            <datalist id="wte">
-                                <option data-ng-repeat="e in groupA">{{e}}</option>
-                            </datalist>
-                        </div>
-                        
-                    </div>
-                
-            </div>
-            <div class="modal-footer">
-                <div class="alert alert-dismissible alert-success" data-ng-if="editComplete">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Save Complete</strong>
+        <div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#addEquipment" data-backdrop="false">Add New Equipment <span class="fa fa-plus"></span></button>
                 </div>
-            <button type="button" class="btn btn-info" data-ng-click="saveEquipment()">Save</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span></button>
             </div>
-         </div>
-   </div>
-</div>
+            <br/>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-9">
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')" title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span></button>
 
-<!-- Modal For adding Equipment-->
-<div class="modal fade" role="dialog" id="addEquipment" aria-hidden="true" tabindex="-1">
-   <div class="modal-dialog modal-lg">
-       <form>
-         <div class="modal-content txtsize">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-               <h4 class="modal-title ">Add Equipment</h4>
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+                </div>
+
+                <!--  Export to Excel  -->
+                <script>
+                    function exportToExcel(tableID) {
+                        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
+                        var textRange;
+                        var j = 0;
+                        tab = document.getElementById(tableID); // id of table
+
+                        for (j = 0; j < tab.rows.length; j++) {
+
+                            tab_text = tab_text;
+
+                            tab_text = tab_text + tab.rows[j].innerHTML.toUpperCase() + "</tr>";
+                            //tab_text=tab_text+"</tr>";
+                        }
+
+                        tab_text = tab_text + "</table>";
+                        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
+                        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); //remove if u want images in your table
+                        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
+
+                        var ua = window.navigator.userAgent;
+                        var msie = ua.indexOf("MSIE ");
+
+                        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+
+                        {
+                            txtArea1.document.open("txt/html", "replace");
+                            txtArea1.document.write('sep=,\r\n' + tab_text);
+                            txtArea1.document.close();
+                            txtArea1.focus();
+                            sa = txtArea1.document.execCommand("SaveAs", true, "sudhir123.txt");
+                        } else {
+                            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                        }
+
+                        return (sa);
+                    }
+                </script>
+                <!-- ENDS HERE-->
+
             </div>
-            <div class="modal-body">
-               <div class="row">
-                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                     <h5>Equipment</h5>
-                     <input list="equipments" name="myEquipments" type="text" class="form-control txtsize" id="equi" placeholder="e.g ABC-A0-12" data-ng-model="equipmentToAdd" maxlength="9" pattern="[A-Z]{3}[-][A-Z]{1}[0-9]{1}[-][0-9]{2}" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)">
-                      <datalist id="equipments">
-                        <option data-ng-repeat="e in data">{{e.$id}}</option>
-                      </datalist>
-                      
-<!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
-                  </div>
-                   
-                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                        <h5>Description</h5>
-                           <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 characters"><textarea></textarea> <span id='remainingC'></span></textarea>
-                           <p id="count"></p>
-                  </div>
-               
-                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                     <h5>System</h5>
-                     <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
-                  </div>
-<!--
+            <br>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Equipment Data
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="box">
+                                <div class="table-responsive" id="HTMLtoPDF">
+                                    <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable">
+                                        <thead class="lockedRecordsBg">
+                                        <tr>
+                                            <th class="id">Equipment&nbsp;<a href="" ng-click="sort_by('id')"><i class="icon-sort"></i></a></th>
+                                            <th class="name">System&nbsp;<a href="" ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+                                            <th class="description">Description&nbsp;<a href="" ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
+                                            <th class="field3">Group&nbsp;<a href="" ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                            <tr data-ng-repeat="equipments in data[currentPage] | filter: query | orderBy:sortingOrder:reverse track by $index">
+                                                <td>{{equipments.$id}}</td>
+                                                <td>{{equipments.system}}</td>
+                                                <td>
+                                                    <p>{{equipments.description}}</p>
+                                                </td>
+                                                <td>{{equipments.group}}</td>
+
+                                                <td class="row">
+
+                                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                        <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Edit equipment" data-backdrop="false" data-ng-click="update($index)"><span class="fa fa-edit"></span></button>
+                                                    </div>
+
+                                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                        <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active col-md-5" title="Delete equipment" data-ng-click="update($index); deleteEquipment();"><span class="fa fa-trash-o"></span></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                    <td colspan="6">
+                            <ul class="pagination">
+                                <li ng-class="{disabled: currentPage == 0}" class="page-item">
+                                    <a href ng-click="prevPage()" class="page-link">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()" class="page-item">
+                                    <a href ng-bind="n + 1" class="page-link">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}" class="page-item">
+                                    <a href ng-click="nextPage()" class="page-link">Next »</a>
+                                </li>
+                            </ul>
+                    </td>
+                                            
+                                            <div class="input-append">
+                <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+            <span class="add-on"><i class="icon-search"></i></span>
+            </div>
+                </tfoot>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Trigger the modal with a button -->
+
+            <!-- Modal For editing Equipment-->
+            <div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content txtsize">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Edit {{data[indexValue].$id}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="toEditSystem">System</label>
+                                    <input type="text" data-ng-model="data[indexValue].system" class="form-control" id="toEditSystem">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="toEditDesc">Description</label>
+                                    <textarea type="text" data-ng-model="data[indexValue].description" class="form-control" id="toEditDesc"></textarea>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="toEditGroup">Group</label>
+                                    <input list="wte" name="myGroup" type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)" />
+                                    <datalist id="wte">
+                                        <option data-ng-repeat="e in groupA">{{e}}</option>
+                                    </datalist>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="alert alert-dismissible alert-success" data-ng-if="editComplete">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Save Complete</strong>
+                            </div>
+                            <button type="button" class="btn btn-info" data-ng-click="saveEquipment()">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-close"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal For adding Equipment-->
+            <div class="modal fade" role="dialog" id="addEquipment" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <form>
+                        <div class="modal-content txtsize">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title ">Add Equipment</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                                        <h5>Equipment</h5>
+                                        <input list="equipments" name="myEquipments" type="text" class="form-control txtsize" id="equi" placeholder="e.g ABC-A0-12" data-ng-model="equipmentToAdd" maxlength="9" pattern="[A-Z]{3}[-][A-Z]{1}[0-9]{1}[-][0-9]{2}" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)">
+                                        <datalist id="equipments">
+                                            <option data-ng-repeat="e in data">{{e.$id}}</option>
+                                        </datalist>
+
+                                        <!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                                        <h5>Description</h5>
+                                        <textarea maxlength="50" class="form-control input-md txtsize" id="desc" data-ng-model="descToAdd" placeholder="Write description not more than 50 characters">
+                                            <textarea></textarea> <span id='remainingC'></span></textarea>
+                                        <p id="count"></p>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <h5>System</h5>
+                                        <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
+                                    </div>
+                                    <!--
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <h5>Group</h5>
                      <input list="browsers" name="browser" class="form-control" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
@@ -277,36 +292,34 @@
                      </datalist>
                    </div>
 -->
-                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                     <h5>Group</h5>
-                     <input list="group" name="myGroup" type="text" class="form-control txtsize" id="equi" data-ng-model="groupToAdd" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)">
-                      <datalist id="group">
-                        <option data-ng-repeat="e in groupA">{{e}}</option>
-                      </datalist>
-                       
-                       
-                      
-<!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
-                  </div>
-                   
-                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <input type="text" id="other" placeholder="Add new group" ng-model="groot" class="form-control"/>
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <h5>Group</h5>
+                                        <input list="group" name="myGroup" type="text" class="form-control txtsize" id="equi" data-ng-model="groupToAdd" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)">
+                                        <datalist id="group">
+                                            <option data-ng-repeat="e in groupA">{{e}}</option>
+                                        </datalist>
+
+                                        <!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <input type="text" id="other" placeholder="Add new group" ng-model="groot" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span></button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span></button>
+                                </div>
+                            </div>
                         </div>
-                   
-                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>
-                        </div>
-               
+                    </form>
+                </div>
             </div>
-                
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span></button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span></button>
-            </div>
-         </div>
-          </div>
-           </form>
-   </div>
-</div>
+        </div>
     </div>
-</div>

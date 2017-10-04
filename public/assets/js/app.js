@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual', 'login']);
+var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual', 'login', 'pag']);
 
 var config = {
     apiKey: "AIzaSyDlZwVsbxI6V161f7ZcyCsy_mg4-GRFwxo",
