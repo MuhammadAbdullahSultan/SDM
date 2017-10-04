@@ -78,7 +78,7 @@
         <li class="breadcrumb-item active">Viewing my dashboard</li>
        <li>
            
-           <button href="#" style="margin-left: 15px" class="btn btn-primary cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Refresh the search"><span class="fa fa-fw fa-refresh"></span></button>
+           <button href="#" style="margin-left: 15px" class="btn btn-primary cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Refresh the search" onClick="window.location.reload()"><span class="fa fa-fw fa-refresh"></span></button>
        </li>
     </ol>
 </div>  
@@ -186,20 +186,20 @@
 
     <form action="" class="form-horizontal"  role="form">
             <div class="row">
-			<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(monthFilter == undefined || monthFilter == '') && (dayFilter == undefined || dayFilter == '')">
                 <label for="dtp_input1" class="col-md-10 control-label">Select Start Downtime Year</label>
-                <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy" data-ng-model="yearFilter">
-                    <input class="form-control" type="text" value="" readonly data-ng-model="yearFilter">
+                <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy">
+                    <input class="form-control" type="text" value="" data-ng-model="yearFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input1" value="" />
                 <br/>
             </div>
-            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show = "(yearFilter == undefined || yearFilter == '') && (dayFilter == undefined || dayFilter == '')">
                 <label for="dtp_input2" class="col-md-10 control-label">Select Start Downtime Month</label>
                 <div class="input-group date col-md-12" id="month" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
-                    <input class="form-control" type="text" value="" readonly data-ng-model="monthFilter">
+                    <input class="form-control" type="text" value="" data-ng-model="monthFilter">
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                 </div>
@@ -208,10 +208,10 @@
                 <br/>
             </div>
             
-            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (monthFilter == undefined || monthFilter == '')">
                 <label for="dtp_input3" class="col-md-10 control-label">Select Start Downtime Day</label>
-                <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" type="text" value="" readonly data-ng-model="dayFilter">
+                <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd" >
+                    <input class="form-control" type="text" value="" data-ng-model="dayFilter" >
 					<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                 </div>

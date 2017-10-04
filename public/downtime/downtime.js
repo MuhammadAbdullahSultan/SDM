@@ -51,6 +51,15 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         format: "dd/mm/yyyy"
     });
     
+    //////////DELETE DOWNTIME
+    
+    $scope.deleteDowntime = function () {
+        var item = list[$scope.indexValue];
+        list.$remove(item).then (function (deletedData) {
+            console.log(deletedData);
+        });
+    };
+    
     //////////////////DOWNLOAD DATA INTO PDF
     
     $scope.downloadHour = function () {

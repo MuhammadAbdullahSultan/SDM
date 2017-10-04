@@ -82,6 +82,20 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
 		forceParse: 0
     });
     
+    //////////Disable datetimepicker
+    
+//    $scope.disableYear = false;
+//    $scope.disableMonth = false;
+//    $scope.disableDay = false;
+//    
+//    if ($scope.yearFilter === undefined){
+//        $scope.disableMonth = false;
+//        $scope.disableDay = false;
+//    } else {
+//        $scope.disableMonth = true;
+//        $scope.disableDay = true;
+//    }
+    
 //    $(document).ready(function () {
 //    
 //
