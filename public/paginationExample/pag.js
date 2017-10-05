@@ -21,23 +21,20 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($scope, $filter,$firebaseArray) {
     var ref = firebase.database().ref();
         var data = ref.child("AllEquipments");
-        var list = $firebaseArray(data);
+        $scope.list = $firebaseArray(data);
         
         $scope.data = [];
-        list.$loaded().then(function(data) {
-        
-            angular.forEach (data , function (d) {
-//        $scope.equipment1 = d.$id;
-                $scope.data.push(d);
-        angular.forEach (d, function (e) {
-//            $scope.system1 = e;
-//                $scope.data.push(e);
-//                            console.log($scope.data);
-
-        })
-    });
-        }).catch(function(error) {
-            $scope.error = error;
+        $scope.list.$loaded().then(function(data) {
+            
+            for(var i = 0 ; i < data.length ; i++) {
+                $scope.data.push(data[i]);
+            }
+            
+            $scope.list.$watch(function(event) {
+                $scope.list = data;
+              console.log(event);
+            });
+            console.log($scope.data);
         });
     
     $scope.items = [
@@ -88,7 +85,7 @@ app.controller('pagCtrl', ['$scope', '$filter', '$firebaseArray', function ($sco
         $scope.filteredItems = $filter('filter')($scope.items, function (item) {
 //            console.log(item);
 //            console.log($scope.filteredItems);
-//            console.log($scope.groupedItems);
+            console.log($scope.groupedItems);
 //            console.log($scope.pagedItems);
             for(var attr in item) {
                 if (searchMatch(item[attr], $scope.query))

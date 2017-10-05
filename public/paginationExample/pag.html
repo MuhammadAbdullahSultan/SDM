@@ -36,7 +36,7 @@
                 </tfoot>
                 <tbody>
                     <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-                        <td>{{item.id}}</td>
+                        <td>{{item.$id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.description}}</td>
                         <td>{{item.field3}}</td>

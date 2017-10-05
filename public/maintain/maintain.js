@@ -1,5 +1,5 @@
 /*global angular*/
-var app = angular.module('maintain', ['ngRoute']);
+var app = angular.module('maintain', ['ngRoute', 'firebase']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', '$filter', function ($scope, $firebaseObject, $firebaseArray, toaster, $filter) {
+app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter', function ($scope, $firebaseArray, toaster, $filter) {
     
     
     
@@ -156,9 +156,9 @@ app.controller('maintainCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 
     
     //checkboxes table  
-        $('.selectallAO').click(function() {
-        this.checked ? $('.checkboxAO').prop('checked', true) : $('.checkboxAO').prop('checked', false);
-    });
+//        $('.selectallAO').click(function() {
+//        this.checked ? $('.checkboxAO').prop('checked', true) : $('.checkboxAO').prop('checked', false);
+//    });
  //maximum character in description   
 //    $('textarea').keypress(function(){
 //
@@ -193,7 +193,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
         } else if ($scope.data[$scope.indexValue].group === "") {
             toaster.pop({type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group"});
         } else {
-            list.$save($scope.indexValue).then (function (data) {
+            $scope.list.$save($scope.indexValue).then (function (data) {
             toaster.pop({type: 'Success', title: "Success", body: "Equipment " +$scope.data[$scope.indexValue].$id +" was edited"});
             });
         }
@@ -207,8 +207,9 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     // -------------------------------------------------------------------------------------------------------
     
     $scope.deleteEquipment = function () {
-        var item = list[$scope.indexValue];
-        list.$remove(item).then (function (deletedData) {
+        
+        var item = $scope.list[$scope.indexValue];
+        $scope.list.$remove(item).then (function (deletedData) {
             console.log(deletedData);
         });
     };
@@ -217,26 +218,41 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     // -------------------------------------------------------------------------------------------------------
     // Loading all equipment
     // -------------------------------------------------------------------------------------------------------
-    $scope.data = [];
-    $scope.equipmentsLoaded = function () {
+    
+    
+        
+    
         var ref = firebase.database().ref();
         var data = ref.child("AllEquipments");
         $scope.list = $firebaseArray(data);
         
-        
+
         $scope.list.$loaded().then(function(data) {
-            angular.forEach (data , function (d) {
-                $scope.data.push(d);
-                console.log($scope.data);
+//            $scope.newData = data;
+//            console.log($scope.newData);
+            var newref = firebase.database().ref().child("AllEquipments");
+            var newdata = newref.child(data.$id);
+            $scope.newlist = $firebaseArray(newdata);
+            
+            
+            sceope.newlist.loaded().then (function(n) {
+                console.log(n);
+            })
+            for(var i = 0 ; i < $scope.list.length ; i++) {
+                $scope.list[i].$priority = 0;
+                $scope.data.push($scope.list[i]);
+            }
+            
+//            angular.forEach(data, function(d) {
+//                $scope.data.push(d);
+//            })
+            $scope.list.$watch(function(event) {
+                $scope.list = data;
+              console.log(event);
+            });
+            console.log($scope.data);
         });
-        }).catch(function(error) {
-            $scope.error = error;
-        });
-    }
     
-    
-    $scope.equipmentsLoaded();
-        
     
     
 //    console.log($scope.list);
@@ -254,15 +270,14 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     
     // init
     
-    var sortingOrder = 'name';
     $scope.sortingOrder = sortingOrder;
     $scope.reverse = false;
     $scope.filteredItems = [];
-    $scope.groupedItems = [];
     $scope.itemsPerPage = 5;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
-    
+    $scope.data = [];
+
     
 //    console.log($scope.filteredItems);
 //    console.log($scope.groupedItems);
@@ -280,7 +295,7 @@ $('.dropdown-toggle b').remove().appendTo($('.dropdown-toggle').text($(this).tex
     $scope.search = function () {
         $scope.filteredItems = $filter('filter')($scope.data, function (item) {
             for(var attr in item) {
-//                console.log(item);
+                
                 if (searchMatch(item[attr], $scope.query))
                     return true;
             }
