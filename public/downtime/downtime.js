@@ -52,7 +52,23 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     });
     
     
-    
+    $scope.$watch("equipment", function () {
+        $scope.percentageData = [];
+        $scope.allDT = [];
+        $scope.equipmentLabels = [];
+        $scope.chartData = [];
+        $scope.dtdata = dtlist; // Getting Downtime node
+        $scope.refreshList();
+    })
+
+    $scope.$watch("type", function () {
+        $scope.percentageData = [];
+        $scope.allDT = [];
+        $scope.equipmentLabels = [];
+        $scope.chartData = [];
+        $scope.dtdata = dtlist; // Getting Downtime node
+        $scope.refreshList();
+    })
     //////////////////DOWNLOAD DATA INTO PDF
     
     $scope.downloadHour = function () {
@@ -433,9 +449,11 @@ $scope.refreshList = function () {
             var newref1 = firebase.database().ref().child("downtime"); // creating new reference
             var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
             var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
-
+            if($scope.equipment && $scope.equipment != "" && $scope.equipment && $scope.equipment != d.$id) return;
+            
             newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
+                    if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     $scope.allDT.push(n);
                     console.log($scope.allDT);
                     $scope.equipmentLabels.push(n.equipment);
