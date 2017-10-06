@@ -373,6 +373,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         // for adding
         list.$loaded().then(function(data) {
                 $scope.add = data;
+                console.log($scope.add);
             }).catch(function(error) {
                 $scope.error = error;
             });
