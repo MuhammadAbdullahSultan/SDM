@@ -262,8 +262,10 @@
                                       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{group}}
                                       <span class="caret"></span></button>
                                       <ul class="dropdown-menu form-control" data-ng-model="equipments[indexValue].group">
-                                        <li><option data-ng-repeat="e in groups">{{e.group}}</option></li>
-                                        
+                                        <li><select data-ng-repeat="e in groups">
+                                            <option>{{e.group}}</option>
+                                            </select>
+                                        </li>
                                       </ul>
                                     </div>
                                 </div>  
