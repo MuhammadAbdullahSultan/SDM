@@ -252,14 +252,12 @@
 
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <label for="toEditGroup">Group</label>
-                                    <input list="wte" name="myGroup" type="text" data-ng-model="equipments[indexValue].group" class="form-control" id="toEditGroup"
-                                        onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)"
-                                    />
+                                    <input list="wte" name="myGroup" type="text" data-ng-model="equipments[indexValue].group" class="form-control" id="toEditGroup" onKeyPress="return numchar(event)" onKeyup="autotab(this, document.form1.bendcodeM)"/>
                                     <datalist id="wte">
                                         <option data-ng-repeat="e in groups">{{e.group}}</option>
                                     </datalist>
                                 </div>
-
+                                
                             </div>
 
                         </div>

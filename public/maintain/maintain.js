@@ -78,6 +78,8 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
                 group: $scope.groot
             });
             toaster.pop({ type: 'success', title: "Success", body: "New Group added" });
+            $scope.groot = undefined;
+
         }
 
 
