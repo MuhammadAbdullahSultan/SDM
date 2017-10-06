@@ -173,7 +173,7 @@
                                         </th>
                                         <th>
                                             <a href="javascript:void(0)" ng-click="orderByField='group'; reverseSort = !reverseSort">
-                                                Group <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span>
+                                                Group <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i>
                                             </a>
                                         </th>
                                         <th></th>
@@ -202,10 +202,14 @@
                                 </tbody>
                             </table>
                             <div class="btn-group btn-group-sm" style="float: right">
-                                <button type="button" class="btn btn-secondary" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
+                                <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-primary" ng-repeat="n in [] | range:numbers" ng-click="selectedPage($index)">{{$index + 1}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('-')">Prev</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage - 1)" ng-if="currentPage - 1 > 0">{{currentPage - 1}}</button>
+                                <button type="button" class="btn btn-primary" ng-click="selectedPage(currentPage)">{{currentPage}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage + 1)" ng-if="currentPage + 1 <= numbers">{{currentPage + 1}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('+')">Next</button>
                             </div>
                         </div>
                     </div>

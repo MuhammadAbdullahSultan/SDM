@@ -94,14 +94,22 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     $scope.$watch("equipments.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {
-        $scope.currentPage = index + 1;
+        $scope.currentPage = index;
     }
     $scope.changeNumPerPage = function (index) {
         $scope.numPerPage = index * 5;
     }
+    $scope.changePage = function (sign) {
+        var currentPageValue = eval($scope.currentPage + sign + 1);
+        if (currentPageValue < 1) currentPageValue = 1;
+        if (currentPageValue > $scope.numbers) currentPageValue = $scope.numbers;
+        $scope.currentPage = currentPageValue;
+    }
     function paginationFunc() {
         var equipments = $scope.equipments.filter(function (item) { return !item.filtered });
         $scope.numbers = Math.ceil(equipments.length / $scope.numPerPage);
+        if ($scope.currentPage < 1) $scope.currentPage = 1;
+        if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
         $scope.filteredEquipments = equipments.slice(begin, end);
     }
