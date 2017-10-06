@@ -27,9 +27,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         list.$loaded().then(function(data) {
             $scope.allUsers = data;
             console.log(data);
-//            angular.forEach (data , function (d) {
-//            console.log(d);
-//    });
+
         }).catch(function(error) {
             $scope.error = error;
         });
@@ -60,7 +58,10 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         .then(function(firebaseUser) {
           // Store user into database
             var uid = firebaseUser.uid;
-            firebase.database().ref("users/" + uid).set($scope.toAddEmail);
+            firebase.database().ref("users/" + uid).set({
+                email: $scope.toAddEmail,
+                type: 'unauthorized'
+            });
             firebase.database().ref("userState/" + uid).set(false);
             
           // pop toaster for success
