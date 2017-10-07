@@ -137,7 +137,7 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
                 
                 list.$loaded().then(function(data) {
                     console.log(data);
-                    if(data.$value === false) {
+                    if(data.active === false) {
                         toaster.pop({type: "warning", title: "ERROR", body: "Your account has not been activated"});
                         Auth.$signOut();
                     } else {

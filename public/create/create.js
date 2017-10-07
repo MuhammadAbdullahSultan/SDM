@@ -60,9 +60,11 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             var uid = firebaseUser.uid;
             firebase.database().ref("users/" + uid).set({
                 email: $scope.toAddEmail,
+            });
+            firebase.database().ref("userState/" + uid).set({
+                active: false,
                 type: 'unauthorized'
             });
-            firebase.database().ref("userState/" + uid).set(false);
             
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
@@ -78,7 +80,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     $scope.activateUser = function (id) {
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
-        toSave.$value = true;
+        toSave.active = true;
         $scope.userStates.$save(toSave).then(function () {
             toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
         }).catch (function (error) {
@@ -90,7 +92,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     $scope.deactivateUser = function (id) {
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
-        toSave.$value = false;
+        toSave.active = false;
         $scope.userStates.$save(toSave).then(function () {
             toaster.pop({type: 'success', title: "Account deactivated", body: "The Account has been successfully deactivated"});
         }).catch (function (error) {

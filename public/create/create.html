@@ -108,7 +108,7 @@
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="d in allUsers">
-                                        <td>{{d.$value}}</td>
+                                        <td>{{d.email}}</td>
                                         <!--
                         <td>
                             <p data-ng-if="userStates.$getRecord(d.$id).$value">ACTIVATED</p>
@@ -117,8 +117,8 @@
 -->
 
                                         <td>
-                                            <button data-ng-if="userStates.$getRecord(d.$id).$value" class="btn btn-danger" data-ng-click="deactivateUser(d.$id)">Deactivate</button>
-                                            <button data-ng-if="!userStates.$getRecord(d.$id).$value" class="btn btn-success" data-ng-click="activateUser(d.$id)">Activate</button>
+                                            <button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger" data-ng-click="deactivateUser(d.$id)">Deactivate</button>
+                                            <button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success" data-ng-click="activateUser(d.$id)">Activate</button>
                                         </td>
                                         <!--
                         <td>
