@@ -16,12 +16,21 @@ var config = {
 
 firebase.initializeApp(config);
 
+app.directive('headerFile', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'header/header.html'
+    };
+});
+
 app.run(["$rootScope", "$location", function($rootScope, $location) {
   $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
     // We can catch the error thrown when the $requireSignIn promise is rejected
     // and redirect the user back to the home page
     if (error === "AUTH_REQUIRED") {
       $location.path("/login");
+    } else {
+        $location.path("/sdt");
     }
   });
 }]);

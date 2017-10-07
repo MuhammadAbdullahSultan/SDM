@@ -84,7 +84,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
-                    Auth.$signOut();
+            Auth.$signOut();
           $scope.toAddEmail = undefined;
           $scope.password = undefined;
           $scope.reppassword = undefined;
