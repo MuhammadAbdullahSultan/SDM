@@ -192,8 +192,7 @@
                         <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
                      </select>
                   </div>
-<!--
-                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6 txtsize">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
                      <label for="date">Select date</label>
                       
                                 <div class="input-group date form_datetime" id="dtFilter" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input6">
@@ -204,7 +203,6 @@
                                 <input type="hidden" id="dtp_input6" value="" /><br/>
                         {{filterTime}}
                   </div>
--->
                   <br>
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
                      <label for="type">Select type:</label>
@@ -397,22 +395,15 @@
                      <td headers = "type">{{d.type}}</td>
                      <td>
                    
-                   
+                   <button data-toggle="modal" data-target="#editDowntime" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit downtime" data-backdrop="false" data-ng-click="update($indexDTValue)"><span class="fa fa-edit"></span></button>
+                         
                    <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update($indexDTValue); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
                 
                 
                 </td> 
                   </tr>
                </tbody>
-                
-                
-<!--
-                <tfoot>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination" id="pagination"></ul>
-                    </nav>
-                </tfoot>
--->
+       
             </table>
           </div>
         </div>
@@ -440,9 +431,8 @@
     </div>
 </div>
     
-<!-- Modal For editing Equipment-->
-<!--
-<div class="modal fade" role="dialog" id="editEquipment" aria-hidden="true" tabindex="-1">
+<!-- Modal For editing Downtime-->
+<div class="modal fade" role="dialog" id="editDowntime" aria-hidden="true" tabindex="-1">
    <div class="modal-dialog modal-lg">
          <div class="modal-content txtsize">
             <div class="modal-header">
@@ -450,42 +440,51 @@
                <h4 class="modal-title">Edit Downtime</h4>
             </div>
             <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditSystem">System</label>
-                            <input type="text" data-ng-model="data[indexValue].system" class="form-control" id="toEditSystem" >
-                        </div>
-                    </div>
-                <br/>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditDesc">Description</label>
-                            <textarea type="text" data-ng-model="data[indexValue].description" class="form-control" id="toEditDesc" ></textarea>
-                        </div>
-                    </div>  
-                <br/>
-
-                    <div class="row">
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="toEditGroup">Group</label>
-                            <input type="text" data-ng-model="data[indexValue].group" class="form-control" id="toEditGroup" readonly/>
-                                <ul class="nav" role="navigation">
-                                <li class="dropdown"> <a id="searchType" role="button" class="dropdown-toggle" data-toggle="dropdown" data-ng-model="groupToAdd"><b class="caret"></b></a>
-
-                                    <ul class="dropdown-menu" id="browsers" role="menu">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1">Mechanical</a>
-                                        </li>
-                                        <li data-ng-repeat="g in groupA">{{g.group}}</li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1"><input type="text" id="browsers" placeholder="Add new group" ng-model="groot"/><span></span><button class="btn btn-primary" type="button" data-ng-click="addGroup()">+</button></a>
-
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="row">
+               <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="equipList">
+                  <label for="selectequ">Equipment</label>
+                  <select class="form-control" id="selectequ" data-ng-model="addEquipment">
+                     <option value="" disabled="" selected="" style="display: none">Select Equipment</option>
+                     <option data-ng-repeat="eq in add track by $index" >{{eq.equipment}}</option>
+                  </select>
+               </div>
                 
+               <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="Type">
+                  <label for="searchType">Search by Type:</label>
+                  <select class="form-control" id="searchType" data-ng-model="type">
+                     <option value="" disabled="" selected="" style="display: none">Select type of maintenance</option>
+                     <option>Corrective Maintenance</option>
+                     <option>Preventive Maintenance</option>
+                     <option>Standby</option>
+                  </select>
+               </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="description">Description</label>
+                    <textarea type="text" data-ng-model="dtDescription" class="form-control" id="description" ></textarea>
+                </div>
+                
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="dtp_input4" class="control-label">Start Time</label>
+                        <div class="input-group date form_starttime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                    <br/>
+                </div>
+
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="dtp_input5" class="control-label">End Time</label>
+                        <div class="input-group date form_endtime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="endDT">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                            </div>
+                            <br/>
+                        </div>
+                
+            </div>
             </div>
             <div class="modal-footer">
                 <div class="alert alert-dismissible alert-success" data-ng-if="editComplete">
@@ -498,4 +497,3 @@
          </div>
    </div>
 </div>
--->
