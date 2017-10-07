@@ -34,12 +34,26 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
     //Auto capitalize Equipment input
     $(document).ready(function () {
-        $('#equi').keyup(function () {
+        $('#equiedit').keyup(function () {
             var val = $(this).val()
             $(this).val(val.toUpperCase());
         });
 
-        $('#equi').on('keypress', function () {
+        $('#equiedit').on('keypress', function () {
+            var $this = $(this), value = $this.val();
+            if (value.length === 1) {
+                $this.val(value.charAt(0).toUpperCase());
+            }
+        });
+    })
+    
+    $(document).ready(function () {
+        $('#equiadd').keyup(function () {
+            var val = $(this).val()
+            $(this).val(val.toUpperCase());
+        });
+
+        $('#equiadd').on('keypress', function () {
             var $this = $(this), value = $this.val();
             if (value.length === 1) {
                 $this.val(value.charAt(0).toUpperCase());
