@@ -156,25 +156,61 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 //    $('#start').datetimepicker('setStartDate');
 //    $('#end').datetimepicker('setEndDate', '.form_endtime');
 
-    
+        
     $('.form_starttime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd hh:ii',
-        endDate: '+0d'
-    
-    });
-
-    
+        format: 'yyyy.mm.dd hh:ii P',
+        showMeridian: true,
+        pickerPosition: "bottom-left",
+        startDate : new Date('2012-08-08'),
+        endDate: '+0d',
+        })
+        .on('changeDate', function (selected) {
+        var minDate = new Date(selected.date.valueOf());
+        $('.form_endtime').datetimepicker('setStartDate', minDate);
+            });
+        
     $('.form_endtime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd hh:ii',
-        endDate: '+0d'
-
-    });
+        format: 'yyyy.mm.dd hh:ii P',
+        showMeridian: true,
+        pickerPosition: "bottom-left",
+        endDate: '+0d',
+        })
+        .on('changeDate', function (selected) {
+        var maxDate = new Date(selected.date.valueOf());
+        $('.form_starttime').datetimepicker('setEndDate', maxDate);
+            });
+  
+//    $("#form_starttime").datetimepicker({
+//        todayBtn:  1,
+//		autoclose: 1,
+//		todayHighlight: 1,
+//        format: 'yyyy.mm.dd hh:ii P',
+//        showMeridian: true,
+//        pickerPosition: "bottom-left",
+//        startDate : new Date('2012-08-08'),
+//        endDate: '+0d',
+//    }).on('changeDate', function (selected) {
+//        var minDate = new Date(selected.date.valueOf());
+//
+//    $('#form_endtime').datetimepicker('  setStartDate', minDate);
+//    });
+//        
+//    $("#form_endtime").datetimepicker({
+//        todayBtn:  1,
+//		autoclose: 1,
+//		todayHighlight: 1,
+//        format: 'yyyy.mm.dd hh:ii P',
+//        showMeridian: true,
+//        pickerPosition: "bottom-left",
+//        endDate: '+0d'
+//
+//    });
     
 	$('.form_date').datetimepicker({
         weekStart: 1,
