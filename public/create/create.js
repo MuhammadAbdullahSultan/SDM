@@ -45,13 +45,29 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     // Create new user
     $scope.createUser = function() {
         
-        if($scope.email == undefined) {
+        if($scope.toAddEmail == undefined) {
             toaster.pop({type: 'error', title: "Error", body: 'Empty Email Field'});
             return;
         }
         
         if($scope.password == undefined) {
             toaster.pop({type: 'error', title: "Error", body: 'Empty Password Field'});
+            return;
+        }
+        
+        if ($scope.password != $scope.reppassword) {
+            toaster.pop({type: 'error', title: "Password mismatch", body: 'Both passwords must match'});
+            return;
+        }
+        
+        if ($scope.reppassword == undefined) {
+            toaster.pop({type: 'error', title: "Error", body: "Please Enter the repeat Password"});
+            return;
+        }
+        
+        if($scope.password.length < 6 || $scope.reppassword.length < 6) {
+            
+            toaster.pop({type: 'error', title: "Error", body: "Password should be at least 6 characters"});
             return;
         }
       Auth.$createUserWithEmailAndPassword($scope.toAddEmail, $scope.password)
@@ -69,12 +85,18 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
                     Auth.$signOut();
+          $scope.toAddEmail = undefined;
+          $scope.password = undefined;
+          $scope.reppassword = undefined;
 
             })
           .catch(function(error) {
             $scope.error = error;
             toaster.pop({type: 'error', title: "Error", body: error});
         });
+        
+        $("#addUser .close").click();
+
     };
     
     $scope.activateUser = function (id) {

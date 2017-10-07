@@ -24,7 +24,7 @@
 </div>
 <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
 
-<div class="modal fade" role="dialog" id="addUser" aria-hidden="true" tabindex="-1">
+<div class="modal fade" role="dialog" id="addUser" aria-hidden="true" tabindex="-1" data-ng-controller="createUserCtrl">
                 <div class="modal-dialog modal-lg">
                     <form>
                         <div class="modal-content">
@@ -42,7 +42,7 @@
                                         <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="password" placeholder="More than 6 alphanumeric characters"><br>
                                         
                                         <label for="password">Confirm Password</label>
-                                        <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="password" placeholder="More than 6 alphanumeric characters"><br>
+                                        <input type="password" ng-model="reppassword" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="reppassword" placeholder="More than 6 alphanumeric characters"><br>
 
 
                                         <button data-ng-click="createUser()" class="btn btn-info">Create User <span class="fa fa-plus"></span>
