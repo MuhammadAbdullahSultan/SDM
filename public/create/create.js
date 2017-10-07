@@ -81,6 +81,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
         toSave.active = true;
+        toSave.type = 'Staff'
         $scope.userStates.$save(toSave).then(function () {
             toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
         }).catch (function (error) {
@@ -93,6 +94,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
         toSave.active = false;
+        toSave.type = 'Unauthorized';
         $scope.userStates.$save(toSave).then(function () {
             toaster.pop({type: 'success', title: "Account deactivated", body: "The Account has been successfully deactivated"});
         }).catch (function (error) {
