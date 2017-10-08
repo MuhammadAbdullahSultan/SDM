@@ -20,27 +20,19 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', '$firebaseArray' , function ($scope, $rootScope, $firebaseObject, Auth, toaster, $firebaseArray) {
         
         var ref = firebase.database().ref();
-        var data = ref.child("users");
-        var list = $firebaseArray(data);
-        
-        
-        list.$loaded().then(function(data) {
-            $scope.allUsers = data;
-            console.log(data);
-
-        }).catch(function(error) {
-            $scope.error = error;
-        });
     
-        var ref2 = firebase.database().ref();
-        var data2 = ref2.child("userState");
-        var list2 = $firebaseArray(data2);
+    
+        $scope.allUsers = $firebaseArray(ref.child("users"));
         
-        list2.$loaded().then(function (data) {
-            $scope.userStates = data;
-        }).catch (function (error) {
-            toaster.pop({type: 'error', title: "Error", body: error});
-        });
+    
+        $scope.userStates = $firebaseArray(ref.child("userState"));
+        
+    $scope.display = function () {
+        console.log($scope.allUsers);
+        console.log($scope.userStates);
+        
+        console.log($scope.filteredUsers);
+    }
     
     // Create new user
     $scope.createUser = function() {
@@ -102,8 +94,8 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     /////////////PAGINATION, SORT, FILTER STARTS
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'email', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
-        for (var i = 0; i < $scope.equipments.length; i++)
-            $scope.equipments[i].filtered = $scope.equipments[i].email.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
+        for (var i = 0; i < $scope.allUsers.length; i++)
+            $scope.allUsers[i].filtered = $scope.allUsers[i].email.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
     });
     $scope.$watch("equipments.length", paginationFunc);
@@ -121,12 +113,12 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         $scope.currentPage = currentPageValue;
     }
     function paginationFunc() {
-        var equipments = $scope.equipments.filter(function (item) { return !item.filtered });
-        $scope.numbers = Math.ceil(equipments.length / $scope.numPerPage);
+        var allUsers = $scope.allUsers.filter(function (item) { return !item.filtered });
+        $scope.numbers = Math.ceil(allUsers.length / $scope.numPerPage);
         if ($scope.currentPage < 1) $scope.currentPage = 1;
         if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
-        $scope.filteredUsers = equipments.slice(begin, end);
+        $scope.filteredUsers = allUsers.slice(begin, end);
     }
 ///////////PAGINATION ENDS
     
