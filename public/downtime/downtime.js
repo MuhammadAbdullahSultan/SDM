@@ -157,10 +157,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd hh:ii P',
-        showMeridian: true,
+        format: 'yyyy.mm.dd HH:ii',
         pickerPosition: "bottom-left",
-        startDate : new Date('2012-08-08'),
         endDate: '+0d',
         })
         .on('changeDate', function (selected) {
@@ -172,8 +170,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd hh:ii P',
-        showMeridian: true,
+        format: 'yyyy.mm.dd HH:ii',
         pickerPosition: "bottom-left",
         endDate: '+0d',
         })
