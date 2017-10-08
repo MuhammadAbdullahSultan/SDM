@@ -103,6 +103,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
     }
 
+    /////////////PAGINATION, SORT, FILTER STARTS
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
         for (var i = 0; i < $scope.equipments.length; i++)
@@ -131,7 +132,8 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
         $scope.filteredEquipments = equipments.slice(begin, end);
     }
-
+///////////PAGINATION ENDS
+    
     $scope.equipments = $firebaseArray(ref.child('AllEquipments'));
     $scope.writeUserData = function () {
         var exists = false;
