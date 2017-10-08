@@ -489,15 +489,36 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     }
     
     
-    //////////DELETE DOWNTIME
+    //////////EDIT & DELETE DOWNTIME
     $scope.update = function (indexDT) {
-        $scope.indexDTValue = indexDT;
+        $scope.indexDTValue = $scope.allDT.findIndex(downtime => downtime.$id === indexDT);
+    };
+    
+    $scope.saveDowntime = function () {
+
+        var isEmpty = false;
+
+        if ($scope.allDT[$scope.indexDTValue].type === "") {
+            toaster.pop({ type: 'warning', title: "Type Field Empty", body: "Please enter a type" });
+        } else if ($scope.allDT[$scope.indexDTValue].description === "") {
+            toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
+        } else {
+            $scope.allDT.$save($scope.indexDTValue).then(function () {
+                toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
+                paginationFunc();
+            });
+        }
+
+        $("#editDowntime .close").click();
+
     };
     
     $scope.deleteDowntime = function () {
-        var item = list[$scope.indexDTValue];
-        list.$remove(item).then (function () {
-            
+        
+        var item = $scope.allDT[$scope.indexDTValue];
+        $scope.allDT.$remove(item).then (function (deletedDT) {
+            paginationFunc();
+            console.log(deletedDT);
         });
     };
     
