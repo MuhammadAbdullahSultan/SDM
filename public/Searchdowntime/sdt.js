@@ -32,7 +32,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
         showMeridian: 1,
         format: 'MM yyyy',
         startView: 4,
-        minView: 3
+        minView: 3,
+        endDate: '+0d'
     });
     
     $('#year').datetimepicker({
@@ -44,7 +45,20 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
         showMeridian: 1,
         format: 'yyyy',
         startView: 4,
-        minView: 4
+        minView: 4,
+        endDate: '+0d'
+    });
+    
+    $('#day').datetimepicker({
+//        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0,
+        endDate: '+0d'
     });
     
     
