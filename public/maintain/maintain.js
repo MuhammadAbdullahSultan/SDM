@@ -160,8 +160,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
             return;
         } else {
-
-
             $scope.equipments.$add({
                 equipment: $scope.equipmentToAdd,
                 system: $scope.systemToAdd,
@@ -235,6 +233,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     $scope.deleteEquipment = function () {
 
         var item = $scope.equipments[$scope.indexValue];
+        console.log(item);
         $scope.equipments.$remove(item).then(function (deletedData) {
             paginationFunc();
             console.log(deletedData);

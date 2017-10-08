@@ -460,40 +460,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.error = error;
         });
     
-    $scope.showDT = function () {        
-        var newref = firebase.database().ref();
-        var dtdata = newref.child("downtime");
-        var dtlist = $firebaseArray(dtdata);
-        var push = false;
-        var startDate = new Date();
-        dtlist.$loaded().then(function(dtlist) {
-        $scope.dtdata = dtlist; // Getting Downtime node
-        angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
-            var newref1 = firebase.database().ref().child("downtime"); // creating new reference
-            var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
-            var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
-
-            newdtlist.$loaded().then(function(newdtlist) {
-                angular.forEach (newdtlist, function (n) {
-                                    
-                    
-                });
-            });
-                });
-            
-                
-            }).catch(function(error) {
-                $scope.error = error;
-            });
-        
-    }
-    
     
     //////////EDIT & DELETE DOWNTIME
     $scope.update = function (indexDT) {
         $scope.indexDTValue = $scope.allDT.findIndex(downtime => downtime.$id === indexDT);
     };
-    
     $scope.saveDowntime = function () {
 
         var isEmpty = false;
@@ -503,7 +474,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         } else if ($scope.allDT[$scope.indexDTValue].description === "") {
             toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
         } else {
-            $scope.allDT.$save($scope.indexDTValue).then(function () {
+            $scope.toEditDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
+            $scope.toEditDT.set({
+                description: $scope.allDT[$scope.indexDTValue].description,
+                end: $scope.allDT[$scope.indexDTValue].end,
+                equipment: $scope.allDT[$scope.indexDTValue].equipment,
+                start: $scope.allDT[$scope.indexDTValue].start,
+                type: $scope.allDT[$scope.indexDTValue].type
+            }
+                
+            ).then(function () {
+                
+                
+                console.log($scope.indexDTValue);
                 toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
                 paginationFunc();
             });
@@ -513,27 +496,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 
     };
     
+    
     $scope.deleteDowntime = function () {
-        
-        var item = $scope.allDT[$scope.indexDTValue];
-        $scope.allDT.$remove(item).then (function (deletedDT) {
-            paginationFunc();
-            console.log(deletedDT);
+        $scope.toDeleteDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
+        $scope.toDeleteDT.remove(function (event) {
+            console.log(event);
         });
     };
     
     /////////////////////////////
     
-    $scope.percentageData = [];
-
-    $scope.refreshData = function () {
-//        for (var i = 0 ; i < $scope.chartData.length ; i++) {
-//            $scope.chartData = $scope.chartData[i];
-//            console.log($scope.chartData[i])
-//        }
-    }
+$scope.percentageData = [];
            
-    
+
 $scope.refreshList = function () {
     angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
             var newref1 = firebase.database().ref().child("downtime"); // creating new reference
@@ -545,7 +520,7 @@ $scope.refreshList = function () {
                 angular.forEach (newdtlist, function (n) {
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     $scope.allDT.push(n);
-                    console.log($scope.allDT);
+                    
                     $scope.equipmentLabels.push(n.equipment);
                     
 //                    console.log(n);
