@@ -140,7 +140,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     $('#remove').datetimepicker('remove');
     
-    $('#dtFilter').datetimepicker({
+    $('.dtFilter').datetimepicker({
         //language:  'fr',
 		autoclose: 1,
 		todayHighlight: 1,
@@ -149,14 +149,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         showMeridian: 1,
         format: 'dd/mm/yyyy',
         startView: 2,
-        minView: 4
+        minView: 4,
+        endDate: '+0d'
     });
-    
-    $('#remove').datetimepicker('remove');
-//    $('#start').datetimepicker('setStartDate');
-//    $('#end').datetimepicker('setEndDate', '.form_endtime');
-
-        
+     
     $('.form_starttime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
