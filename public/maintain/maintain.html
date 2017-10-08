@@ -86,37 +86,21 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="box">
-                        <div class="table-responsive" id="HTMLtoPDF">
+                        <div class="table-responsive">
                             
                                     <div class="input-append">
                                         <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
                                     </div>
                             <br>
 
-
+                            <div id="HTMLtoPDF">
                             <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable">
                                 <thead class="lockedRecordsBg">
                                     <tr>
-                                        <th>
-                                            <a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">
-                                                Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span>
-                                            </a>
-                                        </th>
-                                        <th>
-                                            <a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">
-                                                System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span>
-                                                    </a>
-                                        </th>
-                                        <th>
-                                            <a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">
-                                                Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span>
-                                            </a>
-                                        </th>
-                                        <th>
-                                            <a href="javascript:void(0)" ng-click="orderByField='group'; reverseSort = !reverseSort">
-                                                Group <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i>
-                                            </a>
-                                        </th>
+                                        <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                                        <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                                        <th><a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                                        <th><a href="javascript:void(0)" ng-click="orderByField='group'; reverseSort = !reverseSort">Group <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></a></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -124,24 +108,13 @@
                                     <tr data-ng-repeat="equipment in filteredEquipments | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
                                         <td>{{equipment.equipment}}</td>
                                         <td>{{equipment.system}}</td>
-                                        <td>
-                                            <p>{{equipment.description}}</p>
-                                        </td>
+                                        <td><p>{{equipment.description}}</p></td>
                                         <td>{{equipment.group}}</td>
-
-                                        <td>
-
-                                            <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active"
-                                                title="Edit equipment" data-backdrop="false" data-ng-click="update(equipment.$id)"><span class="fa fa-edit"></span>
-                                                        </button>
-
-                                            <button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment"
-                                                data-ng-click="update(equipment.$id); deleteEquipment(equipment.$id);"><span class="fa fa-trash-o"></span>
-                                                        </button>
-                                        </td>
+                                        <td><button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update(equipment.$id)"><span class="fa fa-edit"></span></button><button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment"data-ng-click="update(equipment.$id); deleteEquipment(equipment.$id);"><span class="fa fa-trash-o"></span></button></td>
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                             <div class="btn-group btn-group-sm" style="float: right">
                                 <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>

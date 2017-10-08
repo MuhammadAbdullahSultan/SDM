@@ -18,22 +18,7 @@
             </div>
             <div class="card-body">
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="email">Email</label>
-                        <input type="email" ng-model="toAddEmail" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6" id="email" placeholder="e.g: abc123@def456.com">
-
-                        <label for="password">Password</label>
-                        <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6" id="password" placeholder="More than 6 alphanumeric characters">
-
-                        <br>
-
-                        <button data-ng-click="createUser()" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active">Create User <span class="fa fa-plus"></span>
-                        </button>
-                    </div>
-
-                </div>
-                <br>
+                
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="box">
@@ -48,13 +33,7 @@
                                 <tbody>
                                     <tr data-ng-repeat="d in allUsers">
                                         <td>{{d.email}}</td>
-                                        <!--
-                        <td>
-                            <p data-ng-if="userStates.$getRecord(d.$id).$value">ACTIVATED</p>
-                            <p data-ng-if="!userStates.$getRecord(d.$id).$value">DEACTIVATED</p>
-                        </td>
--->
-
+                                        
                                         <td>
                                             <button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger" data-ng-click="deactivateUser(d.$id)">Deactivate</button>
                                             <button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success" data-ng-click="activateUser(d.$id)">Activate</button>
