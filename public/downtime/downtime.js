@@ -404,11 +404,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
-        for (var i = 0; i < $scope.equipments.length; i++)
-            $scope.equipments[i].filtered = $scope.equipments[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
+        for (var i = 0; i < $scope.allDT.length; i++)
+            $scope.allDT[i].filtered = $scope.allDT[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
     });
-    $scope.$watch("equipments.length", paginationFunc);
+    $scope.$watch("allDT.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {
         $scope.currentPage = index;
@@ -423,12 +423,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         $scope.currentPage = currentPageValue;
     }
     function paginationFunc() {
-        var equipments = $scope.equipments.filter(function (item) { return !item.filtered });
-        $scope.numbers = Math.ceil(equipments.length / $scope.numPerPage);
+        var allDT = $scope.allDT.filter(function (item) { return !item.filtered });
+        $scope.numbers = Math.ceil(allDT.length / $scope.numPerPage);
         if ($scope.currentPage < 1) $scope.currentPage = 1;
         if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
-        $scope.filteredEquipments = equipments.slice(begin, end);
+        $scope.filteredDowntime = allDT.slice(begin, end);
     }
     
     /////////////////PAGINATION ENDS

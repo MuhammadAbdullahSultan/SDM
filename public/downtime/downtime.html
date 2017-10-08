@@ -336,7 +336,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr data-ng-repeat="d in allDT | orderBy:orderByField:reverseSort | filter: type | filter: equipment track by $index" ng-if="!d.filtered"> 
+                  <tr data-ng-repeat="d in filteredDowntime | orderBy:orderByField:reverseSort | filter: type | filter: d track by $index" ng-if="!d.filtered"> 
                      <td>{{d.equipment}}</td>
                      <td>{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
                      <td>{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
@@ -409,7 +409,7 @@
                 
                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="Type">
                   <label for="searchType">Edit Type:</label>
-                  <select class="form-control" id="editDTtype" data-ng-model="type" data-ng-model="allDT[indexDTValue].type">
+                  <select class="form-control" id="editDTtype" data-ng-model="allDT[indexDTValue].type">
                      <option value="" disabled="" selected="" style="display: none">{{allDT[indexDTValue].type}}</option>
                      <option>Corrective Maintenance</option>
                      <option>Preventive Maintenance</option>
