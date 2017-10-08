@@ -98,7 +98,7 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             $scope.allUsers[i].filtered = $scope.allUsers[i].email.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
     });
-    $scope.$watch("equipments.length", paginationFunc);
+    $scope.$watch("allUsers.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {
         $scope.currentPage = index;
