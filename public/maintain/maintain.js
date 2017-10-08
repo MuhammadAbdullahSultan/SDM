@@ -145,7 +145,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
                 toaster.pop({ type: 'warning', title: "Equipment Exists", body: "The equipment already exists" });
                 return;
             }
-            break;
         }
 
         if ($scope.equipmentToAdd === undefined) {
