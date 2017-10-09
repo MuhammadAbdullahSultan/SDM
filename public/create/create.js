@@ -77,9 +77,9 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
           // pop toaster for success
             toaster.pop({type: 'success', title: "User Account created", body: "A new user has been added"});
             Auth.$signOut();
-          $scope.toAddEmail = undefined;
-          $scope.password = undefined;
-          $scope.reppassword = undefined;
+              $scope.toAddEmail = undefined;
+              $scope.password = undefined;
+              $scope.reppassword = undefined;
 
             })
           .catch(function(error) {
@@ -126,42 +126,65 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     ////ACTIVATE & DEACTIVATE USERS
     $scope.activateUser = function (id) {
         
-        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
-            if($scope.filteredUsers[i].email === $scope.email) {
+//        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
+//            if($scope.filteredUsers[i].email === $scope.email) {
+//                toaster.pop({type: 'error', title: "NOPE", body: "NOPE"});
+//                return;
+//            }
+//            break;
+//        }
+        
+        if(id === $scope.signin.uid) {
+            toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot deactivate themselves"});
+            return;
+        } else {
+            console.log(id);
+            var toSave = $scope.userStates.$getRecord(id);
+            toSave.active = true;
+            toSave.type = 'Staff'
+            $scope.userStates.$save(toSave).then(function () {
                 toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
-                return;
-            }
-            break;
+            }).catch (function (error) {
+                toaster.pop({type: 'error', title: "Error", body: error});
+            });
         }
-        console.log(id);
-        var toSave = $scope.userStates.$getRecord(id);
-        toSave.active = true;
-        toSave.type = 'Staff'
-        $scope.userStates.$save(toSave).then(function () {
-            toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
-        }).catch (function (error) {
-            toaster.pop({type: 'error', title: "Error", body: error});
-        });
+        
+        
         
     }
     
+    $scope.clickMeSenpai = function () {
+        console.log($scope.email);
+        console.log($scope.signin.uid);
+//        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
+//            console.log($scope.filteredUsers[i].email);
+//        }
+    }
+    
     $scope.deactivateUser = function (id) {
-        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
-            if($scope.filteredUsers[i].email === $scope.email) {
-                toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
-                return;
-            }
-            break;
+//        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
+//            if($scope.filteredUsers[i].email === $scope.email) {
+//                toaster.pop({type: 'error', title: "NOPE", body: "NOPE"});
+//                return;
+//            }
+//            break;
+//        }
+        
+        if(id === $scope.signin.uid) {
+            toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot deactivate themselves"});
+            return;
+        } else {
+            console.log(id);
+            var toSave = $scope.userStates.$getRecord(id);
+            toSave.active = false;
+            toSave.type = 'Unauthorized';
+            $scope.userStates.$save(toSave).then(function () {
+                toaster.pop({type: 'success', title: "Account deactivated", body: "The Account has been successfully deactivated"});
+            }).catch (function (error) {
+                toaster.pop({type: 'error', title: "Error", body: error});
+            });
         }
-        console.log(id);
-        var toSave = $scope.userStates.$getRecord(id);
-        toSave.active = false;
-        toSave.type = 'Unauthorized';
-        $scope.userStates.$save(toSave).then(function () {
-            toaster.pop({type: 'success', title: "Account deactivated", body: "The Account has been successfully deactivated"});
-        }).catch (function (error) {
-            toaster.pop({type: 'error', title: "Error", body: error});
-        });
+        
         
     }
     

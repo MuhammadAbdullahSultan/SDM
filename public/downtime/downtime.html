@@ -97,7 +97,7 @@
             <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
                                         
             <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartPercentOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
             </div>        
         </div>
         
@@ -193,6 +193,21 @@
     
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
     
+    
+    
+<!--    -->
+<!--
+    <script>
+        var tables = $("table").tableExport();
+        
+        tables.tableExport.update({
+            fileName: "newFile"         // pass in a new set of options
+        });
+    </script>
+-->
+    
+<!--    -->
+    
 <!--  Export to Excel  -->
     <script>
     function exportToExcel(tableID){
@@ -281,8 +296,8 @@
                 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="dtp_input4" class="control-label">Start Time</label>
-                        <div class="input-group date form_starttime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
-                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT">
+                        <div class="input-group date form_starttime" data-date="" data-link-field="dtp_input1">
+                            <input class="form-control" size="16" type="text" value="" readonly data-ng-model="startDT" name="start">
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                         </div>
@@ -291,7 +306,7 @@
 
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="dtp_input5" class="control-label">End Time</label>
-                        <div class="input-group date form_endtime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
+                        <div class="input-group date form_endtime" data-link-field="dtp_input1">
                             <input class="form-control" size="16" type="text" value="" readonly data-ng-model="endDT">
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
@@ -314,13 +329,13 @@
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data</div>
         <div class="card-body">
-          <div class="table-responsive" id="HTMLtoPDF">
+          <div class="table-responsive">
               
               <div class="input-append">
                     <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
               </div>
             <br>
-
+              <div id="HTMLtoPDF">
             <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
               <thead class="lockedRecordsBg">
                   <tr>
@@ -355,7 +370,7 @@
                </tbody>
        
             </table>
-              
+              </div>
               <div class="btn-group btn-group-sm" style="float: right">
                                 <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>

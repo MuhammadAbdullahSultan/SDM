@@ -119,6 +119,22 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
     }
     
+//    $scope.downloadPercentDash = function () {
+//        var d_canvas = document.getElementById('percentdash');
+//
+//            $('#downloaddash').click(function() {       
+//                html2canvas($("#hourdash"), {
+//                    onrendered: function(canvas) {         
+//                        var imgData = canvas.toDataURL(
+//                            'image/png');              
+//                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+//                        doc.addImage(imgData, 'PNG', 10, 10);
+//                        doc.save('sample-file.pdf');
+//                    }
+//                });
+//            });
+//    }
+    
     // Hour Chart
     
     $scope.allEquipments = [];
@@ -150,35 +166,39 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         format: 'dd/mm/yyyy',
         startView: 2,
         minView: 4,
-        endDate: '+0d'
+        endDate: '+1d'
     });
      
     $('.form_starttime').datetimepicker({
-        todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd HH:ii',
+        format: 'yyyy.mm.dd hh:ii',
+        todayBtn: 1,
         pickerPosition: "bottom-left",
-        endDate: '+0d',
+        endDate: '+1d',
         })
         .on('changeDate', function (selected) {
         var minDate = new Date(selected.date.valueOf());
         $('.form_endtime').datetimepicker('setStartDate', minDate);
+        
             });
+    
+    
         
     $('.form_endtime').datetimepicker({
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
-        format: 'yyyy.mm.dd HH:ii',
+        format: 'yyyy.mm.dd hh:ii',
         pickerPosition: "bottom-left",
-        endDate: '+0d',
+        endDate: '+1d',
         })
         .on('changeDate', function (selected) {
         var maxDate = new Date(selected.date.valueOf());
-        $('.form_starttime').datetimepicker('setEndDate', maxDate);
+         $('.form_starttime').datetimepicker('setEndDate', maxDate);
             });
-  
+    $('.form_starttime [name="start"]').datetimepicker('setEndDate', '+0d');
+    
 //    $("#form_starttime").datetimepicker({
 //        todayBtn:  1,
 //		autoclose: 1,
@@ -239,7 +259,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         
     $scope.downloadImgHr = function () {
         $("#saveImgHr").click(function() {
- 	    $("#hour").get(0).toBlob(function(blob) {
+ 	    $("#hourdash").get(0).toBlob(function(blob) {
             saveAs(blob, "hour_chart.jpeg");
                 });
         });
@@ -260,6 +280,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // CHART
     // -------------------------------------------------------------------------------------------------------    
 
+    
+    //////////////////DOWNTIME HOUR CHART//////////
+    
         $scope.chartOptions = {
             data: {
             datasets: [{
@@ -269,8 +292,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }]
         },
             title: {
-                display: false,
-                text: "",
+                display: true,
+                text: "Equipment Downtime",
                 fontSize: 20,
             },
             
@@ -305,7 +328,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: ''
+                        labelString: 'Equipment Name'
                     },
                 gridLines: {
                     color: "rgba(0, 0, 0, 0)",
@@ -314,7 +337,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: ''
+                        labelString: 'Hours'
                     },
                 gridLines: {
                     color: "rgba(0, 0, 0, 0)",
@@ -322,6 +345,75 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }]
             }
             }
+    /////////////////////////////////////////////
+    
+    ////////////////////PERCENTAGE CHART////////
+    
+    $scope.chartPercentOptions = {
+            data: {
+            datasets: [{
+                fillColor: "rgba(14,72,100,1)",
+                strokeColor: "brown",
+                borderWidth: 1
+            }]
+        },
+            title: {
+                display: true,
+                text: "Equipment Downtime Percentage",
+                fontSize: 20,
+            },
+            
+            legend: {
+                text: "Hello"
+            },
+            
+            tooltips: {
+                enabled: true
+            },
+            
+            onClick: function(event, elem) {
+                 var chartele = elem[0];
+                 if (!chartele) {return;} // check and return if not clicked on bar/data
+                 // else...
+                else {
+                    
+                    $(document).ready(function(){
+                    $("#canvas").click(function(){
+                        $("#viewGraph").modal(); 
+                        
+                        });
+                    });
+                    
+                }
+        
+              },
+            
+            
+            scales: {
+                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Equipment Name'
+                    },
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Percentage (%)'
+                    },
+                gridLines: {
+                    color: "rgba(0, 0, 0, 0)",
+                }   
+            }]
+            }
+            }
+        
+    
+    /////////////////////////////////////////////
         
         $scope.getFilteredData = function () {
             var equipment = lowercase(document.getElementById("").value);

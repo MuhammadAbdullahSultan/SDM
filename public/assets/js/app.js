@@ -99,20 +99,19 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
         // add auth state listener
         Auth.$onAuthStateChanged(function(user) {
             if (user) {
-                $scope.signin.state = true
-                $scope.signin.uid = user.uid
+                $scope.signin.state = true;
+                $scope.signin.uid = user.uid;
                 $scope.email = user.email;
                 console.log ($scope.email);
-                $scope.signin.profile = {}
+                $scope.signin.profile = {};
                 console.log("user.uid " + $scope.signin.uid);
-//                document.location.href= "dashboard.html#!/sdt";
+//              document.location.href= "dashboard.html#!/sdt";
                 
             } else {
                 $scope.signin.state = false
                 $scope.signin.uid = null
 //                document.location.href= "/home";
                 $location.path("/login");
-
             }
         })
 
