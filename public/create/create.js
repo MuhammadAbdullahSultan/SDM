@@ -125,6 +125,14 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     
     ////ACTIVATE & DEACTIVATE USERS
     $scope.activateUser = function (id) {
+        
+        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
+            if($scope.filteredUsers[i].email === $scope.email) {
+                toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
+                return;
+            }
+            break;
+        }
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
         toSave.active = true;
@@ -138,6 +146,13 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     }
     
     $scope.deactivateUser = function (id) {
+        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
+            if($scope.filteredUsers[i].email === $scope.email) {
+                toaster.pop({type: 'success', title: "Account Activated", body: "The Account has been successfully activated"});
+                return;
+            }
+            break;
+        }
         console.log(id);
         var toSave = $scope.userStates.$getRecord(id);
         toSave.active = false;

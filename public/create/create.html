@@ -40,7 +40,7 @@
                                     <tr data-ng-repeat="d in filteredUsers | orderBy:orderByField:reverseSort" ng-if="!d.filtered">
                                         <td>{{d.email}}</td>
                                         
-                                        <td><button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger" data-ng-click="deactivateUser(d.$id)">Deactivate</button><button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success" data-ng-click="activateUser(d.$id)">Activate</button></td>
+                                        <td><button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deactivateUser(d.$id)">Deactivate</button><button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="activateUser(d.$id)">Activate</button></td>
 
                                     </tr>
 
