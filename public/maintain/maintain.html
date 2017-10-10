@@ -24,8 +24,7 @@
             <br/>
             <div class="row">
                 <div class="col-md-3 col-md-offset-9">
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')"
-                        title="Export table (Excel) to computer"><span class="fa fa-fw fa-file-excel-o"></span>
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" onclick="exportToExcel('exTable')" title="Export table (Excel) to computer" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span>
                     </button>
 
                     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
@@ -33,55 +32,11 @@
                 </div>
 
 
-                <!--  Export to Excel  -->
-                <script>
-                    function exportToExcel(tableID) {
-                        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
-                        var textRange;
-                        var j = 0;
-                        tab = document.getElementById(tableID); // id of table
-
-                        for (j = 0; j < tab.rows.length; j++) {
-
-                            tab_text = tab_text;
-
-                            tab_text = tab_text + tab.rows[j].innerHTML.toUpperCase() + "</tr>";
-                            //tab_text=tab_text+"</tr>";
-                        }
-
-                        tab_text = tab_text + "</table>";
-                        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-                        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); //remove if u want images in your table
-                        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
-
-                        var ua = window.navigator.userAgent;
-                        var msie = ua.indexOf("MSIE ");
-
-                        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
-
-                        {
-                            txtArea1.document.open("txt/html", "replace");
-                            txtArea1.document.write('sep=,\r\n' + tab_text);
-                            txtArea1.document.close();
-                            txtArea1.focus();
-                            sa = txtArea1.document.execCommand("SaveAs", true, "sudhir123.txt");
-                        } else {
-                            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-                        }
-
-                        return (sa);
-                    }
-                </script>
-                <!-- ENDS HERE-->
+                
 
             </div>
             <br>
-            <!--
-            <script type="text/javascript">
-                var sortingOrder = 'name';
-            </script>
--->
-            <!-- search box here?? -->
+            
             <div class="row">
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -206,10 +161,7 @@
                                         <datalist id="equipments">
                                             <option data-ng-repeat="e in equipments track by $index">{{e.equipment}}</option>
                                         </datalist>
-
-
-
-                                        <!--                      <div data-ng-repeat="e in data"> e.$id</div>-->
+                                        
                                     </div>
 
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -224,17 +176,7 @@
                                         <h5>System</h5>
                                         <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">
                                     </div>
-                                    <!--
-                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                     <h5>Group</h5>
-                     <input list="browsers" name="browser" class="form-control" id="searchType" placeholder="Select group" data-ng-model="groupToAdd">
-                     <datalist id="browsers">
-                         <option data-ng-repeat="g in groupA" value="g"></option>
-                         <input type="text" id="other" placeholder="Add new group" ng-model="groot"/>
-                         <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>    
-                     </datalist>
-                   </div>
--->
+                                    
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h5>Group</h5>
                                         <input list="group" name="myGroup" type="text" class="form-control txtsize" id="equi" data-ng-model="groupToAdd" onKeyPress="return numchar(event)"
