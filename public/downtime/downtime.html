@@ -22,49 +22,7 @@
 
 <div class="row">
 
-<!--
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    
-    <div class="card mb-3">
-   <div class="card-header">
-      <i class="fa fa-area-chart"></i> System
-   </div>
-   <div class="card-body">
-   <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl" style="font-size: 13px">
-                System Downtime (Hour)
-                
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-            
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-        </div>
-        
-        
-        
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent" style="font-size: 15px">
-            
-            System Downtime Percentage(%)
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-                
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-            
-        </div>
-    
-    </div>
-    </div>
-</div>
-    
-</div>
--->
-    
+
     <button class="btn btn">Check Data</button>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     
@@ -161,97 +119,11 @@
    </div>
 </div>
 <hr/>
-<!--
-<div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
-      <div class="box">
-         <div class="table-responsive">
-            <table class="table table-hover">
-               <thead>
-                  <tr>
-                     <th id="equipment">Equipment</th>
-                     <th id="start">Start</th>
-                     <th id="end">End</th>
-                     <th id="type">Type</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d != null">
-                     <td headers = "equipment">{{d.equipment}}</td>
-                     <td headers = "start">{{d.start}}</td>
-                     <td headers = "end">{{d.end}}</td>
-                     <td headers = "type">{{d.type}}</td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </div>
-   </div>
-</div>
--->
     
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')"><span class="fa fa-fw fa-file-excel-o"></span></button>
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button>
     
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-    
-    
-    
-<!--    -->
-<!--
-    <script>
-        var tables = $("table").tableExport();
         
-        tables.tableExport.update({
-            fileName: "newFile"         // pass in a new set of options
-        });
-    </script>
--->
-    
-<!--    -->
-    
-<!--  Export to Excel  -->
-    <script>
-    function exportToExcel(tableID){
-        var tab_text="<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
-        var textRange; var j=0;
-        tab = document.getElementById(tableID); // id of table
-
-        for(j = 0 ; j < tab.rows.length ; j++)
-        {
-
-            tab_text=tab_text;
-
-            tab_text=tab_text+tab.rows[j].innerHTML.toUpperCase()+"</tr>";
-            //tab_text=tab_text+"</tr>";
-        }
-
-        tab_text= tab_text+"</table>";
-        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-        tab_text= tab_text.replace(/<img[^>]*>/gi,""); //remove if u want images in your table
-        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
-
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-
-        {
-            txtArea1.document.open("txt/html","replace");
-            txtArea1.document.write( 'sep=,\r\n' + tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa=txtArea1.document.execCommand("SaveAs",true,"sudhir123.txt");
-        }
-
-        else {
-           sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-        }
-
-        return (sa);
-    }
-    </script>
-<!-- ENDS HERE-->
-    
     <br>
     <br>
 <div class="modal fade" id="manageDT">
