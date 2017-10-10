@@ -592,6 +592,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     /////////////////////////////
     
 $scope.percentageData = [];
+    
+    $scope.checkChart = function () {
+        console.log($scope.allDT);
+    }
            
 
 $scope.refreshList = function () {
@@ -661,14 +665,15 @@ $scope.refreshList = function () {
             
             $scope.refreshList();
             
-            dtlist.$watch(function(event) {
-                $scope.percentageData = [];
-                $scope.allDT = [];
-                $scope.equipmentLabels = [];
-                $scope.chartData = [];
-                $scope.dtdata = dtlist; // Getting Downtime node
-                $scope.refreshList();
-            });
+//            dtlist.$watch(function(event) {
+//                $scope.percentageData = [];
+//                $scope.allDT = [];
+//                $scope.equipmentLabels = [];
+//                $scope.chartData = [];
+//                
+//                $scope.dtdata = dtlist; // Getting Downtime node
+////                $scope.refreshList();
+//            });
             
             
             }).catch(function(error) {
