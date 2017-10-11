@@ -20,49 +20,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     'use strict';
     
-    ////Table to Excel
-    
-    $("document").ready(function() {
-   $("#btnDown").click(function() {
-     export_table_to_excel();
-   });
- });
-
- function export_table_to_excel() {
-   var wb = XLSX.utils.table_to_book($("#exTable")[0], {
-     sheet: "Sheet JS"
-   });
-   var wbout = XLSX.write(wb, {
-     bookType: "xlsx",
-     bookSST: true,
-     type: 'binary'
-   });
-
-   try {
-     saveAs(new Blob([s2ab(wbout)], {
-       type: "application/octet-stream"
-     }), "test.xlsx");
-   } catch (e) {
-     if (typeof console != 'undefined') console.log(e, wbout);
-   }
-
-   return wbout;
- }
-
- function s2ab(s) {
-   if (typeof ArrayBuffer !== 'undefined') {
-     var buf = new ArrayBuffer(s.length);
-     var view = new Uint8Array(buf);
-     for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-     return buf;
-   } else {
-     var buf = new Array(s.length);
-     for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
-     return buf;
-   }
- }
-    //////////////////
-    
     //Canvas to PDF
     
     $('#start').datetimepicker({
@@ -95,23 +52,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     });
     
     
-    $scope.$watch("equipment", function () {
-        $scope.percentageData = [];
-        $scope.allDT = [];
-        $scope.equipmentLabels = [];
-        $scope.chartData = [];
-        $scope.dtdata = dtlist; // Getting Downtime node
-        $scope.refreshList();
-    })
-
-    $scope.$watch("type", function () {
-        $scope.percentageData = [];
-        $scope.allDT = [];
-        $scope.equipmentLabels = [];
-        $scope.chartData = [];
-        $scope.dtdata = dtlist; // Getting Downtime node
-        $scope.refreshList();
-    })
+    
     //////////////////DOWNLOAD DATA INTO PDF
     
     $scope.downloadHour = function () {
@@ -327,6 +268,13 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     //////////////////DOWNTIME HOUR CHART//////////
     
         $scope.chartOptions = {
+            data: {
+            datasets: [{
+                fillColor: "rgba(14,72,100,1)",
+                strokeColor: "brown",
+                borderWidth: 1
+            }]
+        },
             title: {
                 display: true,
                 text: "Equipment Downtime",
@@ -334,6 +282,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             },
             
             legend: {
+                
                 text: "Hello"
             },
             
@@ -386,6 +335,13 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     ////////////////////PERCENTAGE CHART////////
     
     $scope.chartPercentOptions = {
+            data: {
+            datasets: [{
+                fillColor: "rgba(14,72,100,1)",
+                strokeColor: "brown",
+                borderWidth: 1
+            }]
+        },
             title: {
                 display: true,
                 text: "Equipment Downtime Percentage",
@@ -401,14 +357,18 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             },
             
             onClick: function(event, elem) {
+                console.log(event);
+                    console.log(elem);
                  var chartele = elem[0];
                  if (!chartele) {return;} // check and return if not clicked on bar/data
                  // else...
                 else {
                     
-                    $(document).ready(function() {
-                    $("#canvas").click(function() {
+                    $(document).ready(function(){
+                    $("#canvas").click(function(){
                         $("#viewGraph").modal(); 
+                            
+                        
                         
                         });
                     });
@@ -442,25 +402,29 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }
         
     
-    $scope.onClick = function (points, evt) {
-        console.log(points);
-        console.log(evt);
-        
-        $scope.labelofChart = points[0]._view.label;
-        $scope.$apply();
-    }
-    
     /////////////////////////////////////////////
         
         $scope.getFilteredData = function () {
             var equipment = lowercase(document.getElementById("").value);
         }
         
+        
+    $scope.hourCalculation = function () {
+        
+        
+        
+        angular.forEach ($scope.allDT , function (date) {
+            
+            
+        });
+    }
     
     // -------------------------------------------------------------------------------------------------------
     // For adding downtime
     // -------------------------------------------------------------------------------------------------------
-        
+    $scope.reload = function () {
+        window.location.href
+    }
     $scope.manageDowntime = function () {
         
         // VAlIDATION
@@ -624,7 +588,10 @@ $scope.percentageData = [];
            
 
 $scope.refreshList = function () {
-    angular.forEach ($scope.dtdata , function (d) { // looping through the dtdata
+    
+
+    angular.forEach ($scope.dtdata , function (d) {
+        // looping through the dtdata
             var newref1 = firebase.database().ref().child("downtime"); // creating new reference
             var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
             var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
@@ -632,6 +599,7 @@ $scope.refreshList = function () {
             
             newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
+                    
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     $scope.allDT.push(n);
                     
@@ -644,12 +612,10 @@ $scope.refreshList = function () {
                     var start = new Date (n.start);
                     var end = new Date (n.end);
                     
-                    var hours = Math.abs (end - start) / 36e5;
+                    var hours = Math.abs(end - start) / 36e5;
                     
                     
                     $scope.chartData.push(hours);
-                    
-                    console.log($scope.chartData);
                     
                     var date = new Date();
                     var getYear = date.getFullYear();
@@ -675,32 +641,52 @@ $scope.refreshList = function () {
             });
                 });
 }
+
+    $scope.onClick = function (points, evt) {
+        console.log(points);
+        console.log(evt);
+        $scope.pointLabel = points[0]._model.label;
+        $scope.$apply();
+      };
     
     // -------------------------------------------------------------------------------------------------------
     //RETRIEVING ALL DOWNTIMES
     // -------------------------------------------------------------------------------------------------------
     
+    
+    window.onload = function () {
+        $scope.type = true;
+    }
         var newref = firebase.database().ref();
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
         var push = false;
         var startDate = new Date();
-    
+        
+            $scope.filterChange = function () {
+                $scope.percentageData = [];
+                $scope.allDT = [];
+                $scope.equipmentLabels = [];
+                $scope.chartData = [];
+                $scope.refreshList();
+            }
         
         dtlist.$loaded().then(function(dtlist) {
         $scope.dtdata = dtlist; // Getting Downtime node
             
             $scope.refreshList();
             
-//            dtlist.$watch(function(event) {
-//                $scope.percentageData = [];
-//                $scope.allDT = [];
-//                $scope.equipmentLabels = [];
-//                $scope.chartData = [];
-//                
-//                $scope.dtdata = dtlist; // Getting Downtime node
-////                $scope.refreshList();
-//            });
+            dtlist.$watch(function(event) {
+                $scope.percentageData = [];
+                $scope.allDT = [];
+                $scope.equipmentLabels = [];
+                $scope.chartData = [];
+                
+                $scope.dtdata = dtlist; // Getting Downtime node
+                $scope.refreshList();
+            });
+            
+            
             
             
             }).catch(function(error) {
