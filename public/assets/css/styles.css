@@ -14,6 +14,11 @@
 .sideNavColor {
     color: white;
 }
+
+#manualback{
+    background color: grey;
+}
+
 #buttcolor{
     background-color: rgba(33, 23, 115, 1);
     color: whitesmoke;

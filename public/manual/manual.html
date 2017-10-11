@@ -12,22 +12,20 @@
                 <li class="breadcrumb-item active">Read before use</li>
             </ol>
         </div>
-        <div>
+        
+        <div class="breadcrumb">
 
             <p><i>Thank you for using System Downtime Monitoring web application. Please read before using the system. This page contains the instruction and manual for the system's functionality.</i>
             </p>
             <br>
             <br>
             
-            
-
-
-            <div class="row" style="margin-left: 5px, margin-right: 5px">
+                <div class="row" style="margin-left: 5px, margin-right: 5px" id="box">
                 
-                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-                    <p><span style="font-weight: bold;"> <i class="fa fa-fw fa-sign-in fa-3x"></i></span>
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p style="text-align: center"><span style="font-weight: bold;"> <i class="fa fa-fw fa-sign-in fa-3x"></i></span>
                     </p>
-                    <p style="text-align: justify"><b>Login:</b>
+                    <p style="text-align: center"><b>Login</b>
                         <br>
                         Admin Login<br>
                         User ID: ptlk70@gmail.com <br>
@@ -36,86 +34,104 @@
                         Staff Login<br>
                         User ID: patrick.low@gmail.com <br>
                         Password: 123456
-                        
-                        <br><br>Register: Anyone can register user accounts for the system. The Administrator can activate the created user accounts inside the system.  
-                    </p>
-
+                        </p>
+                        <ul>
+                            <li>Register New Account: Anyone can register user accounts for the system. However, only administrator can activate the created user accounts inside the system. Only then would the user accounts (Staff privilege) can be accessed. </li>
+                            <li>Note that any entry mistake while attempting login will produce error</li>
+                     </ul>
                     <hr/>
-
 
                 </div>
                 
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-                    <p><span style="font-weight: bold;"> <i class="fa fa-fw fa-dashboard fa-3x"></i></span>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p style="text-align: center"><span style="font-weight: bold;"> <i class="fa fa-fw fa-dashboard fa-3x"></i></span>
                     </p>
-                    <p style="text-align: justify"><b>Dashboard:</b>
-                        <br> 
-                        Dashboard is the primary page to view summary of Downtime and Equipment by Hour and Percentage. 
-                        <br><br>Summary of Downtime and Equipment can be exported in JPEG and PDF file. 
-                        <br><br>There is a column below where User would select year, month, day to search. 
-                        <br><br>To view the Downtime description, please select any of the graph bar chart, it will pop-up the Downtime description. 
-                        <br><br>Refresh button will bring back to original display of graph. 
-                    </p>
-
-                    <hr/>
-
-
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-
-                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-area-chart fa-3x"></i></span>
-                    </p>
-                    <p style="text-align: justify"><b>Manage Downtime:</b>
-                        <br> Displays summary of Downtime and Equipment by Hour and Percentage. 
-                        <br><br>In Add Downtime, select equipment followed by select type of maintenance (Corrective Maintenance, Preventive Maintenance, or Standby), start time at any period and end time. Do take note that end time would only accept current date. 
-                        <br><br>No future date input allowed. Once all keyed in, a new Downtime will be added.</p>
-                    <p>Under Search Downtime, select equipment list, select type and select date. The graph would then plot the Downtime data that was searched.</p>
+                    <p style="text-align: center"><b>Dashboard</b></p>
+                    <ul>
+                        <li>Dashboard is the primary page to view the summary of Downtime of Equipment by Hour and Percentage. </li>
+                        <li>View the graphs.</li> 
+                        <li>Note that initially, there is no data available in the system yet if there is no input.</li>
+                        <li>The selection for yearly, monthly, and daily is filtering .</li>
+                        <li>The populated graphs can be exported by clicking PDF and JPEG button. </li> 
+                        <li>To view Downtime’s description, click on any of the graph bar and it will pop-up its description</li>
+                    </ul>
                     
-                    <p>The calculation for the Total Downtime (Hour) and Downtime Percentage (%) is as below:</p>
+
+                    <hr/>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <p style="text-align: center"><span style="font-weight: bold;"><i class="fa fa-fw fa-area-chart fa-3x"></i></span>
+                    </p>
+                    <p style="text-align: center"><b>Manage Downtime</b></p>
+                    <ul>
+                        <li>Manage Equipment displays maintenance of Downtime of Equipment.</li>
+                        <li>Please add equipment first before adding downtime.</li>
+                        <li>Click on 'Add Equipment' button to add new equipment.</li>
+                        <li>Refer to list in FYP.xls (in Equipment tab) for list of equipment wanted to be added (optional).</li>
+                        <li>Added equipment will automatically be listed in the table of existing equipment.</li>
+                        <li>The list of equipment can be both deleted and edited, according to the user's need. </li>
+                        <li>Equipment that has recorded downtime cannot be deleted. If it requires the user to delete an equipment that has downtime, delete the downtime for the specific equipment firsthand in Manage Downtime.</li>
+                        <li>The table can be exported in Excel (.xlsx) and PDF format by clicking on the export buttons on top of the table.</li>
+                        <li>There is an input for search filter for the table, where it filters the list of equipment according to the equipment name input by the user.</li>
+                        <li>The table can be sort through ascending and descending order.</li>
+                        <li>The list in the table is contained inside a pagination. The user can decide the amount of data can be viewed in one page, whether it is 5, 10, et cetera.</li>
+                        <li>The calculation for the Total Downtime (Hour) and Downtime Percentage (%) is as below:<br>
+                        </li>
+                    </ul>
                     
-                    <p><img src="assets/img/calc.png" class="img-rounded" alt="Cinque Terre" class="img-responsive"></p>
+                    <div class="text-center">
+                        <img src="assets/img/calc.png" class="img-rounded img-responsive" alt="Cinque Terre" class="img-responsive">
+                    </div>
 
                     <hr/>
 
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-table fa-3x"></i></span>
+                    <p style="text-align: center"><span style="font-weight: bold;"><i class="fa fa-fw fa-table fa-3x"></i></span>
                     </p>
 
-                    <p style="text-align: justify"><b>Manage Equipment:</b>
-                        <br> This page displays maintenance of Downtime System and Equipment. User would add new equipment to the table with correct format of Equipment Name with description that requires not more than 50 characters. User would also to insert system name and select a group based on the requirement</p>
-
-                    <hr/>
-
-
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-
-                    <p class="col-xs-4 col-xs-offset-4"><span style="font-weight: bold;"><i class="fa fa-fw fa-user fa-3x"></i></span>
-                    </p>
-
-                    <p style="text-align: justify"><b>Manage User:</b>
-                        <br>The user can deactivate and activate other user accounts. These deactivated accounts will not be able to sign in into the system. </p>
+                    <p style="text-align: center"><b>Manage Equipment</b></p>
+                        <ul>
+                            <li>
+                                This page displays maintenance of Downtime System and Equipment. User would add new equipment to the table with correct format of Equipment Name with description that requires not more than 50 characters. User would also to insert system name and select a group based on the requirement.
+                            </li>
+                        </ul>
 
                     <hr/>
 
 
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 
-                    <p><span style="font-weight: bold;"><i class="fa fa-fw fa-cog fa-3x"></i></span>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <p style="text-align: center"><span style="font-weight: bold;"><i class="fa fa-fw fa-user fa-3x"></i></span>
                     </p>
-                    <p style="text-align: justify"><b>Settings:</b>
-                        <br>User have been given an access to change password with 6 alphanumeric characters whenever required</p>
+
+                    <p style="text-align: center"><b>Manage User</b></p>
+                        <ul>
+                            <li>
+                            The user can deactivate and activate other user accounts. These deactivated accounts will not be able to sign in into the system.
+                            </li>
+                        </ul> 
+
+                    <hr/>
+
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <p style="text-align: center"><span style="font-weight: bold;"><i class="fa fa-fw fa-cog fa-3x"></i></span>
+                    </p>
+                    <p style="text-align: center"><b>Settings</b></p>
+                        <ul><li>User have been given an access to change password with 6 alphanumeric characters whenever required</li></ul>
 
                 </div>
 
-            </div>
-
-
-
+            </div>    
         </div>
     </div>
