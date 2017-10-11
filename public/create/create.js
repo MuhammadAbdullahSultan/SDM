@@ -137,6 +137,9 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         if(id === $scope.signin.uid) {
             toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot deactivate themselves"});
             return;
+        } else if ($scope.userStates.$getRecord(id).type === "Admin") {
+            toaster.pop({type: 'error', title: "Error", body: "You don't have permission to revoke an admin account"});
+            return;
         } else {
             console.log(id);
             var toSave = $scope.userStates.$getRecord(id);
@@ -172,6 +175,9 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         
         if(id === $scope.signin.uid) {
             toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot deactivate themselves"});
+            return;
+        } else if ($scope.userStates.$getRecord(id).type === "Admin") {
+            toaster.pop({type: 'error', title: "Error", body: "You don't have permission to revoke an admin account"});
             return;
         } else {
             console.log(id);

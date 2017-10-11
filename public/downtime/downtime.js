@@ -462,16 +462,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             var equipment = lowercase(document.getElementById("").value);
         }
         
-        
-    $scope.hourCalculation = function () {
-        
-        
-        
-        angular.forEach ($scope.allDT , function (date) {
-            
-            
-        });
-    }
     
     // -------------------------------------------------------------------------------------------------------
     // For adding downtime
