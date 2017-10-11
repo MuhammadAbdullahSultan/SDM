@@ -327,13 +327,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     //////////////////DOWNTIME HOUR CHART//////////
     
         $scope.chartOptions = {
-            data: {
-            datasets: [{
-                fillColor: "rgba(14,72,100,1)",
-                strokeColor: "brown",
-                borderWidth: 1
-            }]
-        },
             title: {
                 display: true,
                 text: "Equipment Downtime",
@@ -393,13 +386,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     ////////////////////PERCENTAGE CHART////////
     
     $scope.chartPercentOptions = {
-            data: {
-            datasets: [{
-                fillColor: "rgba(14,72,100,1)",
-                strokeColor: "brown",
-                borderWidth: 1
-            }]
-        },
             title: {
                 display: true,
                 text: "Equipment Downtime Percentage",
@@ -420,8 +406,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                  // else...
                 else {
                     
-                    $(document).ready(function(){
-                    $("#canvas").click(function(){
+                    $(document).ready(function() {
+                    $("#canvas").click(function() {
                         $("#viewGraph").modal(); 
                         
                         });
@@ -456,6 +442,14 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             }
         
     
+    $scope.onClick = function (points, evt) {
+        console.log(points);
+        console.log(evt);
+        
+        $scope.labelofChart = points[0]._view.label;
+        $scope.$apply();
+    }
+    
     /////////////////////////////////////////////
         
         $scope.getFilteredData = function () {
@@ -466,9 +460,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     // -------------------------------------------------------------------------------------------------------
     // For adding downtime
     // -------------------------------------------------------------------------------------------------------
-    $scope.reload = function () {
-        window.location.href
-    }
+        
     $scope.manageDowntime = function () {
         
         // VAlIDATION
@@ -652,10 +644,12 @@ $scope.refreshList = function () {
                     var start = new Date (n.start);
                     var end = new Date (n.end);
                     
-                    var hours = Math.abs(end - start) / 36e5;
+                    var hours = Math.abs (end - start) / 36e5;
                     
                     
                     $scope.chartData.push(hours);
+                    
+                    console.log($scope.chartData);
                     
                     var date = new Date();
                     var getYear = date.getFullYear();
