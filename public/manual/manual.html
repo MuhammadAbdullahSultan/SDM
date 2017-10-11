@@ -97,9 +97,16 @@
 
                     <p style="text-align: center"><b>Manage Equipment</b></p>
                         <ul>
-                            <li>
-                                This page displays maintenance of Downtime System and Equipment. User would add new equipment to the table with correct format of Equipment Name with description that requires not more than 50 characters. User would also to insert system name and select a group based on the requirement.
-                            </li>
+                            <li>Manage Equipment displays maintenance of Downtime System and Equipment. </li> 
+                            <li>Click on 'Add New Equipment' to add new equipment with correct format of Equipment Name with description that requires not more than 50 characters.</li>
+                            <li>Please insert system name and select a group based on the requirement.</li>
+                            <li>Added Equipment will automatically be listed in the table of existing equipment</li>
+                            <li>The list of Equipment can be both deleted and edited, according to user's needs</li>
+                            <li>Equipment that has recorded downtime cannot be deleted. If it requires the user to delete an Equipment that has downtime, delete the downtime for the specific equipment firsthand in Manage Downtime</li>
+                            <li>Click on the export icons on top of the table to export the table in Excel (.xlsx) and PDF format</li>
+                            <li>Please use search filter input to view list of equipment</li>
+                            <li>The table can be sorted in ascending and descending order by clicking each of column header. </li>
+                            <li>The full list of table is contained inside a pagination. User can decide to view number of data in one page, whether it is 5, 10, et cetera </li>
                         </ul>
 
                     <hr/>
@@ -117,8 +124,20 @@
                             <li>
                             The user can deactivate and activate other user accounts. These deactivated accounts will not be able to sign in into the system.
                             </li>
-                        </ul> 
-
+                            <li>The logged in user cannot deactivate themselves.</li>
+                            <li>There are 3 main user in SDM:</li>
+                           
+                        <ol>
+                            <li>Super Admin</li> 
+                            Read and write<br>
+                            Can deactivate admin and staff
+                            <li>Admin</li>
+                            Read and write permission<br>
+                            Unable to deactivate Super Admin
+                            <li>Staff</li>
+                            Read permission
+                        </ol>
+                    </ul>
                     <hr/>
 
 
