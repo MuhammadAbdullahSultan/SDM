@@ -136,8 +136,23 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
         }
 
+    }
+    
+    $scope.systems = $firebaseArray(ref.child('system'));
+    console.log($scope.systems);
+    $scope.addSystem = function () {
 
+        if ($scope.insys == undefined) {
+            toaster.pop({ type: 'Error', title: "Error", body: "Please enter group" });
+            return;
+        } else {
+            $scope.systems.$add({
+                system: $scope.insys
+            });
+            toaster.pop({ type: 'success', title: "Success", body: "New Group added" });
+            $scope.insys = undefined;
 
+        }
 
     }
 
@@ -192,7 +207,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
             return;
         } else if ($scope.systemToAdd === undefined) {
-            toaster.pop({ type: 'warning', title: "System Field Empty", body: "Please enter a system" });
+            toaster.pop({ type: 'warning', title: "System Field Empty", body: "Please enter a system, or add a new system" });
             return;
         } else if ($scope.groupToAdd === undefined) {
             toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
@@ -232,10 +247,12 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         var isEmpty = false;
 
         if ($scope.equipments[$scope.indexValue].system === "") {
-            toaster.pop({ type: 'warning', title: "Equipment Field Empty", body: "Please enter a system" });
+            toaster.pop({ type: 'warning', title: "System Field Empty", body: "Please enter a system, or add a new system" });
         } else if ($scope.equipments[$scope.indexValue].description === "") {
             toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
-        } else if ($scope.equipments[$scope.indexValue].group === "") {
+        } 
+        else if 
+            ($scope.equipments[$scope.indexValue].group === "") {
             toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
         } else {
             $scope.equipments.$save($scope.indexValue).then(function (data) {
