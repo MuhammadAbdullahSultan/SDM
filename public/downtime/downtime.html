@@ -14,14 +14,14 @@
 
 <div class="row">
    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
+      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime<span class="glyphicon glyphicon-plus"></span></button>
    </div>
     
     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
       <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
       Search Downtime <span class="fa fa-fw fa-search"></span>
       </button>
-   </div>
+    </div>
     
 </div>
     
@@ -103,12 +103,15 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr data-ng-repeat="d in filteredDowntime | orderBy:orderByField:reverseSort | filter: type | filter: d track by $index" ng-if="!d.filtered"> 
+                  <tr data-ng-repeat="d in filteredDowntime | orderBy:orderByField:reverseSort | filter: d track by $index" ng-if="!d.filtered"> 
                      <td>{{d.equipment}}</td>
-                     <td>{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
-                     <td>{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
+                     <td>{{d.start}}</td>
+                     <td>{{d.end}}</td>
                      <td>{{d.description}}</td>
-                     <td>{{d.type}} <button style="margin-left: 10px" data-toggle="modal" data-target="#editDowntime" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit downtime" data-backdrop="false" data-ng-click="update(d.$id)"><span class="fa fa-edit"></span></button><button style="margin-left: 10px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.$id); deleteDowntime();"><span class="fa fa-trash-o"></span></button></td>
+                     <td>{{d.type}} 
+                         <button style="margin-left: 10px" data-toggle="modal" data-target="#editDowntime" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit downtime" data-backdrop="false" data-ng-click="update(d.$id)"><span class="fa fa-edit"></span></button>
+                         <button style="margin-left: 10px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.$id); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
+                      </td>
                      
                   </tr>
                </tbody>
@@ -128,7 +131,7 @@
               
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+<!--        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
       </div>
     
     

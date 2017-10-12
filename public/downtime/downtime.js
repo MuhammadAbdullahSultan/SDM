@@ -190,7 +190,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		startView: 2,
 		forceParse: 0,
         showMeridian: 1,
-        format: 'dd/mm/yyyy',
+        format: 'yyyy-mm-dd',
         startView: 2,
         minView: 4,
         endDate: '+1d'
@@ -581,6 +581,8 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     //////////EDIT & DELETE DOWNTIME
     $scope.update = function (indexDT) {
         $scope.indexDTValue = $scope.allDT.findIndex(downtime => downtime.$id === indexDT);
+        console.log($scope.indexDTValue);
+        console.log(indexDT);
     };
     $scope.saveDowntime = function () {
 
@@ -652,14 +654,13 @@ $scope.refreshList = function () {
                 angular.forEach (newdtlist, function (n) {
                     
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
-                    $scope.allDT.push(n);
                     
-                    $scope.equipmentLabels.push(n.equipment);
+                        
                     
-//                    console.log(n);
-                    
+                    console.log($scope.allDT);
                     
                     
+                    console.log(n.start);
                     var start = new Date (n.start);
                     var end = new Date (n.end);
                     
@@ -686,7 +687,28 @@ $scope.refreshList = function () {
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
                     $scope.percentageData.push($scope.percentage);
                     
+                    console.log($scope.chartData);
                     
+                    var copy = n;
+                        console.log(copy.start);
+                    var utcSeconds = copy.start;
+                    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                    
+                    
+
+                    // Will display time in 10:30:23 format
+                    
+                    copy.start = d.setUTCSeconds(utcSeconds);
+                    console.log(copy.start);
+                    
+                    
+                        
+                        
+                        copy.end= new Date();
+                    
+;                    $scope.allDT.push(copy);
+                    
+                    $scope.equipmentLabels.push(n.equipment);
                     
                 });
             });
