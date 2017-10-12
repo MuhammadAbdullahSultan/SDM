@@ -190,7 +190,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		startView: 2,
 		forceParse: 0,
         showMeridian: 1,
-        format: 'yyyy-mm-dd',
+        format: 'dd.mm.yyyy',
         startView: 2,
         minView: 4,
         endDate: '+1d'
@@ -690,23 +690,17 @@ $scope.refreshList = function () {
                     console.log($scope.chartData);
                     
                     var copy = n;
-                        console.log(copy.start);
-                    var utcSeconds = copy.start;
-                    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                    console.log(copy.start);
                     
-                    
+                    var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
+                    var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
 
                     // Will display time in 10:30:23 format
                     
-                    copy.start = d.setUTCSeconds(utcSeconds);
-                    console.log(copy.start);
+                    copy.start = startConverstion;
+                    copy.end= endConverstion;
                     
-                    
-                        
-                        
-                        copy.end= new Date();
-                    
-;                    $scope.allDT.push(copy);
+                    $scope.allDT.push(copy);
                     
                     $scope.equipmentLabels.push(n.equipment);
                     
