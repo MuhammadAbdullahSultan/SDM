@@ -11,59 +11,133 @@
    </ol>
 </div>
 <div>
+
 <div class="row">
-</div>
-<div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+   <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
       <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime  <span class="glyphicon glyphicon-plus"></span></button>
    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
+      Search Downtime <span class="fa fa-fw fa-search"></span>
+      </button>
+   </div>
+    
 </div>
+    
+<div class="row" style="margin-top: 10px">
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="filter-panel" class="collapse filter-panel">
+         <div class="panel panel-default">
+            <div class="panel-body">
+               <div class="row">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
+                     <label for="selectequ">Select equipment list:</label>
+                     <select class="form-control" id="selectequ" data-ng-model="equipment" data-ng-change="filterChange()">
+                        <option selected value="">All</option>
+                        <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
+                     </select>
+                  </div>
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                     <label for="date">Select date</label>
+                      
+                                <div class="input-group date dtFilter" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input6">
+                                    <input class="form-control" size="16" type="text" value="" data-ng-model="startFilter" readonly>
+                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                                </div>
+                                <br/>
+                        {{startFilter}}
+                  </div>
+                   
+                  <br>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
+                     <label for="type">Select type:</label>
+                     <br/>
+                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
+                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" />Preventive Maintenance &nbsp; &nbsp;
+                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" />Standby &nbsp; &nbsp;
+                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/>All &nbsp;
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<hr/>
+
+    
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button>
+    
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+    
+
+    <br>
+    <br>
+
+    
+    <div>
+        <div class="card-header">
+          <i class="fa fa-table"></i> Downtime Data</div>
+        <div class="card-body">
+          <div class="table-responsive">
+              
+              <div class="input-append">
+                    <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
+              </div>
+            <br>
+              <div id="HTMLtoPDF">
+            <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
+              <thead class="lockedRecordsBg">
+                  <tr>
+                     <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment<span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                      
+                     <th><a href="javascript:void(0)" ng-click="orderByField='start'; reverseSort = !reverseSort">Start <span ng-show="orderByField == 'start'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                      
+                     <th><a href="javascript:void(0)" ng-click="orderByField='end'; reverseSort = !reverseSort">End <span ng-show="orderByField == 'end'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                      
+                     <th><a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                      
+                     <th><a href="javascript:void(0)" ng-click="orderByField='type'; reverseSort = !reverseSort">Type <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></a></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr data-ng-repeat="d in filteredDowntime | orderBy:orderByField:reverseSort | filter: type | filter: d track by $index" ng-if="!d.filtered"> 
+                     <td>{{d.equipment}}</td>
+                     <td>{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
+                     <td>{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
+                     <td>{{d.description}}</td>
+                     <td>{{d.type}} <button style="margin-left: 10px" data-toggle="modal" data-target="#editDowntime" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit downtime" data-backdrop="false" data-ng-click="update(d.$id)"><span class="fa fa-edit"></span></button><button style="margin-left: 10px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.$id); deleteDowntime();"><span class="fa fa-trash-o"></span></button></td>
+                     
+                  </tr>
+               </tbody>
+       
+            </table>
+              </div>
+              <div class="btn-group btn-group-sm" style="float: right">
+                                <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('-')">Prev</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage - 1)" ng-if="currentPage - 1 > 0">{{currentPage - 1}}</button>
+                                <button type="button" class="btn btn-primary" ng-click="selectedPage(currentPage)">{{currentPage}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage + 1)" ng-if="currentPage + 1 <= numbers">{{currentPage + 1}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('+')">Next</button>
+                            </div>
+              
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    
+    
+    
+    
 <br/>
 
 <div class="row">
 
-<!--
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    
-    <div class="card mb-3">
-   <div class="card-header">
-      <i class="fa fa-area-chart"></i> System
-   </div>
-   <div class="card-body">
-   <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrl" style="font-size: 13px">
-                System Downtime (Hour)
-                
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-            
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-options="chartOptions" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-        </div>
-        
-        
-        
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="myCtrlPercent" style="font-size: 15px">
-            
-            System Downtime Percentage(%)
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializeExport()" title="Export graph (JPEG) to computer"><span class="fa fa-fw fa-file-image-o"></span></button>
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="writeUserData(equipment, system)" data-ng-click="initializePrint()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-                
-            <div class="col-xs-10 border" id="chartStyle">
-                <canvas class="chart chart-bar" chart-data="dataPercent" chart-labels="labelsPercent" chart-series="series" chart-options="chartOptionsPercent" id="myBtn" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
-            </div>
-            
-        </div>
-    
-    </div>
-    </div>
-</div>
-    
-</div>
--->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     
     <div class="card mb-3">
@@ -110,149 +184,33 @@
 
 </div>
     
-    <div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
-      Search Downtime <span class="fa fa-fw fa-search"></span>
-      </button>
+<!--  Downtime Description Pop-up Modal  -->
+<div class="modal fade" id="viewGraph">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content txtsize">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Downtime Description</h4>
+       </div>
+       <div class="modal-body">
+         {{pointLabel}}
+           
+       </div>
+       <div class="modal-footer">
+           <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
+       </div>
+     </div>
    </div>
+  </div>
+    
+<!--  End pop-up modal  -->
+    
+    </div>
 </div>
     
-<div class="row" style="margin-top: 10px">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="filter-panel" class="collapse filter-panel">
-         <div class="panel panel-default">
-            <div class="panel-body">
-               <div class="row">
-                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
-                     <label for="selectequ">Select equipment list:</label>
-                     <select class="form-control" id="selectequ" data-ng-model="equipment" data-ng-change="filterChange()">
-                        <option selected value="">All</option>
-                        <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
-                     </select>
-                  </div>
-                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                     <label for="date">Select date</label>
-                      
-                                <div class="input-group date dtFilter" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input6">
-                                    <input class="form-control" size="16" type="text" value="" data-ng-model="startFilter" readonly>
-                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                    <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
-                                </div>
-                                <br/>
-                        {{startFilter}}
-                  </div>
-                   
-                  <br>
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
-                     <label for="type">Select type:</label>
-                     <br/>
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" />Preventive Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" />Standby &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/>All &nbsp;
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-<hr/>
-<!--
-<div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
-      <div class="box">
-         <div class="table-responsive">
-            <table class="table table-hover">
-               <thead>
-                  <tr>
-                     <th id="equipment">Equipment</th>
-                     <th id="start">Start</th>
-                     <th id="end">End</th>
-                     <th id="type">Type</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr data-ng-repeat="d in allDT | filter: equipment | filter: type | filter: obj | filter: start track by $index" data-ng-if="d != null">
-                     <td headers = "equipment">{{d.equipment}}</td>
-                     <td headers = "start">{{d.start}}</td>
-                     <td headers = "end">{{d.end}}</td>
-                     <td headers = "type">{{d.type}}</td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </div>
-   </div>
-</div>
--->
+<!--  Modal for Add Downtime  -->
     
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" onclick="exportToExcel('exTable')"><span class="fa fa-fw fa-file-excel-o"></span></button>
-    
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-    
-    
-    
-<!--    -->
-<!--
-    <script>
-        var tables = $("table").tableExport();
-        
-        tables.tableExport.update({
-            fileName: "newFile"         // pass in a new set of options
-        });
-    </script>
--->
-    
-<!--    -->
-    
-<!--  Export to Excel  -->
-    <script>
-    function exportToExcel(tableID){
-        var tab_text="<table border='2px'><tr bgcolor='#87AFC6' style='height: 75px; text-align: center; width: 250px'>";
-        var textRange; var j=0;
-        tab = document.getElementById(tableID); // id of table
-
-        for(j = 0 ; j < tab.rows.length ; j++)
-        {
-
-            tab_text=tab_text;
-
-            tab_text=tab_text+tab.rows[j].innerHTML.toUpperCase()+"</tr>";
-            //tab_text=tab_text+"</tr>";
-        }
-
-        tab_text= tab_text+"</table>";
-        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, ""); //remove if u want links in your table
-        tab_text= tab_text.replace(/<img[^>]*>/gi,""); //remove if u want images in your table
-        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); //remove input params
-
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-
-        {
-            txtArea1.document.open("txt/html","replace");
-            txtArea1.document.write( 'sep=,\r\n' + tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa=txtArea1.document.execCommand("SaveAs",true,"sudhir123.txt");
-        }
-
-        else {
-           sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-        }
-
-        return (sa);
-    }
-    </script>
-<!-- ENDS HERE-->
-    
-    <br>
-    <br>
-<div class="modal fade" id="manageDT">
+    <div class="modal fade" id="manageDT">
    <div class="modal-dialog modal-lg">
       <div class="modal-content txtsize">
          <div class="modal-header">
@@ -324,88 +282,7 @@
    </div>
 </div>
     
-    <div>
-        <div class="card-header">
-          <i class="fa fa-table"></i> Downtime Data</div>
-        <div class="card-body">
-          <div class="table-responsive">
-              
-              <div class="input-append">
-                    <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
-              </div>
-            <br>
-              <div id="HTMLtoPDF">
-            <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
-              <thead class="lockedRecordsBg">
-                  <tr>
-                     <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment<span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                      
-                     <th><a href="javascript:void(0)" ng-click="orderByField='start'; reverseSort = !reverseSort">Start <span ng-show="orderByField == 'start'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                      
-                     <th><a href="javascript:void(0)" ng-click="orderByField='end'; reverseSort = !reverseSort">End <span ng-show="orderByField == 'end'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                      
-                     <th><a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                      
-                     <th><a href="javascript:void(0)" ng-click="orderByField='type'; reverseSort = !reverseSort">Type <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></a></th>
-                      <th></th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr data-ng-repeat="d in filteredDowntime | orderBy:orderByField:reverseSort | filter: type | filter: d track by $index" ng-if="!d.filtered"> 
-                     <td>{{d.equipment}}</td>
-                     <td>{{d.start | date: 'dd/MM/yyyy HH:mm'}}</td>
-                     <td>{{d.end | date: 'dd/MM/yyyy HH:mm'}}</td>
-                     <td>{{d.description}}</td>
-                     <td>{{d.type}}</td>
-                     <td>
-                   
-                       <button data-toggle="modal" data-target="#editDowntime" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit downtime" data-backdrop="false" data-ng-click="update(d.$id)"><span class="fa fa-edit"></span></button>
-
-                       <button style="margin-left: 5px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.$id); deleteDowntime();"><span class="fa fa-trash-o"></span></button>
-
-
-                    </td> 
-                  </tr>
-               </tbody>
-       
-            </table>
-              </div>
-              <div class="btn-group btn-group-sm" style="float: right">
-                                <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
-                            </div>
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('-')">Prev</button>
-                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage - 1)" ng-if="currentPage - 1 > 0">{{currentPage - 1}}</button>
-                                <button type="button" class="btn btn-primary" ng-click="selectedPage(currentPage)">{{currentPage}}</button>
-                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage + 1)" ng-if="currentPage + 1 <= numbers">{{currentPage + 1}}</button>
-                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('+')">Next</button>
-                            </div>
-              
-          </div>
-        </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-      </div>
-    
-<div class="modal fade" id="viewGraph">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content txtsize">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         <h4 class="modal-title">Downtime Description</h4>
-       </div>
-       <div class="modal-body">
-         {{pointLabel}}
-           
-       </div>
-       <div class="modal-footer">
-           <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
-       </div>
-     </div>
-   </div>
-  </div>
-    
-    </div>
-</div>
+<!--  ENDS HERE  -->
     
 <!-- Modal For editing Downtime-->
 <div class="modal fade" role="dialog" id="editDowntime" aria-hidden="true" tabindex="-1">
@@ -437,7 +314,6 @@
                     <textarea type="text" data-ng-model="allDT[indexDTValue].description" class="form-control" id="editDTdesc" ></textarea>
                 </div>
                 
-<!--
                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="dtp_input4" class="control-label">Start Time</label>
                         <div class="input-group date form_starttime" data-date="" data-date-format="dd/MM/yyyy HH:ii" data-link-field="dtp_input1">
@@ -457,7 +333,6 @@
                             </div>
                             <br/>
                         </div>
--->
                 
             </div>
             </div>
