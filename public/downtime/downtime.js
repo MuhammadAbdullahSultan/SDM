@@ -525,6 +525,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.allDT[i].filtered = $scope.allDT[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
     });
+    
+    $scope.$watch("dateFilter", function (newVal, oldVal) {
+        for (var i = 0; i < $scope.allDT.length; i++)
+            $scope.allDT[i].filtered = $scope.allDT[i].start.indexOf(newVal) === -1;
+            paginationFunc();
+    });
     $scope.$watch("allDT.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {
