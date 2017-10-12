@@ -183,7 +183,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
                 toaster.pop({ type: 'warning', title: "Equipment Exists", body: "The equipment already exists" });
                 return;
             }
-            break;
         }
 
         if ($scope.equipmentToAdd === undefined) {
@@ -259,6 +258,9 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     }
     $scope.deleteEquipment = function () {
         
+        var txt;
+        var r = confirm("Are you sure you want to delete the equipment?");
+        if (r == true) {
             for(var i = 0 ; i < $scope.getDowntime.length ; i++) {
             if($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {
                 toaster.pop({ type: 'error', title: "Error", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " already has an existing downtime. Please delete all the downtimes related." });
@@ -271,12 +273,15 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             var item = $scope.equipments[$scope.indexValue];
             console.log(item);
             $scope.equipments.$remove(item).then(function (deletedData) {
-            paginationFunc();
-            console.log(deletedData);
+                
+                paginationFunc();
+                console.log(deletedData);
             });
         
-        
-        
+        } else {
+           
+        }
+      
     }
 
 
