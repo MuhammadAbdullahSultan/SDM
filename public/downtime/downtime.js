@@ -625,7 +625,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.deleteDowntime = function () {
         
         var txt;
-        var r = confirm("Are you sure you want to delete the equipment?");
+        var r = confirm("Are you sure you want to delete the downtime?");
         if (r == true) {
             $scope.toDeleteDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
         $scope.toDeleteDT.remove(function (event) {
