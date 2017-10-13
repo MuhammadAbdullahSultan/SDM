@@ -27,7 +27,7 @@
                     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span>
                     </button>
 
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
+                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="tablepdfequipment" data-ng-click="EQPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
                     </button>
                 </div>
 
@@ -36,11 +36,11 @@
 
             </div>
             <br>
-            
-            <div class="row">
+            <div id="tableequipment">
+                <div class="card-header">
+                <i class="fa fa-table"></i> Equipment Data</div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="box">
+                    <div class="card-body">
                         <div class="table-responsive">
                             
                                     <div class="input-append">
@@ -48,7 +48,6 @@
                                     </div>
                             <br>
 
-                            <div id="HTMLtoPDF">
                             <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable">
                                 <thead class="lockedRecordsBg">
                                     <tr>
@@ -68,7 +67,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            </div>
                             <div class="btn-group btn-group-sm" style="float: right">
                                 <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>
@@ -82,7 +80,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!-- Trigger the modal with a button -->
 

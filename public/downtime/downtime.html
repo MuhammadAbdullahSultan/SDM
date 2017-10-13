@@ -70,14 +70,14 @@
     
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button>
     
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" onclick="HTMLtoPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o" id="tablepdfdowntime" data-ng-click="DTPDF()"></span></button>
     
 
     <br>
     <br>
 
     
-    <div>
+    <div id="tabledowntime">
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data</div>
         <div class="card-body">
@@ -87,7 +87,7 @@
                     <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
               </div>
             <br>
-              <div id="HTMLtoPDF">
+              <div>
             <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
               <thead class="lockedRecordsBg">
                   <tr>
@@ -153,11 +153,9 @@
 
                 Equipment Downtime (Hour)
             
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export graph (JPEG) to computer" id="saveImgHr" data-ng-click="downloadImgHr()"><span class="fa fa-fw fa-file-image-o"></span></button>
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export graph (JPEG) to computer" id="saveImgHrDt" data-ng-click="downloadImgHrDt()"><span class="fa fa-fw fa-file-image-o"></span></button>
             
-            
-                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="download" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span></button>
-            
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="downloadhr" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span></button>
             
             <div class="col-xs-10 border" id="chartStyle">
                 <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hour" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
@@ -168,7 +166,7 @@
             
             Equipment Downtime Percentage (%) 
             
-            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPer()" title="Export graph (JPEG) to computer" id="saveImgPer"><span class="fa fa-fw fa-file-image-o"></span></button>
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPerDt()" title="Export graph (JPEG) to computer" id="saveImgPerDt"><span class="fa fa-fw fa-file-image-o"></span></button>
             
             <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
                                         

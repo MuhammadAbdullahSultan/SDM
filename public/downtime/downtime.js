@@ -101,14 +101,14 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadHour = function () {
         var d_canvas = document.getElementById('hour');
 
-            $('#download').click(function() {       
+            $('#downloadhr').click(function() {       
                 html2canvas($("#hour"), {
                     onrendered: function(canvas) {         
                         var imgData = canvas.toDataURL(
                             'image/png');              
                         var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
                         doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('sample-file.pdf');
+                        doc.save('Equipment Downtime.pdf');
                     }
                 });
             });
@@ -124,7 +124,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                             'image/png');              
                         var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
                         doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('sample-file.pdf');
+                        doc.save('Equipment Downtime Percentage.pdf');
                     }
                 });
             });
@@ -133,34 +133,51 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadHourDash = function () {
         var d_canvas = document.getElementById('hourdash');
 
-            $('#downloaddash').click(function() {       
+            $('#downloadhrdash').click(function() {       
                 html2canvas($("#hourdash"), {
                     onrendered: function(canvas) {         
                         var imgData = canvas.toDataURL(
                             'image/png');              
                         var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
                         doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('sample-file.pdf');
+                        doc.save('Equipment Downtime Dashboard.pdf');
                     }
                 });
             });
     }
     
-//    $scope.downloadPercentDash = function () {
-//        var d_canvas = document.getElementById('percentdash');
-//
-//            $('#downloaddash').click(function() {       
-//                html2canvas($("#hourdash"), {
-//                    onrendered: function(canvas) {         
-//                        var imgData = canvas.toDataURL(
-//                            'image/png');              
-//                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
-//                        doc.addImage(imgData, 'PNG', 10, 10);
-//                        doc.save('sample-file.pdf');
-//                    }
-//                });
-//            });
-//    }
+    $scope.downloadPercentDash = function () {
+        var d_canvas = document.getElementById('perdash');
+
+            $('#downloadperdash').click(function() {       
+                html2canvas($("#perdash"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('Equipment Downtime Percentage Dashboard.pdf');
+                    }
+                });
+            });
+    }
+    
+    $scope.DTPDF = function () {
+        var d_canvas = document.getElementById('tabledowntime');
+
+            $('#tablepdfdowntime').click(function() {       
+                html2canvas($("#tabledowntime"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('Downtime Data.pdf');
+                    }
+                });
+            });
+    }
+    
     
     // Hour Chart
     
@@ -292,8 +309,24 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         });
     }
     
+    $scope.downloadImgHrDt = function () {
+        $("#saveImgHrDt").click(function() {
+ 	    $("#hour").get(0).toBlob(function(blob) {
+            saveAs(blob, "hour_chart.jpeg");
+                });
+        });
+    }
+    
     $scope.downloadImgPer = function () {
         $("#saveImgPer").click(function() {
+ 	    $("#perdash").get(0).toBlob(function(blob) {
+            saveAs(blob, "percentage_chart.jpeg");
+                });
+        });
+    }
+    
+    $scope.downloadImgPerDt = function () {
+        $("#saveImgPerDt").click(function() {
  	    $("#percent").get(0).toBlob(function(blob) {
             saveAs(blob, "percentage_chart.jpeg");
                 });
@@ -671,7 +704,7 @@ $scope.refreshList = function () {
                     var end = new Date (n.end);
                     
                     var hours = Math.abs(end - start) / 36e5;
-                    
+                    hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
                     
                     $scope.chartData.push(hours);
                     
@@ -691,6 +724,8 @@ $scope.refreshList = function () {
                         $scope.totalDownTime = $scope.chartData[x];
                     }
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
+                    $scope.percentage = parseFloat(Math.round($scope.percentage * 100) / 100).toFixed(2);
+
                     $scope.percentageData.push($scope.percentage);
                     
                     console.log($scope.chartData);

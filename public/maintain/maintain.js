@@ -69,6 +69,30 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
    }
  }
     //////////////////
+    
+    /////TABLE TO PDF///////////
+    
+    
+    $scope.EQPDF = function () {
+        var d_canvas = document.getElementById('tableequipment');
+
+            $('#tablepdfequipment').click(function() {       
+                html2canvas($("#tableequipment"), {
+                    onrendered: function(canvas) {         
+                        var imgData = canvas.toDataURL(
+                            'image/png');              
+                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+                        doc.addImage(imgData, 'PNG', 10, 10);
+                        doc.save('Equipment Data.pdf');
+                    }
+                });
+            });
+    }
+    
+    
+    
+    
+    /////////////////////////////
 
     $scope.message;
 
@@ -138,7 +162,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
     }
     
-    $scope.systems = $firebaseArray(ref.child('system'));
+    $scope.systems = $firebaseArray(ref.child('systems'));
     console.log($scope.systems);
     $scope.addSystem = function () {
 
