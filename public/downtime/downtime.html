@@ -131,7 +131,10 @@
               
           </div>
         </div>
-<!--        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        
+        <button onclick="myFunction()">Try it</button>
+        <p id="demo"></p>
       </div>
     
     
@@ -348,3 +351,9 @@
          </div>
    </div>
 </div>
+<script>
+function myFunction() {
+    var x = document.lastModified;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
