@@ -23,6 +23,14 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
 
     var ref = firebase.database().ref();
+    
+    var eqUpdatedRef = firebase.database().ref().child("equipmentUpdate");
+    var eqUpdated = $firebaseArray(eqUpdatedRef);
+    
+    eqUpdated.$loaded().then(function (dtUpdated) {
+        console.log(eqUpdated[0].$value);
+        $scope.updatedEquipment = eqUpdated[0].$value;
+    });
 
 
     'use strict';
@@ -237,6 +245,13 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
             return;
         } else {
+            
+            $scope.eqUpdate = firebase.database().ref('equipmentUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.eqUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
             $scope.equipments.$add({
                 equipment: $scope.equipmentToAdd,
                 system: $scope.systemToAdd,
@@ -279,6 +294,12 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             ($scope.equipments[$scope.indexValue].group === "") {
             toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
         } else {
+            $scope.eqUpdate = firebase.database().ref('equipmentUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.eqUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
             $scope.equipments.$save($scope.indexValue).then(function (data) {
                 toaster.pop({ type: 'Success', title: "Success", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " was edited" });
                 paginationFunc();
@@ -302,6 +323,14 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         var txt;
         var r = confirm("Are you sure you want to delete the equipment?");
         if (r == true) {
+            
+            $scope.eqUpdate = firebase.database().ref('equipmentUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.eqUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
+            
             for(var i = 0 ; i < $scope.getDowntime.length ; i++) {
             if($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {
                 toaster.pop({ type: 'error', title: "Error", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " already has an existing downtime. Please delete all the downtimes related." });

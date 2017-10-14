@@ -20,6 +20,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     'use strict';
     
+    var ref = firebase.database().ref();
+    
+    
+    
     //Canvas to PDF
     
     $('#start').datetimepicker({
@@ -521,7 +525,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             return;
         } else {
             
-
+            $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.dtUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
             var start = $scope.startDT;
             var startDTunix = new Date(start).getTime();
             
@@ -590,7 +599,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     /////////////////PAGINATION ENDS
     
         
-        var ref = firebase.database().ref();
         var data = ref.child("AllEquipments");
         var list = $firebaseArray(data);
         
@@ -623,6 +631,10 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         console.log($scope.indexDTValue);
         console.log(indexDT);
     };
+    
+    
+    
+    
     $scope.saveDowntime = function () {
 
         var isEmpty = false;
@@ -632,7 +644,15 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         } else if ($scope.allDT[$scope.indexDTValue].description === "") {
             toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
         } else {
+            
             $scope.toEditDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
+            $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.dtUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
+            
             $scope.toEditDT.set({
                 description: $scope.allDT[$scope.indexDTValue].description,
                 end: $scope.allDT[$scope.indexDTValue].end,
@@ -660,6 +680,15 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         var txt;
         var r = confirm("Are you sure you want to delete the downtime?");
         if (r == true) {
+            
+            $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
+            var timeUpdated = new Date();
+            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+            $scope.dtUpdate.set({
+                lastUpdated: $scope.timeUpdated
+            });
+            
+            
             $scope.toDeleteDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
         $scope.toDeleteDT.remove(function (event) {
             console.log(event);
@@ -679,6 +708,13 @@ $scope.percentageData = [];
     }
            
 
+    var dtUpdatedRef = firebase.database().ref().child("downtimeUpdate");
+    var dtUpdated = $firebaseArray(dtUpdatedRef);
+    
+    dtUpdated.$loaded().then(function (dtUpdated) {
+        console.log(dtUpdated[0].$value);
+        $scope.updatedDowntime = dtUpdated[0].$value;
+    });
 $scope.refreshList = function () {
     
 
