@@ -217,6 +217,8 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
         $scope.filteredEquipments = equipments.slice(begin, end);
     }
+    
+    
 ///////////PAGINATION ENDS
     
     $scope.equipments = $firebaseArray(ref.child('AllEquipments'));

@@ -95,6 +95,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 		maxView: 1,
 		forceParse: 0
     });
+
     
 //    var ref = firebase.database().ref();
 //    
@@ -152,4 +153,5 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 //    });
 //});
 //      
+
 }]);

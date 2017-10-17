@@ -17,8 +17,8 @@
             </ol>
         </div>
         
-        <div class="row" ng-controller="maintainCtrl">
-        
+        <div class="row" ng-controller="downtimeCtrl">
+        <button class="btn btn-success" data-ng-click="displayFiltered()"> SHOW FILTERED </button>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card mb-3">
                 <div class="card-header">
@@ -40,13 +40,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="equipment in filteredEquipments | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
+                    <tr data-ng-repeat="equipment in filteredDowntime | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
                         <td>{{equipment.equipment}}</td>
-                        <td>Total operation (Hour) - Total Downtime (Hour)</td>
+                        <td data-ng-repeat = "up in upTimeData">{{up}}</td>
                     </tr>
                     </tbody>
                     
                     </table>
+                    
+                    
                 <div class="btn-group btn-group-sm" style="float: right">
                                 <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>

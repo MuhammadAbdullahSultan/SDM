@@ -681,13 +681,19 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     /////////////////////////////
     
 $scope.percentageData = [];
+$scope.upTimeData = [];
     
     $scope.checkChart = function () {
         console.log($scope.allDT);
     }
            
 
-    
+    $scope.displayFiltered = function () {
+        console.log($scope.filteredDowntime);
+        console.log($scope.percentage);
+        console.log($scope.upTimeData);
+        
+    }
 
 $scope.refreshList = function () {
     
@@ -735,7 +741,12 @@ $scope.refreshList = function () {
                     }
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
                     $scope.percentage = parseFloat(Math.round($scope.percentage * 100) / 100).toFixed(2);
-
+                    
+                    $scope.uptime = ($scope.totalOperationTime - $scope.totalDownTime);
+                    console.log($scope.uptime);
+                    $scope.uptime = parseFloat(Math.round($scope.uptime * 100) / 100).toFixed(2);
+                    
+                    $scope.upTimeData.push($scope.uptime);
                     $scope.percentageData.push($scope.percentage);
                     
                     console.log($scope.chartData);
