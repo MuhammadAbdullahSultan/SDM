@@ -95,7 +95,9 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 		maxView: 1,
 		forceParse: 0
     });
-     $scope.upTimeCalculation = [];
+     
+    
+    $scope.upTimeCalculation = [];
     $scope.allUP = [];
     $scope.chartData = [];
     
@@ -129,7 +131,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     
                     
                     angular.forEach($scope.upTimeCalculation , function (l) {
-                        if(l.equipment === n.equipment) {
+                        if(l.equipment === n.equipment) 
+                        {
                             l.uptime -= hours;
                             if(l.uptime <= 0) {
                                 l.uptime = 0;
