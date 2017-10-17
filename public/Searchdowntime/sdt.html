@@ -17,7 +17,7 @@
             </ol>
         </div>
         
-        <div class="row" ng-controller="downtimeCtrl">
+        <div class="row">
         <button class="btn btn-success" data-ng-click="showData()"> SHOW FILTERED </button>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card mb-3">
@@ -40,9 +40,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="equipment in filteredUPTime | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
+                    <tr data-ng-repeat="equipment in upTimeCalculation | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
                         <td>{{equipment.equipment}}</td>
-                        <td>{{equipment.type}} hrs</td>
+                        <td>{{equipment.uptime | number:2}} hrs</td>
                     </tr>
                     </tbody>
                     

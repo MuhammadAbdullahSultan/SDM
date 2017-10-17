@@ -26,7 +26,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     var dtUpdated = $firebaseArray(dtUpdatedRef);
     
     dtUpdated.$loaded().then(function (dtUpdated) {
-        console.log(dtUpdated[0].$value);
         $scope.updatedDowntime = dtUpdated[0].$value;
     });
     
@@ -545,8 +544,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.allDT[i].filtered = $scope.allDT[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
     });
-    
+//    
     $scope.$watch("dateFilter", function (newVal, oldVal) {
+        if($scope.dateFilter === undefined) {
+            $scope.dateFilter = "";
+        }
         for (var i = 0; i < $scope.allDT.length; i++)
             $scope.allDT[i].filtered = $scope.allDT[i].start.indexOf(newVal) === -1;
             paginationFunc();
@@ -584,7 +586,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         // for adding
         list.$loaded().then(function(data) {
                 $scope.add = data;
-                console.log($scope.add);
             }).catch(function(error) {
                 $scope.error = error;
             });
@@ -643,7 +644,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             ).then(function () {
                 
                 
-                console.log($scope.indexDTValue);
                 toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
                 paginationFunc();
             });
@@ -670,7 +670,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             
             $scope.toDeleteDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
         $scope.toDeleteDT.remove(function (event) {
-            console.log(event);
         });
         
         } else {
@@ -711,11 +710,7 @@ $scope.refreshList = function () {
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     
                         
-                    
-                    console.log($scope.allDT);
-                    
-                    
-                    console.log(n.start);
+            
                     var start = new Date (n.start);
                     var end = new Date (n.end);
                     
@@ -743,16 +738,13 @@ $scope.refreshList = function () {
                     $scope.percentage = parseFloat(Math.round($scope.percentage * 100) / 100).toFixed(2);
                     
                     $scope.uptime = ($scope.totalOperationTime - $scope.totalDownTime);
-                    console.log($scope.uptime);
                     $scope.uptime = parseFloat(Math.round($scope.uptime * 100) / 100).toFixed(2);
                     
                     $scope.upTimeData.push($scope.uptime);
                     $scope.percentageData.push($scope.percentage);
                     
-                    console.log($scope.chartData);
                     
                     var copy = n;
-                    console.log(copy);
                     
                     var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
                     var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
