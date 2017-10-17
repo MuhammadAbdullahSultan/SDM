@@ -752,7 +752,7 @@ $scope.refreshList = function () {
                     console.log($scope.chartData);
                     
                     var copy = n;
-                    console.log(copy.start);
+                    console.log(copy);
                     
                     var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
                     var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");

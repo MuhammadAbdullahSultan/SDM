@@ -95,63 +95,89 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 		maxView: 1,
 		forceParse: 0
     });
+    
+    $scope.updata = [];
+    $scope.listUptime = function()
+    {
+        angular.forEach($scope.updata, function(u)
+        {
+            var newref1 = firebase.database().ref().child("downtime"); 
+            var newdtdata = newref1.child(u.$id); 
+            var newdtlist = $firebaseArray(newdtdata); 
+            if($scope.equipment && $scope.equipment != "" && $scope.equipment && $scope.equipment != u.$id) return;
+            
+            newdtlist.$loaded().then(function() {
+                angular.forEach (newdtlist, function (n) {
+                    
+                    
+                    var upTime = n;
+                                        
+                    console.log(upTime);
+                    var start = new Date (upTime.start);
+                    var end = new Date (upTime.end);
+                    
+                    var hours = Math.abs(end - start) / 36e5;
+                    hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
+                                        
+                    var date = new Date();
+                    var getYear = date.getFullYear();
+                    
+                    var firstDay = new Date(getYear,0,1);
+                    var today = new Date (date.getTime());
+                    
+                    var difference = (Math.abs(firstDay - today) / 36e5) / 24;
 
+                    $scope.totalOperationTime = difference * 24;
+                    $scope.totalDownTime = 0;
+                    
+                    for(var x = 0 ; x < $scope.chartData.length ; x++) {
+                        $scope.totalDownTime = $scope.chartData[x];
+                    }
+                    
+                    upTime.type = ($scope.totalOperationTime - $scope.totalDownTime);
+                    console.log($scope.uptime);
+                    upTime.type = parseFloat(Math.round(upTime.type * 100) / 100).toFixed(2);
+                    
+                    $scope.updata.push(upTime);
+                    
+                });
+            });
+        });
+    }
     
-//    var ref = firebase.database().ref();
-//    
-//    $scope.equipments = $firebaseArray(ref.child('AllEquipments'));
-//    
-//    $scope.orderByField = 'equipment', $scope.reverseSort = false;
-//    
-    //////////Disable datetimepicker
     
-//    $scope.disableYear = false;
-//    $scope.disableMonth = false;
-//    $scope.disableDay = false;
-//    
-//    if ($scope.yearFilter === undefined){
-//        $scope.disableMonth = false;
-//        $scope.disableDay = false;
-//    } else {
-//        $scope.disableMonth = true;
-//        $scope.disableDay = true;
-//    }
     
-//    $(document).ready(function () {
-//    
-//
-//        $('#datetimepicker2').datetimepicker({
-//            viewMode: 'years'
-//        }); 
-//        
-//        $('#datetimepicker10').datetimepicker({
-//                viewMode: 'years',
-//                format: 'MM/YYYY'
-//            });
-//        
-//        $('#datetimepicker11').datetimepicker({
-//                viewMode: 'years',
-//                format: 'YYYY'
-//            });
-//        
-//        $("#datetimepicker11").on("dp.change", function() {
-//
-//        $scope.yearFilter = $("#datetimepicker11").val();
-//
-//    });
-//        
-//        $("#datetimepicker10").on("dp.change", function() {
-//
-//        $scope.monthFilter = $("#datetimepicker10").val();
-//
-//    });
-//        
-//        $("#datetimepicker2").on("dp.change", function() {
-//
-//        $scope.dateFilter = $("#datetimepicker2").val();
-//
-//    });
-//});
-//      
+     var newref = firebase.database().ref();
+        var updata = newref.child("downtime");
+        var dtlist = $firebaseArray(updata);
+        var push = false;
+        var startDate = new Date();
+        
+            $scope.filterChange = function () {
+                $scope.updata = [];
+                $scope.listUptime();
+            }
+        
+        dtlist.$loaded().then(function(dtlist) {
+        $scope.updata = dtlist; // Getting Downtime node
+            
+            $scope.listUptime();
+            
+            dtlist.$watch(function(event) {
+                $scope.updata = [];
+                $scope.updata = dtlist; // Getting Downtime node
+                $scope.listUptime();
+            });
+            
+            
+            
+            
+            }).catch(function(error) {
+                $scope.error = error;
+            });
+    
+    $scope.showData = function () {
+        console.log($scope.updata);
+    }
 
 }]);
