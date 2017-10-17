@@ -40,9 +40,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="equipment in filteredDowntime | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
+                    <tr data-ng-repeat="equipment in filteredUPTime | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
                         <td>{{equipment.equipment}}</td>
-                        <td data-ng-repeat = "up in upTimeData">{{up}}</td>
+                        <td>{{equipment.type}} hrs</td>
                     </tr>
                     </tbody>
                     

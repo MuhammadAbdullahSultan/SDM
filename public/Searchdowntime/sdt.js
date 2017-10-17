@@ -96,29 +96,36 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 		forceParse: 0
     });
     
-    $scope.updata = [];
-    $scope.listUptime = function()
-    {
-        angular.forEach($scope.updata, function(u)
-        {
-            var newref1 = firebase.database().ref().child("downtime"); 
-            var newdtdata = newref1.child(u.$id); 
-            var newdtlist = $firebaseArray(newdtdata); 
-            if($scope.equipment && $scope.equipment != "" && $scope.equipment && $scope.equipment != u.$id) return;
+    $scope.allUP = [];
+    $scope.chartData = [];
+    $scope.refreshList = function () {
+    
+    angular.forEach ($scope.dtdata , function (d) {
+        // looping through the dtdata
+            var newref1 = firebase.database().ref().child("downtime"); // creating new reference
+            var newdtdata = newref1.child(d.$id); // using the $id of the downtime node
+            var newdtlist = $firebaseArray(newdtdata); // storing the values in a new firebasearray
+            if($scope.equipment && $scope.equipment != "" && $scope.equipment && $scope.equipment != d.$id) return;
             
             newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
                     
+                    if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     
-                    var upTime = n;
-                                        
-                    console.log(upTime);
-                    var start = new Date (upTime.start);
-                    var end = new Date (upTime.end);
+                        
+                    
+                    console.log($scope.allUP);
+                    
+                    
+                    console.log(n.start);
+                    var start = new Date (n.start);
+                    var end = new Date (n.end);
                     
                     var hours = Math.abs(end - start) / 36e5;
                     hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
-                                        
+                    
+                    $scope.chartData.push(hours);
+                    
                     var date = new Date();
                     var getYear = date.getFullYear();
                     
@@ -127,57 +134,114 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     
                     var difference = (Math.abs(firstDay - today) / 36e5) / 24;
 
+//                    $scope.totalDaysInYear = days_of_a_year(getYear);
                     $scope.totalOperationTime = difference * 24;
                     $scope.totalDownTime = 0;
                     
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
                         $scope.totalDownTime = $scope.chartData[x];
                     }
+                    $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
+                    $scope.percentage = parseFloat(Math.round($scope.percentage * 100) / 100).toFixed(2);
                     
-                    upTime.type = ($scope.totalOperationTime - $scope.totalDownTime);
+//                    $scope.uptime = ($scope.totalOperationTime - $scope.totalDownTime);
                     console.log($scope.uptime);
-                    upTime.type = parseFloat(Math.round(upTime.type * 100) / 100).toFixed(2);
+                    $scope.uptime = parseFloat(Math.round($scope.uptime * 100) / 100).toFixed(2);
                     
-                    $scope.updata.push(upTime);
+//                    $scope.upTimeData.push($scope.uptime);
+//                    $scope.percentageData.push($scope.percentage);
+                    
+                    console.log($scope.chartData);
+                    
+                    var copy = n;
+                    console.log(copy);
+                    
+                    var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
+                    var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
+
+                    // Will display time in 10:30:23 format
+                    
+                    copy.start = startConverstion;
+                    copy.end= endConverstion;
+                    
+                    copy.type = $scope.totalOperationTime - $scope.totalDownTime;
+                    copy.type = parseFloat(Math.round(copy.type * 100) / 100).toFixed(2);
+                    
+                    $scope.allUP.push(copy);
+                    
+//                    $scope.equipmentLabels.push(n.equipment);
                     
                 });
             });
-        });
-    }
+                });
+}
     
     
     
      var newref = firebase.database().ref();
-        var updata = newref.child("downtime");
-        var dtlist = $firebaseArray(updata);
+        var dtdata = newref.child("downtime");
+        var dtlist = $firebaseArray(dtdata);
         var push = false;
         var startDate = new Date();
         
-            $scope.filterChange = function () {
-                $scope.updata = [];
-                $scope.listUptime();
-            }
         
         dtlist.$loaded().then(function(dtlist) {
-        $scope.updata = dtlist; // Getting Downtime node
+        $scope.dtdata = dtlist; // Getting Downtime node
             
-            $scope.listUptime();
+            $scope.refreshList();
             
             dtlist.$watch(function(event) {
-                $scope.updata = [];
-                $scope.updata = dtlist; // Getting Downtime node
-                $scope.listUptime();
+                $scope.dtdata = dtlist; // Getting Downtime node
+                $scope.refreshList();
             });
-            
-            
-            
             
             }).catch(function(error) {
                 $scope.error = error;
             });
     
     $scope.showData = function () {
-        console.log($scope.updata);
+        console.log($scope.allUP);
+    }
+    
+    //------------------------------------------------------------------------------------------------
+    // PAGINATION
+    //------------------------------------------------------------------------------------------------
+    
+    
+    $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
+//    $scope.$watch("filterWord", function (newVal, oldVal) {
+//        for (var i = 0; i < $scope.allUP.length; i++)
+//            $scope.allUP[i].filtered = $scope.allUP[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
+//        paginationFunc();
+//    });
+//    
+//    $scope.$watch("dateFilter", function (newVal, oldVal) {
+//        for (var i = 0; i < $scope.allUP.length; i++)
+//            $scope.allUP[i].filtered = $scope.allUP[i].start.indexOf(newVal) === -1;
+//            paginationFunc();
+//    });
+    
+    $scope.$watch("allUP.length", paginationFunc);
+    $scope.$watch("currentPage + numPerPage", paginationFunc);
+    $scope.selectedPage = function (index) {
+        $scope.currentPage = index;
+    }
+    $scope.changeNumPerPage = function (index) {
+        $scope.numPerPage = index * 5;
+    }
+    $scope.changePage = function (sign) {
+        var currentPageValue = eval($scope.currentPage + sign + 1);
+        if (currentPageValue < 1) currentPageValue = 1;
+        if (currentPageValue > $scope.numbers) currentPageValue = $scope.numbers;
+        $scope.currentPage = currentPageValue;
+    }
+    function paginationFunc() {
+        var allUP = $scope.allUP.filter(function (item) { return !item.filtered });
+        $scope.numbers = Math.ceil(allUP.length / $scope.numPerPage);
+        if ($scope.currentPage < 1) $scope.currentPage = 1;
+        if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
+        $scope.filteredUPTime = allUP.slice(begin, end);
     }
 
 }]);
