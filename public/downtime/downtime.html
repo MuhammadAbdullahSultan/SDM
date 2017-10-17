@@ -42,7 +42,7 @@
                      <label for="date">Select date</label>
                       
                                 <div class="input-group date dtFilter" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input6">
-                                    <input class="form-control" size="16" type="text" value="" data-ng-model="dateFilter" readonly>
+                                    <input class="form-control" size="16" type="text" value="" data-ng-model="dateFilter" data-ng-change="filterChange()" readonly>
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                     <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                                 </div>
@@ -70,8 +70,10 @@
     
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button>
     
+<!--
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o" id="tablepdfdowntime" data-ng-click="DTPDF()"></span></button>
     
+-->
 
     <br>
     <br>

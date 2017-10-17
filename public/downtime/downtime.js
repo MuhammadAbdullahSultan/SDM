@@ -22,39 +22,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     var ref = firebase.database().ref();
     
-    
-    
-    //Canvas to PDF
-    
-    $('#start').datetimepicker({
-        //language:  'fr',
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1,
-    });
-    
-    $('#end').datetimepicker({
-        //language:  'fr',
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1,
-    });
-    
-    $('#filter').datetimepicker({
-        //language:  'fr',
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1,
-        startView: 4,
-        format: "dd/mm/yyyy"
-    });
-    
     //////////// HTML TABLE TO EXCEL (XLSX)/////////
     
     $("document").ready(function() {
@@ -76,7 +43,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
    try {
      saveAs(new Blob([s2ab(wbout)], {
        type: "application/octet-stream"
-     }), "test.xlsx");
+     }), "Downtime Data Table.xlsx");
    } catch (e) {
      if (typeof console != 'undefined') console.log(e, wbout);
    }
@@ -166,21 +133,21 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
     }
     
-    $scope.DTPDF = function () {
-        var d_canvas = document.getElementById('tabledowntime');
-
-            $('#tablepdfdowntime').click(function() {       
-                html2canvas($("#tabledowntime"), {
-                    onrendered: function(canvas) {         
-                        var imgData = canvas.toDataURL(
-                            'image/png');              
-                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
-                        doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('Downtime Data.pdf');
-                    }
-                });
-            });
-    }
+//    $scope.DTPDF = function () {
+//        var d_canvas = document.getElementById('tabledowntime');
+//
+//            $('#tablepdfdowntime').click(function() {       
+//                html2canvas($("#tabledowntime"), {
+//                    onrendered: function(canvas) {         
+//                        var imgData = canvas.toDataURL(
+//                            'image/png');              
+//                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+//                        doc.addImage(imgData, 'PNG', 10, 10);
+//                        doc.save('Downtime Data.pdf');
+//                    }
+//                });
+//            });
+//    }
     
     
     // Hour Chart
@@ -573,6 +540,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             $scope.allDT[i].filtered = $scope.allDT[i].start.indexOf(newVal) === -1;
             paginationFunc();
     });
+    
     $scope.$watch("allDT.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {

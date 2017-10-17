@@ -17,33 +17,46 @@
             </ol>
         </div>
         
-        <div class="row">
+        <div class="row" ng-controller="maintainCtrl">
         
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card mb-3">
                 <div class="card-header">
-                <i class="fa fa-table"></i> System Total Uptime</div>
+                <i class="fa fa-table"></i> Equipment Total Uptime</div>
                 <div class="card-body">
                 
                 <div class="table-responsive">
                     
+                    <div class="input-append">
+                                        <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
+                                    </div><br>
+                    
                 <table class="table table-bordered bordered table-striped table-condensed datatable">
                     
-                    <thead>
+                    <thead class="lockedRecordsBg">
                     <tr>
-                        <th>System</th>
-                        <th>Total System Uptime</th>
+                        <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+                        <th>Total Uptime</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Equipment list</td>
-                        <td>shitty stuff calculation we have to do aye</td>
+                    <tr data-ng-repeat="equipment in filteredEquipments | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
+                        <td>{{equipment.equipment}}</td>
+                        <td>Total operation (Hour) - Total Downtime (Hour)</td>
                     </tr>
                     </tbody>
                     
                     </table>
-                
+                <div class="btn-group btn-group-sm" style="float: right">
+                                <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('-')">Prev</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage - 1)" ng-if="currentPage - 1 > 0">{{currentPage - 1}}</button>
+                                <button type="button" class="btn btn-primary" ng-click="selectedPage(currentPage)">{{currentPage}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage + 1)" ng-if="currentPage + 1 <= numbers">{{currentPage + 1}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('+')">Next</button>
+                            </div>
                 </div>
                 
                 </div>
@@ -114,7 +127,7 @@
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(monthFilter == undefined || monthFilter == '') && (dayFilter == undefined || dayFilter == '')">
                         <label for="dtp_input1" class="col-md-10 control-label">Select Start Downtime Year</label>
                         <div class="input-group date col-md-12" id="year" data-date="" data-date-format="yyyy" data-link-field="dtp_input1" data-link-format="yyyy">
-                            <input class="form-control" type="text" value="" data-ng-model="yearFilter">
+                            <input class="form-control" type="text" value="" data-ng-model="yearFilter" readonly>
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                         </div>
@@ -124,7 +137,7 @@
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (dayFilter == undefined || dayFilter == '')">
                         <label for="dtp_input2" class="col-md-10 control-label">Select Start Downtime Month</label>
                         <div class="input-group date col-md-12" id="month" data-date="" data-date-format="MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm">
-                            <input class="form-control" type="text" value="" data-ng-model="monthFilter">
+                            <input class="form-control" type="text" value="" data-ng-model="monthFilter" readonly>
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                         </div>
@@ -136,7 +149,7 @@
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-show="(yearFilter == undefined || yearFilter == '') && (monthFilter == undefined || monthFilter == '')">
                         <label for="dtp_input3" class="col-md-10 control-label">Select Start Downtime Day</label>
                         <div class="input-group date col-md-12" id="day" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" type="text" value="" data-ng-model="dayFilter">
+                            <input class="form-control" type="text" value="" data-ng-model="dayFilter" readonly>
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                         </div>

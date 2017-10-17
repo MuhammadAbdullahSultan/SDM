@@ -56,7 +56,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
    try {
      saveAs(new Blob([s2ab(wbout)], {
        type: "application/octet-stream"
-     }), "test.xlsx");
+     }), "Equipment Data Table.xlsx");
    } catch (e) {
      if (typeof console != 'undefined') console.log(e, wbout);
    }
@@ -81,22 +81,22 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     /////TABLE TO PDF///////////
     
     
-    $scope.EQPDF = function () {
-        var d_canvas = document.getElementById('tableequipment');
-
-            $('#tablepdfequipment').click(function() {       
-                html2canvas($("#tableequipment"), {
-                    onrendered: function(canvas) {         
-                        var imgData = canvas.toDataURL(
-                            'image/png');              
-                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
-                        doc.addImage(imgData, 'PNG', 10, 10);
-                        doc.save('Equipment Data.pdf');
-                    }
-                });
-            });
-    }
-    
+//    $scope.EQPDF = function () {
+//        var d_canvas = document.getElementById('tableequipment');
+//
+//            $('#tablepdfequipment').click(function() {       
+//                html2canvas($("#tableequipment"), {
+//                    onrendered: function(canvas) {         
+//                        var imgData = canvas.toDataURL(
+//                            'image/png');              
+//                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
+//                        doc.addImage(imgData, 'PNG', 10, 10);
+//                        doc.save('Equipment Data.pdf');
+//                    }
+//                });
+//            });
+//    }
+//    
     
     
     
@@ -315,9 +315,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     // -------------------------------------------------------------------------------------------------------
             $scope.getDowntime = $firebaseArray(ref.child('downtime'));
 
-    $scope.pressMeSenpai = function () {
-        
-    }
+    
     $scope.deleteEquipment = function () {
         
         var txt;

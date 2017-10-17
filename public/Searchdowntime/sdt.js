@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function ($scope, $firebaseObject, $firebaseArray) {
+app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filter', function ($scope, $firebaseObject, $firebaseArray, $filter) {
     'use strict';
     
     $('#remove').datetimepicker('remove');
@@ -96,6 +96,12 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', functi
 		forceParse: 0
     });
     
+//    var ref = firebase.database().ref();
+//    
+//    $scope.equipments = $firebaseArray(ref.child('AllEquipments'));
+//    
+//    $scope.orderByField = 'equipment', $scope.reverseSort = false;
+//    
     //////////Disable datetimepicker
     
 //    $scope.disableYear = false;
