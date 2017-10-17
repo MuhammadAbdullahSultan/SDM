@@ -42,7 +42,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 
  function export_table_to_excel() {
    var wb = XLSX.utils.table_to_book($("#exTable")[0], {
-     sheet: "Sheet JS"
+     sheet: "Downtime List"
    });
    var wbout = XLSX.write(wb, {
      bookType: "xlsx",
