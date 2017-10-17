@@ -79,7 +79,6 @@
     <br>
 
     
-    <div id="tabledowntime">
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data</div>
         <div class="card-body">
@@ -89,7 +88,6 @@
                     <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
               </div>
             <br>
-              <div>
             <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
               <thead class="lockedRecordsBg">
                   <tr>
@@ -119,7 +117,6 @@
                </tbody>
        
             </table>
-              </div>
               <div class="btn-group btn-group-sm" style="float: right">
                                 <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
                             </div>
@@ -135,13 +132,6 @@
         </div>
         <div class="card-footer small text-muted">Last Updated {{updatedDowntime}}</div>
         
-        <button onclick="myFunction()">Try it</button>
-        <p id="demo"></p>
-      </div>
-    
-    
-    
-    
 <br/>
 
 <div class="row">

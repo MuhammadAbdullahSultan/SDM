@@ -18,9 +18,19 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
-    'use strict';
+    
     
     var ref = firebase.database().ref();
+    
+    var dtUpdatedRef = firebase.database().ref().child("downtimeUpdate");
+    var dtUpdated = $firebaseArray(dtUpdatedRef);
+    
+    dtUpdated.$loaded().then(function (dtUpdated) {
+        console.log(dtUpdated[0].$value);
+        $scope.updatedDowntime = dtUpdated[0].$value;
+    });
+    
+    'use strict';
     
     //////////// HTML TABLE TO EXCEL (XLSX)/////////
     
@@ -472,6 +482,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.reload = function () {
         window.location.href
     }
+    
     $scope.manageDowntime = function () {
         
         // VAlIDATION
@@ -676,13 +687,8 @@ $scope.percentageData = [];
     }
            
 
-    var dtUpdatedRef = firebase.database().ref().child("downtimeUpdate");
-    var dtUpdated = $firebaseArray(dtUpdatedRef);
     
-    dtUpdated.$loaded().then(function (dtUpdated) {
-        console.log(dtUpdated[0].$value);
-        $scope.updatedDowntime = dtUpdated[0].$value;
-    });
+
 $scope.refreshList = function () {
     
 
@@ -768,6 +774,7 @@ $scope.refreshList = function () {
     
     window.onload = function () {
         $scope.type = true;
+        
     }
         var newref = firebase.database().ref();
         var dtdata = newref.child("downtime");
