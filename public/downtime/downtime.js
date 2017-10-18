@@ -540,6 +540,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
+        if($scope.filterWord === undefined) {
+            $scope.filterWord = "";
+        }
         for (var i = 0; i < $scope.allDT.length; i++)
             $scope.allDT[i].filtered = $scope.allDT[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
@@ -693,7 +696,7 @@ $scope.upTimeData = [];
         console.log($scope.upTimeData);
         
     }
-$scope.toPushHours = [];
+$scope.downtimeHours = [];
 $scope.refreshList = function () {
     
 
@@ -719,29 +722,27 @@ $scope.refreshList = function () {
                                         
 //                    console.log(n.equipment);
                     
-                    var storedHours = { "equipment": n.equipment , "hours": hours };
                     
                     
+                    angular.forEach ($scope.dtdata, function (so) {
+                        var toPush = { "equipment": so.$id, "hours": hours };
+                        $scope.downtimeHours.push(toPush);
+                        console.log($scope.downtimeHours);
+                    });
                     
-                    $scope.toPushHours.push(storedHours);
+                    $scope.chartData.push(hours);
                     
-                    console.log($scope.toPushHours);
-                    angular.forEach($scope.toPushHours , function (l) {
+                    angular.forEach($scope.downtimeHours , function (l) {
 //                            console.log(l);
                             console.log(n.equipment);
                         if (l.equipment === n.equipment) {
-                            l.hours += l.hours;
-                            $scope.hourss = l.hours;
-                            console.log(l.hours);
-                            $scope.equipmentss = storedHours.equipment;
-                            
-                            
+                            l.hours += hours;
+                            $scope.equipmentss = l.equipment;
                         }
                             
                         
                     })
                     
-                    $scope.chartData.push($scope.hourss);
                     
                     console.log($scope.chartData);
                     

@@ -98,7 +98,6 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
      
     
     $scope.upTimeCalculation = [];
-    $scope.allUP = [];
     $scope.chartData = [];
     
     $scope.refreshList = function () {
@@ -154,7 +153,6 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
         var push = false;
-        var startDate = new Date();
         var date = new Date();
         var getYear = date.getFullYear();
 
@@ -199,11 +197,11 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
     
     
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
-//    $scope.$watch("filterWord", function (newVal, oldVal) {
-//        for (var i = 0; i < $scope.allUP.length; i++)
-//            $scope.allUP[i].filtered = $scope.allUP[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
-//        paginationFunc();
-//    });
+    $scope.$watch("filterUptime", function (newVal, oldVal) {
+        for (var i = 0; i < $scope.upTimeCalculation.length; i++)
+            $scope.upTimeCalculation[i].filtered = $scope.upTimeCalculation[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
+        paginationFunc();
+    });
 //    
 //    $scope.$watch("dateFilter", function (newVal, oldVal) {
 //        for (var i = 0; i < $scope.allUP.length; i++)
@@ -211,7 +209,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 //            paginationFunc();
 //    });
     
-    $scope.$watch("allUP.length", paginationFunc);
+    $scope.$watch("upTimeCalculation.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
     $scope.selectedPage = function (index) {
         $scope.currentPage = index;
@@ -226,12 +224,12 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
         $scope.currentPage = currentPageValue;
     }
     function paginationFunc() {
-        var allUP = $scope.allUP.filter(function (item) { return !item.filtered });
-        $scope.numbers = Math.ceil(allUP.length / $scope.numPerPage);
+        var upTimeCalculation = $scope.upTimeCalculation.filter(function (item) { return !item.filtered });
+        $scope.numbers = Math.ceil(upTimeCalculation.length / $scope.numPerPage);
         if ($scope.currentPage < 1) $scope.currentPage = 1;
         if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
         var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
-        $scope.filteredUPTime = allUP.slice(begin, end);
+        $scope.filteredUPTime = upTimeCalculation.slice(begin, end);
     }
 
 }]);
