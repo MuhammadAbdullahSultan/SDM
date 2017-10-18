@@ -284,6 +284,13 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     };
 
     $scope.saveEquipment = function () {
+        
+//        for (var i = 0 ; i < $scope.equipments.length ; i++) {
+//            if($scope.equipments[$scope.indexValue].equipment === $scope.equipments[i].equipment) {
+//                toaster.pop({ type: 'warning', title: "Equipment Exists", body: "That Equipment already exists" });
+//                return;
+//            }
+//        }
 
         var isEmpty = false;
 
@@ -306,9 +313,10 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
                 toaster.pop({ type: 'Success', title: "Success", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " was edited" });
                 paginationFunc();
             });
+            $("#editEquipment .close").click();
         }
 
-        $("#editEquipment .close").click();
+        
 
     };
 
