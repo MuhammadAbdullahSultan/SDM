@@ -104,7 +104,6 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <label for="toEditSystem">System</label>
-<!--                                    <input type="text" data-ng-model="equipments[indexValue].system" class="form-control" id="toEditSystem">-->
                                     
                                     <select class="form-control" id="selectequ" data-ng-model="equipments[indexValue].system">
                                         <option selected>{{equipments[indexValue].system}}</option>
@@ -178,13 +177,18 @@
 
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h5>System</h5>
-<!--                                        <input type="text" class="form-control input-md txtsize" id="sys" placeholder="Insert system name" data-ng-model="systemToAdd">-->
                                         
+<!--
                                         <input list="system" name="mySystem" type="text" class="form-control txtsize" id="sys" data-ng-model="systemToAdd" onKeyPress="return numchar(event)"
                                             onKeyup="autotab(this, document.form1.bendcodeM)">
                                         <datalist id="system">
                                             <option data-ng-repeat="e in systems">{{e.system}}</option>
                                         </datalist>
+-->
+                                        
+                                    <select class="form-control" id="sys" data-ng-model="systemToAdd">
+                                        <option data-ng-repeat="e in systems">{{e.system}}</option>
+                                     </select>
                                         
                                     </div>
                                     
@@ -198,12 +202,17 @@
                                     
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h5>Group</h5>
+<!--
                                         <input list="group" name="myGroup" type="text" class="form-control txtsize" id="equi" data-ng-model="groupToAdd" onKeyPress="return numchar(event)"
                                             onKeyup="autotab(this, document.form1.bendcodeM)">
                                         <datalist id="group">
                                             <option data-ng-repeat="e in groups">{{e.group}}</option>
                                         </datalist>
-
+-->
+                                        <select class="form-control" id="equi" data-ng-model="groupToAdd">
+                                        <option data-ng-repeat="e in groups">{{e.group}}</option>
+                                     </select>
+                                        
                                     </div>
 
                                     <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
