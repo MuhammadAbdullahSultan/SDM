@@ -766,7 +766,30 @@ $scope.refreshList = function () {
     $scope.onClick = function (points, evt) {
         console.log(points);
         console.log(evt);
-        $scope.pointLabel = points[0]._model.label;
+        angular.forEach ($scope.dtdata , function (d) {
+            var refDesc = firebase.database().ref().child("downtime"); // creating new reference
+            var descData = refDesc.child(d.$id); // using the $id of the downtime node
+            var newDescList = $firebaseArray(descData); // storing the values in a new firebasearray
+            
+            newDescList.$loaded().then(function () {
+                angular.forEach(newDescList , function (n) {
+                    
+                    for(var i = 0 ; i < points.length ; i++) {
+                        
+                        if(points[i]._model.label === n.equipment) {
+                            $scope.chartValueDescription = n.description;
+                            console.log($scope.chartValueDescription);
+                        }
+                    }
+                    $scope.pointLabel = points[0]._model.label;
+                })
+            });
+            
+            
+        });
+        
+        
+        
         $scope.$apply();
       };
     
