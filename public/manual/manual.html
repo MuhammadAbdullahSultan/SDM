@@ -49,9 +49,11 @@
                     <p style="text-align: center"><b>Dashboard</b></p>
                     <ul>
                         <li>Dashboard is the primary page to view the summary of Downtime of Equipment by Hour and Percentage. </li>
-                        <li>View the graphs.</li> 
-                        <li>Note that initially, there is no data available in the system yet if there is no input.</li>
-                        <li>The selection for yearly, monthly, and daily is filtering .</li>
+                        <li>View the uptime of the equipments through a table. </li>
+                        <li>The table can be sort through ascending and descending order.</li>
+                        <li>The list in the table is contained inside a pagination. The user can decide the amount of data can be viewed in one page, whether it is 5, 10, et cetera.</li>
+                        <li>Note that initially, without any input, there is no data available in the system yet.</li>
+                        <li>The selection for yearly, monthly, and daily is filtering the graph population.</li>
                         <li>The populated graphs can be exported by clicking PDF and JPEG button. </li> 
                         <li>To view Downtime’s description, click on any of the graph bar and it will pop-up its description</li>
                     </ul>
@@ -75,11 +77,11 @@
                         <li>Added equipment will automatically be listed in the table of existing equipment.</li>
                         <li>The list of equipment can be both deleted and edited, according to the user's need. </li>
                         <li>Equipment that has recorded downtime cannot be deleted. If it requires the user to delete an equipment that has downtime, delete the downtime for the specific equipment firsthand in Manage Downtime.</li>
-                        <li>The table can be exported in Excel (.xlsx) and PDF format by clicking on the export buttons on top of the table.</li>
+                        <li>The table can be exported in Excel (.xlsx) format by clicking on the export buttons on top of the table.</li>
                         <li>There is an input for search filter for the table, where it filters the list of equipment according to the equipment name input by the user.</li>
                         <li>The table can be sort through ascending and descending order.</li>
                         <li>The list in the table is contained inside a pagination. The user can decide the amount of data can be viewed in one page, whether it is 5, 10, et cetera.</li>
-                        <li>The calculation for the Total Downtime (Hour) and Downtime Percentage (%) is as below:<br>
+                        <li>The calculation for the Total Uptime (Hour), Total Downtime (Hour) and Downtime Percentage (%) is as below:<br>
                         </li>
                     </ul>
                     
@@ -102,8 +104,9 @@
                             <li>Please insert system name and select a group based on the requirement.</li>
                             <li>Added Equipment will automatically be listed in the table of existing equipment</li>
                             <li>The list of Equipment can be both deleted and edited, according to user's needs</li>
+                            <li>Click on 'Search Downtime' button to filter the table and  graph population. The search filter can be done through either selecting the specific equipment from the list, selecting the date of the start downtime, or select the type of downtime.</li>
                             <li>Equipment that has recorded downtime cannot be deleted. If it requires the user to delete an Equipment that has downtime, delete the downtime for the specific equipment firsthand in Manage Downtime</li>
-                            <li>Click on the export icons on top of the table to export the table in Excel (.xlsx) and PDF format</li>
+                            <li>Click on the export icons on top of the table to export the table in Excel (.xlsx) format</li>
                             <li>Please use search filter input to view list of equipment</li>
                             <li>The table can be sorted in ascending and descending order by clicking each of column header. </li>
                             <li>The full list of table is contained inside a pagination. User can decide to view number of data in one page, whether it is 5, 10, et cetera </li>
@@ -122,20 +125,18 @@
                     <p style="text-align: center"><b>Manage User</b></p>
                         <ul>
                             <li>
-                            The user can deactivate and activate other user accounts. These deactivated accounts will not be able to sign in into the system.
+                            The administrator user can deactivate and activate other user accounts. These deactivated accounts will not be able to sign in into the system unless they get activation from the administrator.
                             </li>
                             <li>The logged in user cannot deactivate themselves.</li>
                             <li>There are 3 main user in SDM:</li>
                            
                         <ol>
-                            <li>Super Admin</li> 
-                            Read and write<br>
+                            <li>Administrator</li> 
+                            Read and write permissio<br>
                             Can deactivate admin and staff
-                            <li>Admin</li>
-                            Read and write permission<br>
-                            Unable to deactivate Super Admin
                             <li>Staff</li>
-                            Read permission
+                            Read and write permission<br>
+                            Unable to deactivate and activate other accounts
                         </ol>
                     </ul>
                     <hr/>
@@ -147,7 +148,7 @@
                     <p style="text-align: center"><span style="font-weight: bold;"><i class="fa fa-fw fa-cog fa-3x"></i></span>
                     </p>
                     <p style="text-align: center"><b>Settings</b></p>
-                        <ul><li>User have been given an access to change password with 6 alphanumeric characters whenever required</li></ul>
+                        <ul><li>User have been given an access to change their user account's password with minimum 6 alphanumeric characters whenever required</li></ul>
 
                 </div>
 
