@@ -693,7 +693,7 @@ $scope.upTimeData = [];
         console.log($scope.upTimeData);
         
     }
-
+$scope.toPushHours = [];
 $scope.refreshList = function () {
     
 
@@ -716,8 +716,34 @@ $scope.refreshList = function () {
                     
                     var hours = Math.abs(end - start) / 36e5;
                     hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
+                                        
+//                    console.log(n.equipment);
                     
-                    $scope.chartData.push(hours);
+                    var storedHours = { "equipment": n.equipment , "hours": hours };
+                    
+                    
+                    
+                    $scope.toPushHours.push(storedHours);
+                    
+                    console.log($scope.toPushHours);
+                    angular.forEach($scope.toPushHours , function (l) {
+//                            console.log(l);
+                            console.log(n.equipment);
+                        if (l.equipment === n.equipment) {
+                            l.hours += l.hours;
+                            $scope.hourss = l.hours;
+                            console.log(l.hours);
+                            $scope.equipmentss = storedHours.equipment;
+                            
+                            
+                        }
+                            
+                        
+                    })
+                    
+                    $scope.chartData.push($scope.hourss);
+                    
+                    console.log($scope.chartData);
                     
                     var date = new Date();
                     var getYear = date.getFullYear();
@@ -756,31 +782,37 @@ $scope.refreshList = function () {
                     
                     $scope.allDT.push(copy);
                     
-                    $scope.equipmentLabels.push(n.equipment);
+                    $scope.equipmentLabels.push($scope.equipmentss);
                     
                 });
             });
                 });
 }
-
+    
+    $scope.descriptionPush = [];
     $scope.onClick = function (points, evt) {
+        $scope.descriptionPush = [];
+        
         console.log(points);
         console.log(evt);
         angular.forEach ($scope.dtdata , function (d) {
             var refDesc = firebase.database().ref().child("downtime");
             var descData = refDesc.child(d.$id);
-            var newDescList = $firebaseArray(refDesc);
+            var newDescList = $firebaseArray(descData);
             
             newDescList.$loaded().then(function () {
                 angular.forEach(newDescList , function (n) {
+                    console.log(n);
                     
-                    for(var i = 0 ; i < n.length ; i++) {
+                    if(points[0]._model.label === n.equipment) {
+                                
+                        var toPush = { "description": n.description, "start": moment(n.start).format("DD/MM/YYYY HH:mm"), "end": moment(n.end).format("DD/MM/YYYY HH:mm") };
                         
-//                            console.log($scope.chartValueDescription);
-                            if(points[0]._model.label === n[i].$id) {
-                            $scope.chartValueDescription = n[j].$id[j].description;
-                            console.log($scope.chartValueDescription);
-                        }
+                        $scope.descriptionPush.push(toPush);
+
+
+                        console.log($scope.descriptionPush);
+                        
                         
                         
                     }

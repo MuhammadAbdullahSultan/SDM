@@ -1,6 +1,6 @@
 <header-file></header-file>
 
-<div class="content-wrapper">
+<div class="content-wrapper" data-ng-controller="downtimeCtrl">
     <div class="container-fluid">
 
         <div class="page-header txtsize">
@@ -35,14 +35,14 @@
                     
                     <thead>
                     <tr>
-                        <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+<!--                        <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>-->
                         <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                         <th>Total Uptime</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr data-ng-repeat="equipment in upTimeCalculation | orderBy:orderByField:reverseSort" ng-if="!equipment.filtered">
-                        <td>{{equipment.system}}</td>
+<!--                        <td>{{equipment.system}}</td>-->
                         <td>{{equipment.equipment}}</td>
                         <td>{{equipment.uptime | number:2}} hrs</td>
                     </tr>
@@ -73,7 +73,7 @@
         <div class="row">
 
         
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-ng-controller="downtimeCtrl">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 
                 <div class="card mb-3">
             
@@ -173,10 +173,30 @@
                 <div class="modal-content txtsize">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Downtime Description</h4>
+                        <h4 class="modal-title">{{pointLabel}}</h4>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <h4>Downtime description</h4>
+           <div class="table-responsive">
+               <table class="table table-responsive table-striped">
+                    <thead>
+                        <th>Equipment</th>
+                        <th>Description</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </thead>
+                   
+                   <tbody>
+                    <tr data-ng-repeat = "desc in descriptionPush">
+                       <td>{{pointLabel}}</td>
+                       <td>{{desc.description}}</td>
+                       <td>{{desc.start}}</td>
+                       <td>{{desc.end}}</td>
+                    </tr>
+                   </tbody>
+               </table>
+
+           </div>
 
                     </div>
                     <div class="modal-footer">

@@ -191,7 +191,27 @@
        <div class="modal-body">
            
            <h4>Downtime description</h4>
-           {{chartValueDescription}}
+           <div class="table-responsive">
+               <table class="table table-responsive table-striped">
+                    <thead>
+                        <th>Equipment</th>
+                        <th>Description</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </thead>
+                   
+                   <tbody>
+                    <tr data-ng-repeat = "desc in descriptionPush">
+                       <td>{{pointLabel}}</td>
+                       <td>{{desc.description}}</td>
+                       <td>{{desc.start}}</td>
+                       <td>{{desc.end}}</td>
+                    </tr>
+                   </tbody>
+               </table>
+
+           </div>
+           
            
        </div>
        <div class="modal-footer">
