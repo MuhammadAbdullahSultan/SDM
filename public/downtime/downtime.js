@@ -621,7 +621,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.saveDowntime = function () {
         
         var txt;
-        var r = confirm("Are you sure you want to save the edited equipment?");
+        var r = confirm("Are you sure you want to save the edited downtime?");
         if (r == true) {
 
         var isEmpty = false;
