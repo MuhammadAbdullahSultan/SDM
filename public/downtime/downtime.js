@@ -651,11 +651,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     equipment: $scope.allDT[$scope.indexDTValue].equipment,
                     start: $scope.allDT[$scope.indexDTValue].start,
                     type: $scope.allDT[$scope.indexDTValue].type
-                }
-
-                ).then(function () {
-
-
+                }).then(function () {
                     toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
                     paginationFunc();
                 });
