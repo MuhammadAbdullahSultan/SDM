@@ -630,7 +630,12 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                 toaster.pop({ type: 'warning', title: "Type Field Empty", body: "Please enter a type" });
             } else if ($scope.allDT[$scope.indexDTValue].description === "") {
                 toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
-            } else {
+            } else if ($scope.allDT[$scope.indexDTValue].start === "") {
+                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please select start date" });
+            } else if ($scope.allDT[$scope.indexDTValue].end === "") {
+                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please select end date" });
+            }
+            else {
 
                 $scope.toEditDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
                 $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
