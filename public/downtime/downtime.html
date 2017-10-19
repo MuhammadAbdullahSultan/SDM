@@ -68,7 +68,7 @@
 <hr/>
 
     
-    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button>
+    
     
 <!--
     <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o" id="tablepdfdowntime" data-ng-click="DTPDF()"></span></button>
@@ -80,7 +80,9 @@
 
     
         <div class="card-header">
-          <i class="fa fa-table"></i> Downtime Data</div>
+          <i class="fa fa-table"></i> Downtime Data
+            <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button></span>
+        </div>
         <div class="card-body">
           <div class="table-responsive">
               
@@ -88,7 +90,7 @@
                     <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-model="filterWord" placeholder="Search by equipment">
               </div>
             <br>
-            <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable" >
+            <table class="table table-bordered bordered table-striped table-condensed datatable">
               <thead class="lockedRecordsBg">
                   <tr>
                      <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment<span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
@@ -132,6 +134,28 @@
         </div>
         <div class="card-footer small text-muted">Last Updated {{updatedDowntime}}</div>
         
+    <br>
+    <table class="table table-bordered bordered table-striped table-condensed" style="display: none" id="exTable" >
+              <thead>
+                  <tr>
+                     <th>Equipment</th>                      
+                     <th>Start</th>
+                     <th>End</th> 
+                     <th>Description</th>
+                     <th>Type</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr data-ng-repeat="d in allDT"> 
+                     <td>{{d.equipment}}</td>
+                     <td>{{d.start}}</td>
+                     <td>{{d.end}}</td>
+                     <td>{{d.description}}</td>
+                     <td>{{d.type}}</td>
+                  </tr>
+               </tbody>
+       
+            </table>
 <br/>
 
 <div class="row">

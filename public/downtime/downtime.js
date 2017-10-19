@@ -619,41 +619,48 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     
     $scope.saveDowntime = function () {
+        
+        var txt;
+        var r = confirm("Are you sure you want to save the edited equipment?");
+        if (r == true) {
 
         var isEmpty = false;
 
-        if ($scope.allDT[$scope.indexDTValue].type === "") {
-            toaster.pop({ type: 'warning', title: "Type Field Empty", body: "Please enter a type" });
-        } else if ($scope.allDT[$scope.indexDTValue].description === "") {
-            toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
-        } else {
-            
-            $scope.toEditDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
-            $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
-            var timeUpdated = new Date();
-            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
-            $scope.dtUpdate.set({
-                lastUpdated: $scope.timeUpdated
-            });
-            
-            $scope.toEditDT.set({
-                description: $scope.allDT[$scope.indexDTValue].description,
-                end: $scope.allDT[$scope.indexDTValue].end,
-                equipment: $scope.allDT[$scope.indexDTValue].equipment,
-                start: $scope.allDT[$scope.indexDTValue].start,
-                type: $scope.allDT[$scope.indexDTValue].type
+            if ($scope.allDT[$scope.indexDTValue].type === "") {
+                toaster.pop({ type: 'warning', title: "Type Field Empty", body: "Please enter a type" });
+            } else if ($scope.allDT[$scope.indexDTValue].description === "") {
+                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
+            } else {
+
+                $scope.toEditDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
+                $scope.dtUpdate = firebase.database().ref('downtimeUpdate');
+                var timeUpdated = new Date();
+                $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+                $scope.dtUpdate.set({
+                    lastUpdated: $scope.timeUpdated
+                });
+
+                $scope.toEditDT.set({
+                    description: $scope.allDT[$scope.indexDTValue].description,
+                    end: $scope.allDT[$scope.indexDTValue].end,
+                    equipment: $scope.allDT[$scope.indexDTValue].equipment,
+                    start: $scope.allDT[$scope.indexDTValue].start,
+                    type: $scope.allDT[$scope.indexDTValue].type
+                }
+
+                ).then(function () {
+
+
+                    toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
+                    paginationFunc();
+                });
             }
-                
-            ).then(function () {
-                
-                
-                toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
-                paginationFunc();
-            });
+
+            $("#editDowntime .close").click();
         }
-
-        $("#editDowntime .close").click();
-
+        else {
+           
+        }
     };
     
     

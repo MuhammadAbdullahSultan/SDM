@@ -291,29 +291,37 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 //                return;
 //            }
 //        }
+        
+        var txt;
+        var r = confirm("Are you sure you want to save the edited equipment?");
+        if (r == true) {
 
-        var isEmpty = false;
+            var isEmpty = false;
 
-        if ($scope.equipments[$scope.indexValue].system === "") {
-            toaster.pop({ type: 'warning', title: "System Field Empty", body: "Please enter a system, or add a new system" });
-        } else if ($scope.equipments[$scope.indexValue].description === "") {
-            toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
-        } 
-        else if 
-            ($scope.equipments[$scope.indexValue].group === "") {
-            toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
-        } else {
-            $scope.eqUpdate = firebase.database().ref('equipmentUpdate');
-            var timeUpdated = new Date();
-            $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
-            $scope.eqUpdate.set({
-                lastUpdated: $scope.timeUpdated
-            });
-            $scope.equipments.$save($scope.indexValue).then(function (data) {
-                toaster.pop({ type: 'Success', title: "Success", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " was edited" });
-                paginationFunc();
-            });
-            $("#editEquipment .close").click();
+            if ($scope.equipments[$scope.indexValue].system === "") {
+                toaster.pop({ type: 'warning', title: "System Field Empty", body: "Please enter a system, or add a new system" });
+            } else if ($scope.equipments[$scope.indexValue].description === "") {
+                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
+            } 
+            else if 
+                ($scope.equipments[$scope.indexValue].group === "") {
+                toaster.pop({ type: 'warning', title: "Group Field Empty", body: "Please select a group, or add a new group" });
+            } else {
+                $scope.eqUpdate = firebase.database().ref('equipmentUpdate');
+                var timeUpdated = new Date();
+                $scope.timeUpdated = moment(timeUpdated).format("DD, MMMM YYYY HH:mm");
+                $scope.eqUpdate.set({
+                    lastUpdated: $scope.timeUpdated
+                });
+                $scope.equipments.$save($scope.indexValue).then(function (data) {
+                    toaster.pop({ type: 'Success', title: "Success", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " was edited" });
+                    paginationFunc();
+                });
+                $("#editEquipment .close").click();
+            }
+        }
+        else {
+           
         }
 
         

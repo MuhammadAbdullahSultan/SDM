@@ -43,6 +43,11 @@ li a:hover {
     padding-right:10px;
 }
 
+#families { 
+    visibility:hidden;
+    display:none;
+}
+
 /*Datetimepicker*/ 
 
 .full button span {

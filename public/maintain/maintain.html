@@ -22,24 +22,14 @@
                 </div>
             </div>
             <br/>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-9">
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span>
-                    </button>
 
-<!--
-                    <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="tablepdfequipment" data-ng-click="EQPDF()" title="Print table to PDF"><span class="fa fa-fw fa-file-pdf-o"></span>
-                    </button>
--->
-                </div>
-
-
-                
-
-            </div>
+            
             <br>
                 <div class="card-header">
-                <i class="fa fa-table"></i> Equipment Data</div>
+                <i class="fa fa-table"></i> Equipment Data
+                    <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span>
+                    </button></span>
+                </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -49,7 +39,7 @@
                                     </div>
                             <br>
 
-                            <table class="table table-bordered bordered table-striped table-condensed datatable" id="exTable">
+                            <table class="table table-bordered bordered table-striped table-condensed datatable">
                                 <thead class="lockedRecordsBg">
                                     <tr>
                                         <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
@@ -81,7 +71,31 @@
                         </div>
 
                     </div>
-                                <div class="card-footer small text-muted">Last Updated {{updatedEquipment}}</div>
+                        <div class="card-footer small text-muted">Last Updated {{updatedEquipment}}</div>
+            <br>
+                        <div class="table-responsive" style="display: none">
+                            
+                            <table class="table table-bordered bordered table-striped table-condensed" id="exTable">
+                                <thead>
+                                    <tr>
+                                        <th>Equipment</th>
+                                        <th>System</th>
+                                        <th>Description</th>
+                                        <th>Group</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="equipment in equipments">
+                                        <td>{{equipment.equipment}}</td>
+                                        <td>{{equipment.system}}</td>
+                                        <td>{{equipment.description}}</td>
+                                        <td>{{equipment.group}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
 
             <!-- Trigger the modal with a button -->
 
