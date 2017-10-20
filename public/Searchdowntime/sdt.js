@@ -147,9 +147,21 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 }
     
     
+    
    
 
      var newref = firebase.database().ref();
+    
+    var eqData = newref.child("AllEquipments");
+    $scope.eqList = $firebaseArray(eqData);
+    
+    
+    
+//    $scope.eqData.push(eqList);
+//    $scope.eqData.push(eqList);
+//    eqList.$loaded().then(function (eqList) {
+//    });
+    console.log($scope.eqList);
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
         var push = false;
@@ -170,7 +182,15 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
             $scope.dtdata = dtlist; // Getting Downtime node
             
             angular.forEach ($scope.dtdata, function (so) {
-                var toPush = { "equipment": so.$id, "uptime": difference };
+                for(var i = 0 ; i < $scope.eqList.length ; i++) {
+//                    console.log($scope.eqList[i].system);
+                    if($scope.eqList[i].equipment === so.$id) {
+                        $scope.toPushSystem = $scope.eqList[i].system;
+                        
+                    }
+                }
+                var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem };
+                console.log(toPush);
                 $scope.upTimeCalculation.push(toPush);
                 console.log($scope.upTimeCalculation);
             });

@@ -35,14 +35,14 @@
                     
                     <thead>
                     <tr>
-<!--                        <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>-->
+                        <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                         <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                         <th>Total Uptime</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr data-ng-repeat="equipment in filteredUPTime | orderBy:orderByField:reverseSort | filter: filterUptime track by $index" ng-if="!equipment.filtered">
-<!--                        <td>{{equipment.system}}</td>-->
+                        <td>{{equipment.system}}</td>
                         <td>{{ equipment.equipment }}</td>
                         <td>{{ equipment.uptime | number:2 }} hrs</td>
                     </tr>
