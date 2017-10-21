@@ -720,40 +720,37 @@ $scope.refreshList = function () {
                 angular.forEach (newdtlist, function (n) {
                     
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
-                    
-                        
-            
+
                     var start = new Date (n.start);
                     var end = new Date (n.end);
-                    
+
                     var hours = Math.abs(end - start) / 36e5;
                     hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
-                                        
-//                    console.log(n.equipment);
-                    
-                    
                     
                     angular.forEach ($scope.dtdata, function (so) {
                         var toPush = { "equipment": so.$id, "hours": hours };
                         $scope.downtimeHours.push(toPush);
-                        console.log($scope.downtimeHours);
-                    });
+                    });                    
+                                        
+                    var labels = [n.equipment];
                     
-                    $scope.chartData.push(hours);
-                    
-                    angular.forEach($scope.downtimeHours , function (l) {
-//                            console.log(l);
-                            console.log(n.equipment);
-                        if (l.equipment === n.equipment) {
-                            l.hours += hours;
-                            $scope.equipmentss = l.equipment;
+                    $.each(labels, function(i, el){
+                        if($.inArray(el, $scope.equipmentLabels) === -1) {
+                            $scope.equipmentLabels.push(el);
+                            $scope.chartData.push(0);
                         }
-                            
-                        
-                    })
-                    
-                    
+                    });
                     console.log($scope.chartData);
+                    console.log($scope.equipmentLabels);
+                    for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
+                        
+                        if($scope.equipmentLabels[i] === n.equipment) {
+                            $scope.chartData[i] += parseFloat(hours);
+                        }
+                        
+                    }
+                    
+                    
                     
                     var date = new Date();
                     var getYear = date.getFullYear();
@@ -790,11 +787,13 @@ $scope.refreshList = function () {
                     
                     $scope.allDT.push(copy);
                     
-                    $scope.equipmentLabels.push($scope.equipmentss);
+                    
                     
                 });
             });
                 });
+    console.log($scope.equipmentLabels);
+    console.log($scope.chartData);
 }
     
     $scope.descriptionPush = [];
