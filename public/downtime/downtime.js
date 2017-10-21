@@ -738,6 +738,7 @@ $scope.refreshList = function () {
                         if($.inArray(el, $scope.equipmentLabels) === -1) {
                             $scope.equipmentLabels.push(el);
                             $scope.chartData.push(0);
+                            $scope.percentageData.push(0);
                         }
                     });
                     console.log($scope.chartData);
@@ -774,7 +775,15 @@ $scope.refreshList = function () {
                     $scope.uptime = parseFloat(Math.round($scope.uptime * 100) / 100).toFixed(2);
                     
                     $scope.upTimeData.push($scope.uptime);
-                    $scope.percentageData.push($scope.percentage);
+//                    $scope.percentageData.push($scope.percentage);
+                    
+                    for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
+                        
+                        if($scope.equipmentLabels[i] === n.equipment) {
+                            $scope.percentageData[i] += parseFloat($scope.percentage);
+                        }
+                        
+                    }
                     
                     
                     var copy = n;
