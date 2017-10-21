@@ -631,9 +631,9 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             } else if ($scope.allDT[$scope.indexDTValue].description === "") {
                 toaster.pop({ type: 'warning', title: "Description Empty", body: "Please fill in the description" });
             } else if ($scope.allDT[$scope.indexDTValue].start === "") {
-                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please select start date" });
+                toaster.pop({ type: 'warning', title: "Start Date Empty", body: "Please select start date" });
             } else if ($scope.allDT[$scope.indexDTValue].end === "") {
-                toaster.pop({ type: 'warning', title: "Description Empty", body: "Please select end date" });
+                toaster.pop({ type: 'warning', title: "End Date Empty", body: "Please select end date" });
             }
             else {
 
@@ -652,12 +652,13 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
                     start: $scope.allDT[$scope.indexDTValue].start,
                     type: $scope.allDT[$scope.indexDTValue].type
                 }).then(function () {
-                    toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
-                    paginationFunc();
+                    
                 });
+                toaster.pop({ type: 'Success', title: "Success", body: "Downtime for Equipment " + $scope.allDT[$scope.indexDTValue].equipment + " was edited" });
+                    paginationFunc();
+                $("#editDowntime .close").click();
             }
 
-            $("#editDowntime .close").click();
         }
         else {
            
@@ -781,10 +782,8 @@ $scope.refreshList = function () {
                     
                     var copy = n;
                     
-                    var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
-                    var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
-
-                    // Will display time in 10:30:23 format
+                    var startConverstion = moment(copy.start).format("YYYY.MM.DD HH:mm");
+                    var endConverstion = moment(copy.end).format("YYYY.MM.DD HH:mm");
                     
                     copy.start = startConverstion;
                     copy.end= endConverstion;
