@@ -170,11 +170,37 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		startView: 2,
 		forceParse: 0,
         showMeridian: 1,
-        format: "dd.mm.yyyy",
+        format: "yyyy.mm.dd",
         startView: 2,
         minView: 4,
         endDate: '+1d'
     });
+    
+    $('.monthFilter').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: "yyyy.mm",
+        startView: 4,
+        minView: 3,
+        endDate: '+1d'
+    });
+    
+    $('.yearFilter').datetimepicker({
+        //language:  'fr',
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: "yyyy",
+        startView: 4,
+        minView: 4,
+    });
+    
      
     $('.form_starttime').datetimepicker({
 		autoclose: 1,
@@ -710,6 +736,13 @@ $scope.refreshList = function () {
                 angular.forEach (newdtlist, function (n) {
                     
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
+                    if($scope.dateFilter && $scope.dateFilter != "" && $scope.dateFilter != moment(n.start).format("YYYY.MM.DD")) return;
+                    
+                    if($scope.yearFilter && $scope.yearFilter != "" && $scope.yearFilter != moment(n.start).format("YYYY")) return;
+                    
+                    if($scope.monthFilter && $scope.monthFilter != "" && $scope.monthFilter != moment(n.start).format("YYYY.MM")) return;
+                    
+                    if($scope.dayFilter && $scope.dayFilter != "" && $scope.dayFilter != moment(n.start).format("YYYY.MM.DD")) return;
 
                     var start = new Date (n.start);
                     var end = new Date (n.end);
@@ -778,8 +811,8 @@ $scope.refreshList = function () {
                     
                     var copy = n;
                     
-                    var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
-                    var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
+                    var startConverstion = moment(copy.start).format("YYYY.MM.DD HH:mm");
+                    var endConverstion = moment(copy.end).format("YYYY.MM.DD HH:mm");
                     
                     copy.start = startConverstion;
                     copy.end= endConverstion;
