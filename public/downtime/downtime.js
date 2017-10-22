@@ -170,7 +170,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
 		startView: 2,
 		forceParse: 0,
         showMeridian: 1,
-        format: 'dd.mm.yyyy',
+        format: "dd.mm.yyyy",
         startView: 2,
         minView: 4,
         endDate: '+1d'
@@ -572,6 +572,38 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         console.log($scope.indexDTValue);
         console.log(indexDT);
     };
+    
+//    $scope.$watch ("dateFilter", function () {
+//        $scope.percentageData = [];
+//        $scope.allDT = [];
+//        $scope.equipmentLabels = [];
+//        $scope.chartData = [];
+//        $scope.refreshList();
+//    });
+    
+//    $scope.$watch ("filteredDowntime", function () {
+//        $scope.percentageData = [];
+//        $scope.allDT = [];
+//        $scope.equipmentLabels = [];
+//        $scope.chartData = [];
+//        $scope.refreshList();
+//    });
+    
+//    $scope.$watch ("yearFilter", function () {
+//        $scope.percentageData = [];
+//        $scope.allDT = [];
+//        $scope.equipmentLabels = [];
+//        $scope.chartData = [];
+//        $scope.refreshList();
+//    });
+//    
+//    $scope.$watch ("dayFilter", function () {
+//        $scope.percentageData = [];
+//        $scope.allDT = [];
+//        $scope.equipmentLabels = [];
+//        $scope.chartData = [];
+//        $scope.refreshList();
+//    });
     
     
     
