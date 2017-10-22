@@ -142,23 +142,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
     }
     
-//    $scope.DTPDF = function () {
-//        var d_canvas = document.getElementById('tabledowntime');
-//
-//            $('#tablepdfdowntime').click(function() {       
-//                html2canvas($("#tabledowntime"), {
-//                    onrendered: function(canvas) {         
-//                        var imgData = canvas.toDataURL(
-//                            'image/png');              
-//                        var doc = new jsPDF('p', 'mm', [419.53,  595.28]);
-//                        doc.addImage(imgData, 'PNG', 10, 10);
-//                        doc.save('Downtime Data.pdf');
-//                    }
-//                });
-//            });
-//    }
-    
-    
     // Hour Chart
     
     $scope.allEquipments = [];
@@ -223,31 +206,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             });
     $('.form_starttime [name="start"]').datetimepicker('setEndDate', '+0d');
     
-//    $("#form_starttime").datetimepicker({
-//        todayBtn:  1,
-//		autoclose: 1,
-//		todayHighlight: 1,
-//        format: 'yyyy.mm.dd hh:ii P',
-//        showMeridian: true,
-//        pickerPosition: "bottom-left",
-//        startDate : new Date('2012-08-08'),
-//        endDate: '+0d',
-//    }).on('changeDate', function (selected) {
-//        var minDate = new Date(selected.date.valueOf());
-//
-//    $('#form_endtime').datetimepicker('  setStartDate', minDate);
-//    });
-//        
-//    $("#form_endtime").datetimepicker({
-//        todayBtn:  1,
-//		autoclose: 1,
-//		todayHighlight: 1,
-//        format: 'yyyy.mm.dd hh:ii P',
-//        showMeridian: true,
-//        pickerPosition: "bottom-left",
-//        endDate: '+0d'
-//
-//    });
     
 	$('.form_date').datetimepicker({
         weekStart: 1,
@@ -788,8 +746,8 @@ $scope.refreshList = function () {
                     
                     var copy = n;
                     
-                    var startConverstion = moment(copy.start).format("YYYY.MM.DD HH:mm");
-                    var endConverstion = moment(copy.end).format("YYYY.MM.DD HH:mm");
+                    var startConverstion = moment(copy.start).format("DD.MM.YYYY HH:mm");
+                    var endConverstion = moment(copy.end).format("DD.MM.YYYY HH:mm");
                     
                     copy.start = startConverstion;
                     copy.end= endConverstion;

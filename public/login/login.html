@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
 <link rel="stylesheet" href="assets/css/styles.css">
 
-<div class="login-dark" data-ng-controller="loginCtrl">
+<div class="login-dark">
     <form>
         <h2 class="sr-only">Login Form</h2>
         <div class="illustration"><h5>Equipment Downtime Monitoring System</h5>
@@ -14,19 +14,24 @@
             <input class="form-control" type="password" name="password" placeholder="Password" data-ng-model="password">
         </div>
         <div class="form-group">
-            <!--                <button class="btn btn-primary btn-block" type="submit">Log In</button>-->
             <button class="btn btn-primary btn-block" data-ng-click="signInWithEmailAndPassword(email, password)">Log In</button>
         </div>
         <a href="#" class="forgot">Forgot your email or password?</a><br>
-        <button style="margin-left: 70px" type="button" class="btn btn-info" data-toggle="modal" data-target="#addUser" data-backdrop="false">Register Account
-        </button>
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#addUser" data-backdrop="false">Register Account
+            </button>
+        </div>
+        </div>
     </form>
+    
+    
 </div>
 <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-bottom-right'}"></toaster-container>
 
 <div class="modal fade" role="dialog" id="addUser" aria-hidden="true" tabindex="-1" data-ng-controller="createUserCtrl">
                 <div class="modal-dialog modal-lg">
-                    <form>
+                    
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -35,19 +40,21 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <label for="email">Email</label>
-                                        <input type="email" ng-model="toAddEmail" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="email" placeholder="e.g: abc123@def456.com"><br>
+                                        <form>
+                                            <label for="email">Email</label>
+                                            <input type="email" ng-model="toAddEmail" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="email" placeholder="e.g: abc123@def456.com"><br>
 
-                                        <label for="password">Password</label>
-                                        <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="password" placeholder="More than 6 alphanumeric characters"><br>
-                                        
-                                        <label for="password">Confirm Password</label>
-                                        <input type="password" ng-model="reppassword" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="reppassword" placeholder="More than 6 alphanumeric characters"><br>
+                                            <label for="password">Password</label>
+                                            <input type="password" ng-model="password" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="password" placeholder="More than 6 alphanumeric characters"><br>
+
+                                            <label for="password">Confirm Password</label>
+                                            <input type="password" ng-model="reppassword" class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" id="reppassword" placeholder="More than 6 alphanumeric characters"><br>
 
 
-                                        <button data-ng-click="createUser()" class="btn btn-info">Create User <span class="fa fa-plus"></span>
-                                        </button>
-                                        
+                                            <button data-ng-click="createUser()" class="btn btn-info">Create User <span class="fa fa-plus"></span>
+                                            </button>
+                                        </form>
+
                                     </div>
 
                                 </div>   
@@ -59,16 +66,5 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
-
-<!--
-    <footer class="sticky-footer">
-      <div class="footcontainer">
-        <div class="text-center">
-          <small>Copyright © Your Website 2017, Disclaimer: This website best displays at 1360 x 768</small>
-        </div>
-      </div>
-    </footer>
--->
