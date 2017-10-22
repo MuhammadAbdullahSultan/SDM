@@ -242,7 +242,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadImgHr = function () {
         $("#saveImgHr").click(function() {
  	    $("#hourdash").get(0).toBlob(function(blob) {
-            saveAs(blob, "hour_chart.jpeg");
+            saveAs(blob, "Equipment Downtime Chart.jpeg");
                 });
         });
     }
@@ -250,7 +250,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadImgHrDt = function () {
         $("#saveImgHrDt").click(function() {
  	    $("#hour").get(0).toBlob(function(blob) {
-            saveAs(blob, "hour_chart.jpeg");
+            saveAs(blob, "Equipment Downtime Chart.jpeg");
                 });
         });
     }
@@ -258,7 +258,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadImgPer = function () {
         $("#saveImgPer").click(function() {
  	    $("#perdash").get(0).toBlob(function(blob) {
-            saveAs(blob, "percentage_chart.jpeg");
+            saveAs(blob, "Equipment Downtime Percentage Chart.jpeg");
                 });
         });
     }
@@ -266,7 +266,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.downloadImgPerDt = function () {
         $("#saveImgPerDt").click(function() {
  	    $("#percent").get(0).toBlob(function(blob) {
-            saveAs(blob, "percentage_chart.jpeg");
+            saveAs(blob, "Equipment Downtime Percentage Chart.jpeg");
                 });
         });
     }
