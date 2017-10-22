@@ -1,6 +1,6 @@
 <header-file></header-file>
 
-<div class="content-wrapper" data-ng-controller="downtimeCtrl">
+<div class="content-wrapper">
     <div class="container-fluid">
 
         <div class="page-header txtsize">
@@ -28,7 +28,7 @@
                 <div class="table-responsive">
                     
                     <div class="input-append">
-                    <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-model="filterUptime" placeholder="Search by equipment">
+                    <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-model="filterUptime" placeholder="Search by equipment">
                                     </div><br>
                     
                 <table class="table table-bordered bordered table-striped table-condensed datatable">
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-
+    <div data-ng-controller="downtimeCtrl">
         <div class="row">
 
         
@@ -205,6 +205,8 @@
                 </div>
             </div>
         </div>
+    </div>
+        
 
 
 

@@ -218,9 +218,11 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
     
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterUptime", function (newVal, oldVal) {
-        for (var i = 0; i < $scope.upTimeCalculation.length; i++)
+        for (var i = 0; i < $scope.upTimeCalculation.length; i++) {
             $scope.upTimeCalculation[i].filtered = $scope.upTimeCalculation[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
-        paginationFunc();
+            paginationFunc();
+        }
+            
     });
 //    
 //    $scope.$watch("dateFilter", function (newVal, oldVal) {
