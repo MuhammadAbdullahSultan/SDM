@@ -714,6 +714,8 @@ $scope.refreshList = function () {
             newdtlist.$loaded().then(function() {
                 angular.forEach (newdtlist, function (n) {
                     
+                    
+                    
                     if($scope.type && $scope.type != "" && $scope.type != n.type) return;
                     if($scope.dateFilter && $scope.dateFilter != "" && $scope.dateFilter != moment(n.start).format("YYYY.MM.DD")) return;
                     
@@ -827,9 +829,7 @@ $scope.refreshList = function () {
 
 
                         console.log($scope.descriptionPush);
-                        
-                        
-                        
+
                     }
                     $scope.pointLabel = points[0]._model.label;
                 })
@@ -868,14 +868,28 @@ $scope.refreshList = function () {
         
         dtlist.$loaded().then(function(dtlist) {
         $scope.dtdata = dtlist; // Getting Downtime node
-            angular.forEach (dtlist, function(downt){
+            
+             
+            
+                angular.forEach ($scope.dtdata, function(downt) {
+                var excelref = firebase.database().ref().child("downtime"); // creating new reference
+                var exceldtdata = excelref.child(downt.$id); // using the $id of the downtime node
+                var excelList = $firebaseArray(exceldtdata); // storing the values in a new firebasearray
                 
-                var downtimeJson = { "Equipment": downt.equipment, "Start": downt.start, "End": downt.end, "Description": downt.description, "Type": downt.type };
+                excelList.$loaded().then(function() {
+                    angular.forEach (excelList, function (downt) {
+                        var downtimeJson = { "Equipment": downt.equipment, "Start": moment(downt.start).format("DD/MMMM/YYYY hh:mm"), "End": moment(downt.end).format("DD/MMMM/YYYY hh:mm"), "Description": downt.description, "Type": downt.type };
+                        
+                        $scope.downtimeJson.push(downtimeJson);
+                        console.log($scope.downtimeJson);
+                        console.log(downtimeJson);
+                    })
+                })
+            });
+            
+                
 
-                $scope.downtimeJson.push(downtimeJson);
-                console.log($scope.downtimeJson);
-                console.log(downtimeJson);
-            })
+                
             $scope.refreshList();
             
             dtlist.$watch(function(event) {
