@@ -46,16 +46,16 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     ////Table to Excel   
         $("document").ready(function() {
            $("#btnDown").click(function() {
-//             export_table_to_excel();
              $scope.exportToxls();
            });
          });
     
+    var latestdate = new Date();
     var mystyle = {
-        sheetid: 'Equipment Data Table',
+        sheetid: 'Equipment List',
         headers: true,
         caption: {
-          title:'Created On ',
+          title:'Equipment Data Table - created on: ' + moment(latestdate).format("DD, MMMM YYYY HH:mm"),
             
         },
         style:'background:#FFFFFF',
@@ -72,21 +72,13 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             columnid:'Group', width:200
           },
         ],
-//        row: {
-//          style: function(sheet,row,rowidx){
-//            return 'border: 1px'+(rowidx%2?'1px':'1px');
-//          }
-//        },
         
         row: {
             style: function(event) {
                 return 'border: green solid; width: 1px';
             }
         }
-//        rows: {
-//          0:{cell:{style:'background:blue'}}
-//        },
-        
+   
     };
     
     
@@ -96,45 +88,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         
     }
     
-    
-
-         function export_table_to_excel() {
-           var wb = XLSX.utils.table_to_book($("#exTable")[0], {
-             sheet: "Equipment List"
-               
-           });
-             
-             
-             
-           var wbout = XLSX.write(wb, {
-             bookType: "xlsx",
-             type: 'binary',
-             showGridLines: true
-           });
-
-           try {
-             saveAs(new Blob([s2ab(wbout)], {
-               type: ""
-             }), "Equipment Data Table.xlsx");
-           } catch (e) {
-             if (typeof console != 'undefined') console.log(e, wbout);
-           }
-
-           return wbout;
-         }
-
-         function s2ab(s) {
-           if (typeof ArrayBuffer !== 'undefined') {
-             var buf = new ArrayBuffer(s.length);
-             var view = new Uint8Array(buf);
-             for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-             return buf;
-           } else {
-             var buf = new Array(s.length);
-             for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
-             return buf;
-           }
-         }
     //////////////////
     
     /////TABLE TO PDF///////////
@@ -233,9 +186,14 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     /////////////PAGINATION, SORT, FILTER STARTS
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
-        for (var i = 0; i < $scope.equipments.length; i++)
+        for (var i = 0; i < $scope.equipments.length; i++) {
+            if(newVal === undefined) {
+            newVal = "";
+            }
             $scope.equipments[i].filtered = $scope.equipments[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
         paginationFunc();
+        }
+            
     });
     $scope.$watch("equipments.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);

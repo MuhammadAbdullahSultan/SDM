@@ -68,7 +68,7 @@
 
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data
-            <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button"  title="Export table (Excel) to computer" value="export" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span></button></span>
+            <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" data-ng-click="exportTools()"><span class="fa fa-fw fa-file-excel-o"></span></button></span>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -122,32 +122,7 @@
         <div class="card-footer small text-muted">Last Updated {{updatedDowntime}}</div>
         
     <br>
-    <table class="table table-bordered bordered table-striped table-condensed" style="display: none" id="exTable" >
-              <thead>
-                  <tr>
-                    <th>Downtime Data Table</th>
-                  </tr>
-                  <tr>
-                     <th>Equipment</th>               
-                     <th>Start</th>
-                     <th>End</th> 
-                     <th>Description</th>
-                     <th>Type</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr data-ng-repeat="d in allDT"> 
-                     <td>{{d.equipment}}</td>
-                     <td>{{d.start}}</td>
-                     <td>{{d.end}}</td>
-                     <td>{{d.description}}</td>
-                     <td>{{d.type}}</td>
-                  </tr>
-               </tbody>
-       
-            </table>
-<br/>
-
+    
 <div class="row">
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

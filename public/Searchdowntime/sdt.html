@@ -37,8 +37,8 @@
                     <tr>
                         <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                         <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment <span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                        <th>Total Uptime</th>
-                        <th>Total Uptime Percentage</th>
+                        <th>Total Uptime (Hour)</th>
+                        <th>Uptime Percentage (%)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                         <td>{{equipment.system}}</td>
                         <td>{{ equipment.equipment }}</td>
                         <td>{{ equipment.uptime | number:2 }} hrs</td>
-                        <td>{{ equipment.uppercent | number:2 }} hrs</td>
+                        <td>{{ equipment.uppercent | number:2 }} %</td>
                     </tr>
                     </tbody>
                     

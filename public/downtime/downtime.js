@@ -19,6 +19,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     
+    $scope.downtimeJson = [];
     
     var ref = firebase.database().ref();
     
@@ -26,52 +27,57 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     var dtUpdated = $firebaseArray(dtUpdatedRef);
     
     dtUpdated.$loaded().then(function (dtUpdated) {
+        
+        
         $scope.updatedDowntime = dtUpdated[0].$value;
     });
     
     'use strict';
     
-    //////////// HTML TABLE TO EXCEL (XLSX)/////////
+    //////////// HTML TABLE TO EXCEL (XLS)/////////
     
-    $("document").ready(function() {
-   $("#btnDown").click(function() {
-     export_table_to_excel();
-   });
- });
-
- function export_table_to_excel() {
-   var wb = XLSX.utils.table_to_book($("#exTable")[0], {
-     sheet: "Downtime List"
-   });
-   var wbout = XLSX.write(wb, {
-     bookType: "xlsx",
-     bookSST: true,
-     type: 'binary'
-   });
-
-   try {
-     saveAs(new Blob([s2ab(wbout)], {
-       type: "application/octet-stream"
-     }), "Downtime Data Table.xlsx");
-   } catch (e) {
-     if (typeof console != 'undefined') console.log(e, wbout);
-   }
-
-   return wbout;
- }
-
- function s2ab(s) {
-   if (typeof ArrayBuffer !== 'undefined') {
-     var buf = new ArrayBuffer(s.length);
-     var view = new Uint8Array(buf);
-     for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-     return buf;
-   } else {
-     var buf = new Array(s.length);
-     for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
-     return buf;
-   }
- }
+        $("document").ready(function() {
+           $("#btnDown").click(function() {
+             $scope.exportTools();
+           });
+         });
+    
+    var latestdate = new Date();
+    var mystyle = {
+        sheetid: 'Downtime List',
+        headers: true,
+        caption: {
+          title:'Downtime Data Table - created on: ' + moment(latestdate).format("DD, MMMM YYYY HH:mm"),
+            
+        },
+        style:'background:#FFFFFF',
+        column: {
+          style: function (event) {
+              return 'border: 1px green solid'
+          }
+        },
+        columns: [
+          {columnid:'Equipment', width:200},
+          {columnid:'Start', width:200},
+          {columnid:'End', width:200},
+          {columnid:'Description', width:200},
+          {columnid:'Type', width:200},
+        ],
+        
+        row: {
+            style: function(event) {
+                return 'border: green solid; width: 1px';
+            }
+        }
+   
+    };
+    
+    
+    $scope.exportTools = function () {
+        
+        alasql('SELECT * INTO XLS("Downtime Data Table.xls",?) FROM ?',[mystyle, $scope.downtimeJson]);
+        
+    }
     
     /////ENDS///////////////////////////////////
     
@@ -524,12 +530,18 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'equipment', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
-        if($scope.filterWord === undefined) {
-            $scope.filterWord = "";
-        }
-        for (var i = 0; i < $scope.allDT.length; i++)
+        
+        for (var i = 0; i < $scope.allDT.length; i++) {
+            if(newVal === undefined) {
+            newVal = "";
+            }
+            
             $scope.allDT[i].filtered = $scope.allDT[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
-        paginationFunc();
+                    paginationFunc();
+
+        }
+            
+            
     });
 //    
     $scope.$watch("dateFilter", function (newVal, oldVal) {
@@ -598,40 +610,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
         console.log($scope.indexDTValue);
         console.log(indexDT);
     };
-    
-//    $scope.$watch ("dateFilter", function () {
-//        $scope.percentageData = [];
-//        $scope.allDT = [];
-//        $scope.equipmentLabels = [];
-//        $scope.chartData = [];
-//        $scope.refreshList();
-//    });
-    
-//    $scope.$watch ("filteredDowntime", function () {
-//        $scope.percentageData = [];
-//        $scope.allDT = [];
-//        $scope.equipmentLabels = [];
-//        $scope.chartData = [];
-//        $scope.refreshList();
-//    });
-    
-//    $scope.$watch ("yearFilter", function () {
-//        $scope.percentageData = [];
-//        $scope.allDT = [];
-//        $scope.equipmentLabels = [];
-//        $scope.chartData = [];
-//        $scope.refreshList();
-//    });
-//    
-//    $scope.$watch ("dayFilter", function () {
-//        $scope.percentageData = [];
-//        $scope.allDT = [];
-//        $scope.equipmentLabels = [];
-//        $scope.chartData = [];
-//        $scope.refreshList();
-//    });
-    
-    
+
     
     
     $scope.saveDowntime = function () {
@@ -764,8 +743,7 @@ $scope.refreshList = function () {
                             $scope.percentageData.push(0);
                         }
                     });
-                    console.log($scope.chartData);
-                    console.log($scope.equipmentLabels);
+                    
                     for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
                         
                         if($scope.equipmentLabels[i] === n.equipment) {
@@ -799,14 +777,12 @@ $scope.refreshList = function () {
                     $scope.uptime = parseFloat(Math.round($scope.uptime * 100) / 100).toFixed(2);
                     
                     $scope.upTimeData.push($scope.uptime);
-//                    $scope.percentageData.push($scope.percentage);
-                    
+                  
                     for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
                         
                         if($scope.equipmentLabels[i] === n.equipment) {
                             $scope.percentageData[i] += parseFloat($scope.percentage);
                         }
-                        
                     }
                     
                     
@@ -825,8 +801,7 @@ $scope.refreshList = function () {
                 });
             });
                 });
-    console.log($scope.equipmentLabels);
-    console.log($scope.chartData);
+    
 }
     
     $scope.descriptionPush = [];
@@ -893,7 +868,14 @@ $scope.refreshList = function () {
         
         dtlist.$loaded().then(function(dtlist) {
         $scope.dtdata = dtlist; // Getting Downtime node
-            
+            angular.forEach (dtlist, function(downt){
+                
+                var downtimeJson = { "Equipment": downt.equipment, "Start": downt.start, "End": downt.end, "Description": downt.description, "Type": downt.type };
+
+                $scope.downtimeJson.push(downtimeJson);
+                console.log($scope.downtimeJson);
+                console.log(downtimeJson);
+            })
             $scope.refreshList();
             
             dtlist.$watch(function(event) {

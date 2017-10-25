@@ -128,16 +128,23 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     
                     $scope.chartData.push(hours);
                     
-                    
+                            
+
                     angular.forEach($scope.upTimeCalculation , function (l) {
                         if(l.equipment === n.equipment) 
                         {
-                            l.uptime -= hours;
+                            l.uptime -= parseFloat(hours);
                             if(l.uptime <= 0) {
                                 l.uptime = 0;
                             }
+                            
+                            l.uppercent = ( l.uptime / l.uppercent) * 100;
                         }
                     })
+                    
+                    
+                    
+                    
                     
                     
                     
@@ -171,8 +178,9 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
         var firstDay = new Date(getYear,0,1);
         var today = new Date (date.getTime());
 
-        
-        
+        var difference = (Math.abs(firstDay - today) / 36e5);
+        var totalOperationTime = difference * 24;
+
         console.log(difference);
         
         dtlist.$loaded().then(function(dtlist) {
@@ -189,7 +197,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                         
                     }
                 }
-                var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem };
+                var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": difference};
                 console.log(toPush);
                 $scope.upTimeCalculation.push(toPush);
                 console.log($scope.upTimeCalculation);
