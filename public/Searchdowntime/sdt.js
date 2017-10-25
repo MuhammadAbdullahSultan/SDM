@@ -171,7 +171,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
         var firstDay = new Date(getYear,0,1);
         var today = new Date (date.getTime());
 
-        var difference = (Math.abs(firstDay - today) / 36e5);
+        
         
         console.log(difference);
         
