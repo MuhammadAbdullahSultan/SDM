@@ -27,7 +27,7 @@
             <br>
                 <div class="card-header">
                 <i class="fa fa-table"></i> Equipment Data
-                    <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" id="btnDown"><span class="fa fa-fw fa-file-excel-o"></span>
+                    <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" data-ng-click="exportToxls()"><span class="fa fa-fw fa-file-excel-o"></span>
                     </button></span>
                 </div>
 
@@ -81,7 +81,10 @@
                                         <th>Equipment Data Table</th>
                                     </tr>
                                     
-                                    <tr>
+                                    <tr></tr>
+                                    
+                                    <tr style="font-weight: bold">
+                                        <th></th>
                                         <th>Equipment</th>
                                         <th>System</th>
                                         <th>Description</th>
@@ -91,6 +94,7 @@
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="equipment in equipments">
+                                        <td></td>
                                         <td>{{equipment.equipment}}</td>
                                         <td>{{equipment.system}}</td>
                                         <td>{{equipment.description}}</td>

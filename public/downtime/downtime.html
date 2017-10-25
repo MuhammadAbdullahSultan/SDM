@@ -53,10 +53,10 @@
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
                      <label for="type">Select type:</label>
                      <br/>
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" />Corrective Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" />Preventive Maintenance &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" />Standby &nbsp; &nbsp;
-                     <input type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/>All &nbsp;
+                     <input id="corr" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" /> <label for="corr">Corrective Maintenance &nbsp; &nbsp;</label>
+                     <input id="pre" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" /><label for="pre">Preventive Maintenance &nbsp; &nbsp;</label>
+                     <input id="st" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" /><label for="st">Standby &nbsp; &nbsp;</label>
+                     <input id="all" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/><label for="all">All &nbsp;</label>
                   </div>
                </div>
             </div>

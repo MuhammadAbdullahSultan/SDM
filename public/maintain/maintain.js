@@ -20,42 +20,101 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 
 app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter', function ($scope, $firebaseArray, toaster, $filter) {
-
-
+    $scope.equipmentsJson = [];
     var ref = firebase.database().ref();
+    $scope.equipments = $firebaseArray(ref.child('AllEquipments'));
     
     var eqUpdatedRef = firebase.database().ref().child("equipmentUpdate");
     var eqUpdated = $firebaseArray(eqUpdatedRef);
     
     eqUpdated.$loaded().then(function (dtUpdated) {
-        console.log(eqUpdated[0].$value);
+        
+        angular.forEach ($scope.equipments, function(equ) {
+            var equipmentJson = { "Equipment": equ.equipment, "System": equ.system, "Description": equ.description, "Group": equ.group };
+            $scope.equipmentsJson.push(equipmentJson);
+        })
         $scope.updatedEquipment = eqUpdated[0].$value;
     });
+    
+    
+    
 
 
     'use strict';
 
-    ////Table to Excel
     
-    $("document").ready(function() {
+    ////Table to Excel   
+        $("document").ready(function() {
            $("#btnDown").click(function() {
-             export_table_to_excel();
+//             export_table_to_excel();
+             $scope.exportToxls();
            });
          });
+    
+    var mystyle = {
+        sheetid: 'Equipment Data Table',
+        headers: true,
+        caption: {
+          title:'Created On ',
+            
+        },
+        style:'background:#FFFFFF',
+        column: {
+          style: function (event) {
+              return 'border: 1px green solid'
+          }
+        },
+        columns: [
+          {columnid:'Equipment', width:200},
+          {columnid:'System', width:200},
+          {columnid:'Description', width:300},
+          {
+            columnid:'Group', width:200
+          },
+        ],
+//        row: {
+//          style: function(sheet,row,rowidx){
+//            return 'border: 1px'+(rowidx%2?'1px':'1px');
+//          }
+//        },
+        
+        row: {
+            style: function(event) {
+                return 'border: green solid; width: 1px';
+            }
+        }
+//        rows: {
+//          0:{cell:{style:'background:blue'}}
+//        },
+        
+    };
+    
+    
+    $scope.exportToxls = function () {
+        
+        alasql('SELECT * INTO XLS("Equipment Data Table.xls",?) FROM ?',[mystyle, $scope.equipmentsJson]);
+        
+    }
+    
+    
 
          function export_table_to_excel() {
            var wb = XLSX.utils.table_to_book($("#exTable")[0], {
              sheet: "Equipment List"
+               
            });
+             
+             
+             
            var wbout = XLSX.write(wb, {
              bookType: "xlsx",
-             bookSST: true,
-             type: 'binary'
+             type: 'binary',
+             showGridLines: true
            });
 
            try {
              saveAs(new Blob([s2ab(wbout)], {
-               type: "application/octet-stream"
+               type: ""
              }), "Equipment Data Table.xlsx");
            } catch (e) {
              if (typeof console != 'undefined') console.log(e, wbout);
@@ -137,23 +196,7 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     // GET GROUP VALUES
     // -------------------------------------------------------------------------------------------------------
 
-    //    var gref = firebase.database().ref();
-    //    var gdata = gref.child('group');
-    //    var glist = $firebaseArray(gdata);
-    //    glist.$loaded().then(function(gg){
-    ////        console.log(gg);
-    //        
-    //        angular.forEach(gg, function (g) {
-    ////            console.log(g);
-    //            $scope.groupA.push(g.group);
-    //        })
-    //        
-    //    }).catch (function (error){
-    //        console.log(error);
-    //    });
-
     $scope.groups = $firebaseArray(ref.child('group'));
-    console.log($scope.groups);
     $scope.addGroup = function () {
 
         if ($scope.groot == undefined) {
@@ -171,7 +214,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     }
     
     $scope.systems = $firebaseArray(ref.child('systems'));
-    console.log($scope.systems);
     $scope.addSystem = function () {
 
         if ($scope.insys == undefined) {
@@ -221,7 +263,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     
 ///////////PAGINATION ENDS
     
-    $scope.equipments = $firebaseArray(ref.child('AllEquipments'));
     $scope.writeUserData = function () {
         
 
@@ -357,11 +398,9 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
         }
             exists = false;
             var item = $scope.equipments[$scope.indexValue];
-            console.log(item);
             $scope.equipments.$remove(item).then(function (deletedData) {
                 
                 paginationFunc();
-                console.log(deletedData);
             });
         
         } else {

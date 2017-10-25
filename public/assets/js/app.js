@@ -105,9 +105,7 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
                 $scope.signin.state = true;
                 $scope.signin.uid = user.uid;
                 $scope.email = user.email;
-                console.log ($scope.email);
                 $scope.signin.profile = {};
-                console.log("user.uid " + $scope.signin.uid);
 //              document.location.href= "dashboard.html#!/sdt";
                 
             } else {
@@ -147,7 +145,6 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
                 
                 
                 list.$loaded().then(function(data) {
-                    console.log(data);
                     if(data.active === false) {
                         toaster.pop({type: "warning", title: "ERROR", body: "Your account has not been activated"});
                         Auth.$signOut();

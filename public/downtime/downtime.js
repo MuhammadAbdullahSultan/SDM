@@ -791,6 +791,7 @@ $scope.refreshList = function () {
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
                         $scope.totalDownTime = $scope.chartData[x];
                     }
+                    
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
                     $scope.percentage = parseFloat(Math.round($scope.percentage * 100) / 100).toFixed(2);
                     
