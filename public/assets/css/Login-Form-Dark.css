@@ -1,8 +1,11 @@
+
+
 .login-dark {
   height: -webkit-fill-available;
   background:#475d62 url(../../assets/img/star-sky.jpg);
   background-size:cover;
   position:relative;
+  margin-top: -28px;
 }
 
 .login-dark form {
