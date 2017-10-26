@@ -46,6 +46,7 @@
                                         <th><a href="javascript:void(0)" ng-click="orderByField='system'; reverseSort = !reverseSort">System <span ng-show="orderByField == 'system'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                                         <th><a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
                                         <th><a href="javascript:void(0)" ng-click="orderByField='group'; reverseSort = !reverseSort">Group <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></a></th>
+                                        <th></th>
                                         
                                     </tr>
                                 </thead>
@@ -54,7 +55,8 @@
                                         <td>{{equipment.equipment}}</td>
                                         <td>{{equipment.system}}</td>
                                         <td><p>{{equipment.description}}</p></td>
-                                        <td>{{equipment.group}} <button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update(equipment.$id)" style="margin-left: 10px"><span class="fa fa-edit"></span></button><button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment"data-ng-click="update(equipment.$id); deleteEquipment(equipment.$id);" style="margin-left: 10px"><span class="fa fa-trash-o"></span></button></td>
+                                        <td>{{equipment.group}}</td>
+                                        <td><button data-toggle="modal" data-target="#editEquipment" class="edit btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Edit equipment" data-backdrop="false" data-ng-click="update(equipment.$id)" style="margin-left: 10px"><span class="fa fa-edit"></span></button><button id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete equipment"data-ng-click="update(equipment.$id); deleteEquipment(equipment.$id);" style="margin-left: 10px"><span class="fa fa-trash-o"></span></button></td>
                                     </tr>
                                 </tbody>
                             </table>
