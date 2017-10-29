@@ -345,14 +345,13 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             if($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {
                 toaster.pop({ type: 'error', title: "Error", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " already has an existing downtime. Please delete all the downtimes related." });
                 return;
-            } else if ($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {                
+            }
                 
-                    var item = $scope.equipments[$scope.indexValue];
+        }
+            var item = $scope.equipments[$scope.indexValue];
                     $scope.equipments.$remove(item).then(function (deletedData) {
                         paginationFunc();
                     });
-            }
-        }
             
         } else {
            
