@@ -284,12 +284,6 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
     $scope.saveEquipment = function () {
         
-//        for (var i = 0 ; i < $scope.equipments.length ; i++) {
-//            if($scope.equipments[$scope.indexValue].equipment === $scope.equipments[i].equipment) {
-//                toaster.pop({ type: 'warning', title: "Equipment Exists", body: "That Equipment already exists" });
-//                return;
-//            }
-//        }
         
         var txt;
         var r = confirm("Are you sure you want to save the edited equipment?");
@@ -345,29 +339,21 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
             $scope.eqUpdate.set({
                 lastUpdated: $scope.timeUpdated
             });
-            var exists;
-            for(var i = 0 ; i < $scope.getDowntime.length ; i++) {
+            for (var i = 0 ; i < $scope.getDowntime.length ; i++) {
                 console.log($scope.getDowntime[i].$id);
                 console.log($scope.equipments[$scope.indexValue].equipment);
             if($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {
                 toaster.pop({ type: 'error', title: "Error", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " already has an existing downtime. Please delete all the downtimes related." });
-                exists = true;
                 return;
-            } else {
-                exists = false;
+            } else if ($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {                
                 
-                if(exists !== true) {
-                        var item = $scope.equipments[$scope.indexValue];
+                    var item = $scope.equipments[$scope.indexValue];
                     $scope.equipments.$remove(item).then(function (deletedData) {
                         paginationFunc();
                     });
-                }
-                
             }
-            break;
         }
             
-        
         } else {
            
         }
