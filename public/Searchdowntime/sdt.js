@@ -146,13 +146,11 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                             
                             
                             var uptime = l.uptime;
-                            console.log(uptime);
                             l.uppercent = (uptime / difference) * 100;
                             
                             if(l.uppercent <= 0) {
                                 l.uppercent = 0;
                             }
-                            console.log(l.uppercent);
                         }
                     })
                     
@@ -182,7 +180,6 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 //    $scope.eqData.push(eqList);
 //    eqList.$loaded().then(function (eqList) {
 //    });
-    console.log($scope.eqList);
         var dtdata = newref.child("downtime");
         var dtlist = $firebaseArray(dtdata);
         var push = false;
@@ -195,10 +192,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
         var difference = (Math.abs(firstDay - today) / 36e5);
         var totalOperationTime = difference * 24;
 
-        console.log(difference);
         
         dtlist.$loaded().then(function(dtlist) {
-            console.log(dtlist);
             
             
             $scope.dtdata = dtlist; // Getting Downtime node
@@ -212,9 +207,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     }
                 }
                 var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": ""};
-                console.log(toPush);
                 $scope.upTimeCalculation.push(toPush);
-                console.log($scope.upTimeCalculation);
             });
             
             $scope.refreshList();

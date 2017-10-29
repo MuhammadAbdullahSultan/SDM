@@ -29,13 +29,28 @@ app.run(["$rootScope", "$location", function($rootScope, $location) {
     // and redirect the user back to the home page
     if (error !== "AUTH_REQUIRED") {
       $location.path("/login");
+    } else {
+      $location.path("/sdt");
     }
-    if ($scope.signin.uid !== null && $location.path("/login")){
-        $location.path("/sdt");
-    }
+      
+      console.log(event);
+    
     
     
   });
+    
+//    $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+//    // We can catch the error thrown when the $requireSignIn promise is rejected
+//    // and redirect the user back to the home page
+//    if (error !== "AUTH_REQUIRED") {
+//      $location.path("/login");
+//    } else {
+//      $location.path("/sdt");
+//    }
+//    
+//    
+//    
+//  });
 }]);
 
 app.config(['$routeProvider', function ($routeProvider) {
@@ -98,21 +113,28 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
         $scope.signin = {}
         $scope.signin.state = false
         $scope.signin.uid = null
-        
+        var ref = firebase.database().ref();
+        $scope.userStates = $firebaseArray(ref.child("userState"));
         // add auth state listener
+        
+        
+        
         Auth.$onAuthStateChanged(function(user) {
+
             if (user) {
                 $scope.signin.state = true;
                 $scope.signin.uid = user.uid;
                 $scope.email = user.email;
-                $scope.signin.profile = {};
+//                $scope.signin.profile = {};
 //              document.location.href= "dashboard.html#!/sdt";
+                console.log($scope.signin.uid);
+                
+                
+            
                 
             } else {
                 $scope.signin.state = false
                 $scope.signin.uid = null
-//                document.location.href= "/home";
-                $location.path("/login");
             }
         })
 
@@ -164,7 +186,19 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
             
             
         };
+//        $scope.userStates.$loaded().then(function () {
+//            
+//                console.log($scope.userStates.$getRecord($scope.signin.uid).type);
+//                    if($scope.userStates.$getRecord($scope.signin.uid).type === "Admin") {
+//                        $scope.isAdmin = true;
+//                    } else {
+//                        $scope.isAdmin = false;
+//                    }
+//                
+//        });
       }
+                             
+                             
     
   
 ]);

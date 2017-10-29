@@ -403,8 +403,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             },
             
             onClick: function(event, elem) {
-                console.log(event);
-                    console.log(elem);
+
                  var chartele = elem[0];
                  if (!chartele) {return;} // check and return if not clicked on bar/data
                  // else...
@@ -810,8 +809,6 @@ $scope.refreshList = function () {
     $scope.onClick = function (points, evt) {
         $scope.descriptionPush = [];
         
-        console.log(points);
-        console.log(evt);
         angular.forEach ($scope.dtdata , function (d) {
             var refDesc = firebase.database().ref().child("downtime");
             var descData = refDesc.child(d.$id);
@@ -819,7 +816,6 @@ $scope.refreshList = function () {
             
             newDescList.$loaded().then(function () {
                 angular.forEach(newDescList , function (n) {
-                    console.log(n);
                     
                     if(points[0]._model.label === n.equipment) {
                                 
@@ -828,7 +824,6 @@ $scope.refreshList = function () {
                         $scope.descriptionPush.push(toPush);
 
 
-                        console.log($scope.descriptionPush);
 
                     }
                     $scope.pointLabel = points[0]._model.label;
@@ -881,8 +876,6 @@ $scope.refreshList = function () {
                         var downtimeJson = { "Equipment": downt.equipment, "Start": moment(downt.start).format("DD/MMMM/YYYY hh:mm"), "End": moment(downt.end).format("DD/MMMM/YYYY hh:mm"), "Description": downt.description, "Type": downt.type };
                         
                         $scope.downtimeJson.push(downtimeJson);
-                        console.log($scope.downtimeJson);
-                        console.log(downtimeJson);
                     })
                 })
             });

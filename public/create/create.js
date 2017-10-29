@@ -26,6 +26,12 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         
     
         $scope.userStates = $firebaseArray(ref.child("userState"));
+    
+   
+        
+            
+        
+    
         
     $scope.display = function () {
         console.log($scope.allUsers);
@@ -80,6 +86,8 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
               $scope.toAddEmail = undefined;
               $scope.password = undefined;
               $scope.reppassword = undefined;
+          
+          
 
             })
           .catch(function(error) {
@@ -164,14 +172,9 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
 //        }
     }
     
+        
     $scope.deactivateUser = function (id) {
-//        for(var i = 0 ; i < $scope.filteredUsers.length ; i++) {
-//            if($scope.filteredUsers[i].email === $scope.email) {
-//                toaster.pop({type: 'error', title: "NOPE", body: "NOPE"});
-//                return;
-//            }
-//            break;
-//        }
+        
         
         if(id === $scope.signin.uid) {
             toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot deactivate themselves"});
