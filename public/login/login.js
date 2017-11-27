@@ -9,7 +9,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     })
 }]);
 
-app.controller('loginCtrl', ['$scope', '$rootScope' , function ($scope, $rootScope) {
+app.controller('loginCtrl', ['$scope' , function ($scope) {
     
     
-}]);
+    
+    }]);

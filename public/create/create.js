@@ -40,6 +40,20 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         console.log($scope.filteredUsers);
     }
     
+    // Reset Password
+    $scope.resetPass = function () {
+        
+        if($scope.reset == undefined) {
+            toaster.pop({type: 'error', title: "Error", body: "Please enter an email"});
+            return;
+        }
+    Auth.$sendPasswordResetEmail($scope.reset).then(function() {
+            toaster.pop({type: 'success', title: "Success", body: 'A password reset email has been sent to' + $scope.reset });
+    }).catch(function(error) {
+            toaster.pop({type: 'error', title: "Error", body: error});
+    });
+    }
+    
     // Create new user
     $scope.createUser = function() {
         
