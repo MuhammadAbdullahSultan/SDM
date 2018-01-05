@@ -207,13 +207,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
             $scope.dtdata = dtlist; // Getting Downtime node
             
             angular.forEach ($scope.dtdata, function (so) {
-                for(var i = 0 ; i < $scope.eqList.length ; i++) {
-//                    console.log($scope.eqList[i]);
-//                    var date = new Date($scope.eqList[i].end);
-                    if($scope.eqList[i].equipment === so.$id) {
-                        $scope.toPushSystem = $scope.eqList[i].system;
-                    }
-                }
+                
                 
                 
                 var excelref = firebase.database().ref().child("downtime"); // creating new reference
@@ -222,6 +216,12 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                 
                 excelList.$loaded().then(function() {
                     angular.forEach (excelList, function (downt) {
+                        
+                        for(var i = 0 ; i < $scope.eqList.length ; i++) {
+                            if($scope.eqList[i].equipment === downt.equipment) {
+                                $scope.toPushSystem = $scope.eqList[i].system;
+                            }
+                        }
                         console.log(downt);
                         if(moment(downt.start).format("YYYY") === new Date().getFullYear().toString()) {
                             var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": 0, "year": ""};
