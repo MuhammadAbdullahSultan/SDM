@@ -1,0 +1,68 @@
+<header-file></header-file>
+
+<div class="content-wrapper" data-ng-controller = "downtimeCtrl">
+    
+    <div class="container-fluid">
+        <div class="row">
+        
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card mb-3">
+                <div class="card-header">
+                <i class="fa fa-table"></i> Archived Downtime table</div>
+                <div class="card-body">
+                
+                <div class="table-responsive">
+                    
+                    <div class="input-append">
+                    <input type="text" class="form-control col-xs-12 col-sm-12 col-md-4 col-lg-4" data-ng-model="filterUptime" placeholder="Search by equipment">
+                                    </div><br>
+                    
+                <table class="table table-bordered bordered table-striped table-condensed datatable">
+                    
+                    <thead class="lockedRecordsBg">
+                      <tr>
+                         <th><a href="javascript:void(0)" ng-click="orderByField='equipment'; reverseSort = !reverseSort">Equipment<span ng-show="orderByField == 'equipment'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+
+                         <th><a href="javascript:void(0)" ng-click="orderByField='start'; reverseSort = !reverseSort">Start <span ng-show="orderByField == 'start'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+
+                         <th><a href="javascript:void(0)" ng-click="orderByField='end'; reverseSort = !reverseSort">End <span ng-show="orderByField == 'end'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+
+                         <th><a href="javascript:void(0)" ng-click="orderByField='description'; reverseSort = !reverseSort">Description <span ng-show="orderByField == 'description'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
+
+                         <th><a href="javascript:void(0)" ng-click="orderByField='type'; reverseSort = !reverseSort">Type <span ng-show="orderByField == 'group'"></span><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></a></th>
+                          <th></th>
+                      </tr>
+                   </thead>
+                    <tbody>
+                    <tr data-ng-repeat="d in filteredArchivedData | orderBy:orderByField:reverseSort | filter: filterUptime track by $index" ng-if="!equipment.filtered">
+                        <td>{{d.equipment}}</td>
+                         <td>{{d.start}}</td>
+                         <td>{{d.end}}</td>
+                         <td>{{d.description}}</td>
+                         <td>{{d.type}}</td>
+                    </tr>
+                    </tbody>
+                    
+                    </table>
+                    
+                    
+                <div class="btn-group btn-group-sm" style="float: right">
+                                <button type="button" class="btn" ng-class="{'btn-secondary': numPerPage == $index * 5}" ng-repeat="n in [] | range:10" ng-click="changeNumPerPage($index)" ng-if="$index != 0">{{$index * 5}}</button>
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('-')">Prev</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage - 1)" ng-if="currentPage - 1 > 0">{{currentPage - 1}}</button>
+                                <button type="button" class="btn btn-primary" ng-click="selectedPage(currentPage)">{{currentPage}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="selectedPage(currentPage + 1)" ng-if="currentPage + 1 <= numbers">{{currentPage + 1}}</button>
+                                <button type="button" class="btn btn-outline-primary" ng-click="changePage('+')">Next</button>
+                            </div>
+                </div>
+                
+                </div>
+                
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>

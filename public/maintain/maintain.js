@@ -151,11 +151,20 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
 
     $scope.groups = $firebaseArray(ref.child('group'));
     $scope.addGroup = function () {
-
+        
+        
+        
         if ($scope.groot == undefined) {
             toaster.pop({ type: 'Error', title: "Error", body: "Please enter group" });
             return;
         } else {
+            
+            for (var i = 0 ; i < $scope.groups.length ; i++) {
+                if($scope.groot === $scope.groups[i].group) {
+                    toaster.pop({ type: 'error', title: "Error", body: "That group already exists" });
+                    return;
+                }
+            }
             $scope.groups.$add({
                 group: $scope.groot
             });
@@ -167,12 +176,24 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
     }
     
     $scope.systems = $firebaseArray(ref.child('systems'));
+    
+    $scope.showSystem = function () {
+        
+    }
     $scope.addSystem = function () {
-
+        
+        
         if ($scope.insys == undefined) {
-            toaster.pop({ type: 'Error', title: "Error", body: "Please enter group" });
+            toaster.pop({ type: 'Error', title: "Error", body: "Please enter System name" });
             return;
         } else {
+            
+            for (var i = 0 ; i < $scope.systems.length ; i++) {
+                if($scope.insys === $scope.systems[i].system) {
+                    toaster.pop({ type: 'error', title: "Error", body: "That system already exists" });
+                    return;
+                }
+            }
             $scope.systems.$add({
                 system: $scope.insys
             });
@@ -306,6 +327,16 @@ app.controller('maintainCtrl', ['$scope', '$firebaseArray', 'toaster', '$filter'
                 $scope.eqUpdate.set({
                     lastUpdated: $scope.timeUpdated
                 });
+                
+                for (var i = 0 ; i < $scope.getDowntime.length ; i++) {
+                    console.log($scope.getDowntime[i].$id);
+                    console.log($scope.equipments[$scope.indexValue].equipment);
+                    if($scope.getDowntime[i].$id === $scope.equipments[$scope.indexValue].equipment) {
+                        toaster.pop({ type: 'error', title: "Error", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " already has an existing downtime. Please delete all the downtimes related." });
+                        return;
+                    }
+                }
+                
                 $scope.equipments.$save($scope.indexValue).then(function (data) {
                     toaster.pop({ type: 'Success', title: "Success", body: "Equipment " + $scope.equipments[$scope.indexValue].equipment + " was edited" });
                     paginationFunc();

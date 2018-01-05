@@ -16,8 +16,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         }
     });
 }]);
+        
 
-app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', '$firebaseArray' , function ($scope, $rootScope, $firebaseObject, Auth, toaster, $firebaseArray) {
+app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', 'toaster', '$firebaseArray', '$http' , function ($scope, $rootScope, $firebaseObject, Auth, toaster, $firebaseArray, $http) {
         
         var ref = firebase.database().ref();
     
@@ -26,11 +27,6 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         
     
         $scope.userStates = $firebaseArray(ref.child("userState"));
-    
-   
-        
-            
-        
     
         
     $scope.display = function () {
@@ -48,9 +44,12 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
             return;
         }
     Auth.$sendPasswordResetEmail($scope.reset).then(function() {
-            toaster.pop({type: 'success', title: "Success", body: 'A password reset email has been sent to' + $scope.reset });
+        toaster.pop({type: 'success', title: "Success", body: 'A password reset email has been sent to' + $scope.reset });
+        $scope.reset = undefined;
+        $("#resetPass").modal("hide");
+        
     }).catch(function(error) {
-            toaster.pop({type: 'error', title: "Error", body: error});
+        toaster.pop({type: 'error', title: "Error", body: error});
     });
     }
     
@@ -116,9 +115,14 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
     /////////////PAGINATION, SORT, FILTER STARTS
     $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'email', $scope.reverseSort = false;
     $scope.$watch("filterWord", function (newVal, oldVal) {
-        for (var i = 0; i < $scope.allUsers.length; i++)
+        for (var i = 0; i < $scope.allUsers.length; i++) {
+            if(newVal === undefined) {
+                newVal = "";
+            }
             $scope.allUsers[i].filtered = $scope.allUsers[i].email.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
-        paginationFunc();
+            paginationFunc();
+        }
+
     });
     $scope.$watch("allUsers.length", paginationFunc);
     $scope.$watch("currentPage + numPerPage", paginationFunc);
@@ -211,15 +215,70 @@ app.controller('createUserCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Au
         
     }
     
+    function createCORSRequest(method, url) {
+      var xhr = new XMLHttpRequest();
+      if ("withCredentials" in xhr) {
+
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+
+      } else if (typeof XDomainRequest != "undefined") {
+
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+
+      } else {
+
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+
+      }
+      return xhr;
+    }
+    
+//    $scope.urlDelete = 'https://us-central1-xfab-downtime.cloudfunctions.net/hello1';
+    //delete User
+    $scope.deleteUser = function (id) {
+        var r = confirm("Are you sure you want to delete the equipment?");
+        
+        if (r == true) {
+            
+            if(id === $scope.signin.uid) {
+                toaster.pop({type: 'error', title: "Error", body: "The logged in user cannot delete themselves"});
+                return;
+            } else if ($scope.userStates.$getRecord(id).type === "Admin") {
+                toaster.pop({type: 'error', title: "Error", body: "You don't have permission to delete an admin account"});
+                return;
+            } else {
+                
+                var requestURL = 'https://us-central1-xfab-downtime.cloudfunctions.net/hello2/' + id;
+                var params = "uid=" + id
+                var request = new XMLHttpRequest();
+                request.open('POST', requestURL, true);
+                request.setRequestHeader('Content-type',  'application/x-www-form-urlencoded');
+                request.send(params);
+
+                var item = $scope.allUsers.$getRecord(id);
+                var item2 = $scope.userStates.$getRecord(id);
+                
+                $scope.allUsers.$remove(item).then (function (deletedData) {});
+
+                $scope.userStates.$remove(item2).then (function (deletedData) {});
+                
+                toaster.pop({type: 'success', title: "Success", body: "The user has been deleted"});
+            }
+            
+        }
+            
+        
+    };
+    
     ///////////////////////////////////////////
     
-    //delete User
-    $scope.deleteUser = function () {
-        var item = list[$scope.indexValue];
-        list.$remove(item).then (function (deletedData) {
-            console.log(deletedData);
-        });
-    };
+    
     
     
 }]);

@@ -21,10 +21,9 @@
                     </button>
                 </div>
             </div>
-            <br/>
 
             
-            <br>
+            <hr/>
                 <div class="card-header">
                 <i class="fa fa-table"></i> Equipment Data
                     <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" data-ng-click="exportToxls()"><span class="fa fa-fw fa-file-excel-o"></span>
@@ -168,31 +167,11 @@
                                         </textarea>
                                         <p id="count"></p>
                                     </div>
-
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <h5>System</h5>
-                                        
-<!--
-                                        <input list="system" name="mySystem" type="text" class="form-control txtsize" id="sys" data-ng-model="systemToAdd" onKeyPress="return numchar(event)"
-                                            onKeyup="autotab(this, document.form1.bendcodeM)">
-                                        <datalist id="system">
-                                            <option data-ng-repeat="e in systems">{{e.system}}</option>
-                                        </datalist>
--->
-                                        
-                                    <select class="form-control" id="sys" data-ng-model="systemToAdd">
-                                        <option data-ng-repeat="e in systems">{{e.system}}</option>
-                                     </select>
-                                        
-                                    </div>
                                     
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <input type="text" id="other" placeholder="Add new system" ng-model="insys" class="form-control" />
-                                    </div>
+                                    
+                                    
 
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <button type="button" class="btn btn-primary" data-ng-click="addSystem()">+</button>
-                                    </div>
+                                    
                                     
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h5>Group</h5>
@@ -209,18 +188,110 @@
                                         
                                     </div>
 
+<!--
                                     <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <input type="text" id="other" placeholder="Add new group" ng-model="groot" class="form-control" />
                                     </div>
+-->
 
+                                    
+                                    
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <h5>System</h5>
+                                        
+                                    <select class="form-control" id="sys" data-ng-model="systemToAdd">
+                                        <option data-ng-repeat="e in systems">{{e.system}}</option>
+                                     </select>
+                                        
+                                    </div>
+                                    
+<!--
                                     <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <button type="button" class="btn btn-primary" data-ng-click="addGroup()">+</button>
+                                        
                                     </div>
+-->
+                                    
+                                    
+                                    
+<!--
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        
+                                    </div>
+-->
 
                                 </div>
 
                                 <div class="modal-footer">
+                                    
+                                    <div class="mr-auto">
+                                        <button type="button" class="btn btn-info btn-control" data-toggle="modal" data-target="#addGroup" data-backdrop="false">Add Group <span class="fa fa-plus"></span></button>
+
+                                        <button type="button" class="btn btn-info btn-control" data-toggle="modal"data-target="#addSystem" data-backdrop="false">Add System <span class="fa fa-plus"></span></button>
+                                    </div>
+                                    
+                                    
                                     <button type="submit" class="btn btn-info" data-ng-click="writeUserData()"><span class="fa fa-fw fa-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    
+                </div>
+            </div>
+            
+            <!-- ADDING System MODAL -->
+            
+            <div class="modal fade" role="dialog" id="addSystem" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog">
+                    <form>
+                        <div class="modal-content txtsize">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title ">Add System</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <input type="text" id="other" placeholder="System" data-ng-model="insys" class="form-control" />                                   
+                                    </div>                              
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-info" data-ng-click="addSystem()"><span class="fa fa-fw fa-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- ADDING GROUP MODAL -->
+            
+            <div class="modal fade" role="dialog" id="addGroup" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog">
+                    <form>
+                        <div class="modal-content txtsize">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title ">Add Group</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <input type="text" id="other" placeholder="Group" data-ng-model="groot" class="form-control" />                                   
+                                    </div>                              
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-info" data-ng-click="addGroup()"><span class="fa fa-fw fa-plus"></span>
                                     </button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-fw fa-times"></span>
                                     </button>
@@ -233,3 +304,6 @@
         </div>
     </div>
 </div>
+
+
+

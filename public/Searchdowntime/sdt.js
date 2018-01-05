@@ -120,8 +120,14 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
 //                    
 //                    
 //                    console.log(n.start);
-                    var start = new Date (n.start);
-                    var end = new Date (n.end);
+                    
+                    if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
+                        var start = new Date (n.start);
+                        var end = new Date (n.end);
+                    }
+                    
+                    
+                    
                     
                     var hours = Math.abs(end - start) / 36e5;
                     hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
@@ -151,6 +157,8 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                             if(l.uppercent <= 0) {
                                 l.uppercent = 0;
                             }
+                            
+                            l.year = n.end;
                         }
                     })
                     
@@ -200,14 +208,33 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
             
             angular.forEach ($scope.dtdata, function (so) {
                 for(var i = 0 ; i < $scope.eqList.length ; i++) {
-//                    console.log($scope.eqList[i].system);
+//                    console.log($scope.eqList[i]);
+//                    var date = new Date($scope.eqList[i].end);
                     if($scope.eqList[i].equipment === so.$id) {
                         $scope.toPushSystem = $scope.eqList[i].system;
-                        
                     }
                 }
-                var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": ""};
-                $scope.upTimeCalculation.push(toPush);
+                
+                
+                var excelref = firebase.database().ref().child("downtime"); // creating new reference
+                var exceldtdata = excelref.child(so.$id); // using the $id of the downtime node
+                var excelList = $firebaseArray(exceldtdata); // storing the values in a new firebasearray
+                
+                excelList.$loaded().then(function() {
+                    angular.forEach (excelList, function (downt) {
+                        console.log(downt);
+                        if(moment(downt.start).format("YYYY") === new Date().getFullYear().toString()) {
+                            var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": 0, "year": ""};
+                            $scope.upTimeCalculation.push(toPush);
+                        }
+                    })
+                })
+                
+//                console.log(toPush);
+                    
+                
+                
+                
             });
             
             $scope.refreshList();

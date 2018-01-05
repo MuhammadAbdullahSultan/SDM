@@ -31,7 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th><a href="javascript:void(0)" ng-click="orderByField='email'; reverseSort = !reverseSort">List of Existing Users Emails <span ng-show="orderByField == 'email'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                                        <th></th>
+                                        <th>Activate/Deactivate</th>
+                                        <th>Delete User</th>
 
                                     </tr>
                                 </thead>
@@ -39,7 +40,14 @@
                                     <tr data-ng-repeat="d in filteredUsers | orderBy:orderByField:reverseSort" ng-if="!d.filtered">
                                         <td>{{d.email}}</td>
                                         
-                                        <td><button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deactivateUser(d.$id)">Deactivate</button><button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="activateUser(d.$id)">Activate</button></td>
+                                        <td>
+                                            <button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deactivateUser(d.$id)">Deactivate</button>
+                                            <button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="activateUser(d.$id)">Activate</button>
+                                        </td>
+                                        
+                                        <td>
+                                            <button class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deleteUser(d.$id); getId(d.$id);">Delete</button>
+                                        </td>
 
                                     </tr>
 

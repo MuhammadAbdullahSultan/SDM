@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual', 'login', 'pag', 'angularUtils.directives.dirPagination']);
+var app = angular.module('myApp', ['ngRoute', 'chart.js', 'downtime', 'maintain', 'create', 'sdt', 'firebase', 'ngAnimate', 'toaster', 'profile', 'manual', 'login', 'archives', 'pag', 'angularUtils.directives.dirPagination']);
 
 var config = {
     apiKey: "AIzaSyDlZwVsbxI6V161f7ZcyCsy_mg4-GRFwxo",
@@ -87,8 +87,10 @@ app.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', function ($scope, $rootScope, $firebaseObject, Auth) {
+app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', '$https', function ($scope, $rootScope, $firebaseObject, Auth, $https) {
             'use strict';
+    
+        
     
            $scope.createUser = function() {
               $scope.message = null;
@@ -97,6 +99,7 @@ app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', f
               // Create a new user
               Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
                 .then(function(firebaseUser) {
+                  
                   $scope.message = "User created with uid: " + firebaseUser.uid;
                 }).catch(function(error) {
                   $scope.error = error;
@@ -109,10 +112,11 @@ app.controller('authCtrl', ['$scope', '$rootScope', '$firebaseObject', 'Auth', f
 app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebaseArray', '$firebaseObject',
     function ($scope, Auth, toaster,$location, $firebaseArray, $firebaseObject) {
         'use strict';
+                
                              
-        $scope.signin = {}
-        $scope.signin.state = false
-        $scope.signin.uid = null
+        $scope.signin = {};
+        $scope.signin.state = false;
+        $scope.signin.uid = null;
         var ref = firebase.database().ref();
         $scope.userStates = $firebaseArray(ref.child("userState"));
         // add auth state listener
@@ -120,24 +124,27 @@ app.controller("loginCtrl", ["$scope", "Auth", 'toaster','$location', '$firebase
         
         
         Auth.$onAuthStateChanged(function(user) {
-
+            
+            if($location.path("/login") && user) {
+                    $location.path("/sdt");
+            }
+            
             if (user) {
                 $scope.signin.state = true;
                 $scope.signin.uid = user.uid;
                 $scope.email = user.email;
-//                $scope.signin.profile = {};
+                
+//              $scope.signin.profile = {};
 //              document.location.href= "dashboard.html#!/sdt";
-                console.log($scope.signin.uid);
-                
-                
+//              console.log($scope.signin.uid);
             
                 
             } else {
                 $scope.signin.state = false
                 $scope.signin.uid = null
             }
-        })
-
+        });
+        
         // signout
         $scope.signout = function() {
             Auth.$signOut();

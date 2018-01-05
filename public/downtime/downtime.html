@@ -10,53 +10,88 @@
       <li class="breadcrumb-item active">Search and add downtime</li>
    </ol>
 </div>
-<div>
 
-<div class="row">
-   <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <button type="button" class="btn btn-info cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime<span class="glyphicon glyphicon-plus"></span></button>
-   </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+
+   
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#manageDT" data-backdrop="false">Add Downtime <span class="fa fa-plus"></span></button>
+        
       <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
       Search Downtime <span class="fa fa-fw fa-search"></span>
       </button>
-    </div>
     
-</div>
     
 <div class="row" style="margin-top: 10px">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="filter-panel" class="collapse filter-panel">
          <div class="panel panel-default">
             <div class="panel-body">
+                
                <div class="row">
                   <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
-                     <label for="selectequ">Select equipment list:</label>
-                     <select class="form-control" id="selectequ" data-ng-model="equipment" data-ng-change="filterChange()">
-                        <option selected value="">All</option>
-                        <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
-                     </select>
+                    <hr/>
+                      <fieldset>
+                        <legend>Select by equipment list</legend>
+                          
+                        <select class="form-control" id="selectequ" data-ng-model="equipment" data-ng-change="filterChange()">
+                            <option selected value="">All</option>
+                            <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
+                        </select>                      
+                      </fieldset>                     
                   </div>
                   <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                     <label for="date">Select date</label>
-                      
-                        <div class="input-group date dtFilter" data-date="" data-link-field="dtp_input6">
+                    <hr/>
+                      <fieldset>
+                      <legend>Select by date</legend>
+                          <div class="input-group date dtFilter" data-date="" data-link-field="dtp_input6">
                             <input class="form-control" size="16" type="text" value="" ng-model="dateFilter" data-ng-change="filterChange()" readonly>
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
                         </div>
-                        <br/>
+                          
+                      </fieldset>
+                     
                   </div>
                    
                   <br>
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
-                     <label for="type">Select type:</label>
+                    <fieldset>
+                    <legend>Select by type of maintenance</legend>  
+                        
+                    <label class="custom-control custom-radio">
+                      <input id="radio1" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" value = "Corrective Maintenance" >
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Corrective Maintenance</span>
+                    </label>
+                      
+                      <label class="custom-control custom-radio">
+                      <input id="radio2" type="radio" class="custom-control-input"  data-ng-change="filterChange()" data-ng-model = "type" value = "Preventive Maintenance">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Preventive Maintenance</span>
+                    </label>
+                      
+                    <label class="custom-control custom-radio">
+                      <input id="radio3" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" value = "Standby">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Standby</span>
+                    </label>
+                      
+                    <label class="custom-control custom-radio">
+                      <input id="radio4" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" data-ng-checked = "true" value="">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">All</span>
+                    </label>
+                    </fieldset>
+                    <hr/>
+
+                    
+                      
+<!--
                      <br/>
                      <input id="corr" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" /> <label for="corr">Corrective Maintenance &nbsp; &nbsp;</label>
                      <input id="pre" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" /><label for="pre">Preventive Maintenance &nbsp; &nbsp;</label>
                      <input id="st" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" /><label for="st">Standby &nbsp; &nbsp;</label>
                      <input id="all" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/><label for="all">All &nbsp;</label>
+-->
                   </div>
                </div>
             </div>
@@ -64,7 +99,6 @@
       </div>
    </div>
 </div>
-<hr/>
 
         <div class="card-header">
           <i class="fa fa-table"></i> Downtime Data

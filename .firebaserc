@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "eqdowntime"
+    "default": "eqdowntime",
+    "testingsdm": "testingsdm-ec1aa",
+    "eqdowntime": "eqdowntime",
+    "xfab-downtime": "xfab-downtime"
   }
 }
