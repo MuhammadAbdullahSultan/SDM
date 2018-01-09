@@ -153,7 +153,6 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     $scope.allEquipments = [];
     $scope.allSystems = [];
     $scope.allDT = [];
-    $scope.archivedData = [];
     
     // -------------------------------------------------------------------------------------------------------
     // LABELS
@@ -356,7 +355,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             
             
             scales: {
-                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
+                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {beginAtZero: true}}],
                 xAxes: [{
                     scaleLabel: {
                         display: true,
@@ -425,7 +424,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             
             
             scales: {
-                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0, max: 100}}],
+                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {beginAtZero: true}}],
                 xAxes: [{
                     scaleLabel: {
                         display: true,
@@ -684,10 +683,11 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             
             $scope.toDeleteDT = firebase.database().ref('downtime/' + $scope.allDT[$scope.indexDTValue].equipment + "/" + $scope.allDT[$scope.indexDTValue].$id);
         $scope.toDeleteDT.remove(function (event) {
+            console.log(event);
         });
         
         } else {
-           
+            
         }
     };
     
@@ -737,22 +737,22 @@ $scope.refreshList = function () {
                     if($scope.dayFilter && $scope.dayFilter != "" && $scope.dayFilter != moment(n.start).format("YYYY.MM.DD")) return;
                     // CHART FILTER END
                     
-                    var start = new Date (n.start);
-                    var end = new Date (n.end);
-
-                    var hours = Math.abs(end - start) / 36e5;
-                    hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
+                        
+                    
+                        
+                            var start = new Date (n.start);
+                            var end = new Date (n.end);
+                            var hours = Math.abs(end - start) / 36e5;
+                            hours = parseFloat(Math.round(hours * 100) / 100).toFixed(2);
+                        
                     
                     angular.forEach ($scope.dtdata, function (so) {
-                        var toPush = { "equipment": so.$id, "hours": hours };
                         
-                        if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
+                            var toPush = { "equipment": so.$id, "hours": hours };
                             $scope.downtimeHours.push(toPush);
-                        }
                         
                     });                    
                                         
-                    
                     
                     if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
                         var labels = [n.equipment];
@@ -767,10 +767,11 @@ $scope.refreshList = function () {
                     });
                     
                     for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
-                        
+                    if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
                         if($scope.equipmentLabels[i] === n.equipment) {
                             $scope.chartData[i] += parseFloat(hours);
                         }
+                    }
                         
                     }
                     
@@ -791,7 +792,9 @@ $scope.refreshList = function () {
                     $scope.totalDownTime = 0;
                     
                     for(var x = 0 ; x < $scope.chartData.length ; x++) {
-                        $scope.totalDownTime = $scope.chartData[x];
+                        if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
+                            $scope.totalDownTime = $scope.chartData[x];
+                        }
                     }
                                         
                     $scope.percentage = ($scope.totalDownTime/$scope.totalOperationTime) * 100;
@@ -828,12 +831,6 @@ $scope.refreshList = function () {
                         $scope.allDT.push(copy);
                     }
                     
-                    if (moment(copy.start).format("YYYY") !== new Date().getFullYear().toString()) {
-//                        console.log(date.getFullYear());
-//                        console.log($scope.checkYearStart);
-                        $scope.archivedData.push(copy);
-                    }
-                    
                     
                     
                     
@@ -842,48 +839,6 @@ $scope.refreshList = function () {
                 });
     
 }
-
-// ARCHIVES PAGINATION START
-
-    $scope.$watch("archivedEquipment", function (newVal, oldVal) {
-
-            for (var i = 0; i < $scope.archivedData.length; i++) {
-                if(newVal === undefined) {
-                newVal = "";
-                }
-
-                $scope.archivedData[i].filtered = $scope.archivedData[i].equipment.toUpperCase().indexOf(newVal.toUpperCase()) === -1;
-                        archivePaginationFunc();
-
-            }
-
-
-        });
-    $scope.$watch("archivedData.length", archivePaginationFunc);
-        $scope.$watch("currentPage + numPerPage", archivePaginationFunc);
-        $scope.selectedPage = function (index) {
-            $scope.currentPage = index;
-        }
-        $scope.changeNumPerPage = function (index) {
-            $scope.numPerPage = index * 5;
-        }
-        $scope.changePage = function (sign) {
-            var currentPageValue = eval($scope.currentPage + sign + 1);
-            if (currentPageValue < 1) currentPageValue = 1;
-            if (currentPageValue > $scope.numbers) currentPageValue = $scope.numbers;
-            $scope.currentPage = currentPageValue;
-        }
-        function archivePaginationFunc() {
-            var archivedData = $scope.archivedData.filter(function (item) { return !item.filtered });
-            $scope.numbers = Math.ceil(archivedData.length / $scope.numPerPage);
-            if ($scope.currentPage < 1) $scope.currentPage = 1;
-            if ($scope.currentPage > $scope.numbers) $scope.currentPage = $scope.numbers;
-            var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
-            $scope.filteredArchivedData = archivedData.slice(begin, end);
-        }
-
-
-// ARCHIVES PAGINATION END
 
 
     
@@ -903,7 +858,9 @@ $scope.refreshList = function () {
                                 
                         var toPush = { "description": n.description, "start": moment(n.start).format("DD/MM/YYYY HH:mm"), "end": moment(n.end).format("DD/MM/YYYY HH:mm") };
                         
-                        $scope.descriptionPush.push(toPush);
+                        if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
+                            $scope.descriptionPush.push(toPush);
+                        }
 
 
 
@@ -965,7 +922,6 @@ $scope.refreshList = function () {
             
                 
 
-                
             $scope.refreshList();
             
             dtlist.$watch(function(event) {

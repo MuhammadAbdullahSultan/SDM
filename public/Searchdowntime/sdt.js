@@ -124,6 +124,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
                         var start = new Date (n.start);
                         var end = new Date (n.end);
+                        
                     }
                     
                     
@@ -143,7 +144,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                     var difference = (Math.abs(firstDay - today) / 36e5);
 
                     angular.forEach($scope.upTimeCalculation , function (l) {
-                        if(l.equipment === n.equipment) 
+                        if(l.equipment === n.equipment && moment(n.start).format("YYYY") === new Date().getFullYear().toString()) 
                         {
                             l.uptime -= parseFloat(hours);
                             if(l.uptime <= 0) {
@@ -172,6 +173,7 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
             });
                 });
 }
+    
     
     
     
@@ -222,12 +224,13 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                                 $scope.toPushSystem = $scope.eqList[i].system;
                             }
                         }
+                        var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": 0, "year": ""};
                         if(moment(downt.start).format("YYYY") === new Date().getFullYear().toString()) {
-                            var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": 0, "year": ""};
                             $scope.upTimeCalculation.push(toPush);
+                            console.log($scope.upTimeCalculation);
                         }
                     })
-                })
+                });
                 
 //                console.log(toPush);
                     
@@ -238,17 +241,16 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
             
             $scope.refreshList();
             
-            dtlist.$watch(function(event) {
-                $scope.dtdata = dtlist; // Getting Downtime node
-                $scope.refreshList();
-            });
+//            dtlist.$watch(function(event) {
+//                $scope.dtdata = dtlist; // Getting Downtime node
+//                $scope.refreshList();
+//            });
             
             }).catch(function(error) {
                 $scope.error = error;
             });
     
     $scope.showData = function () {
-        console.log($scope.allUP);
         console.log($scope.upTimeCalculation);
     }
     

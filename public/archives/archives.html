@@ -9,6 +9,8 @@
                 <div class="card mb-3">
                 <div class="card-header">
           <i class="fa fa-table"></i> Archived Downtime Data
+                    
+                    <span><button style="margin-left: 10px" class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" value="export" title="Export table (Excel) to computer" data-ng-click="exportTools()"><span class="fa fa-fw fa-file-excel-o"></span></button></span>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -33,16 +35,14 @@
                </thead>
                <tbody>
                   <tr data-ng-repeat="d in filteredArchivedData | orderBy:orderByField:reverseSort | filter: d track by $index" ng-if="!d.filtered"> 
-                     <td>{{d.Equipment}}</td>
-                     <td>{{d.Start}}</td>
-                     <td>{{d.End}}</td>
-                     <td>{{d.Description}}</td>
-                     <td>{{d.Type}}</td>
-<!--
+                     <td>{{d.equipment}}</td>
+                     <td>{{d.start}}</td>
+                     <td>{{d.end}}</td>
+                     <td>{{d.description}}</td>
+                     <td>{{d.type}}</td>
                      <td>
-                         <button style="margin-left: 10px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.id); deleteArchivedDowntime();"><span class="fa fa-trash-o"></span></button>
+                         <button style="margin-left: 10px" id="delete_button1" class="delete btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" title="Delete downtime" data-ng-click="update(d.$id); deleteArchivedDowntime();"><span class="fa fa-trash-o"></span></button>
                       </td>
--->
                   </tr>
                </tbody>
        
