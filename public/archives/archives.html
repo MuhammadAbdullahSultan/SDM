@@ -3,6 +3,119 @@
 <div class="content-wrapper" data-ng-controller = "archivesCtrl">
     
     <div class="container-fluid">
+        
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filter-panel">
+      Search Archives <span class="fa fa-fw fa-search"></span>
+      </button>
+        
+        <div class="row" style="margin-top: 10px">
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="filter-panel" class="collapse filter-panel">
+         <div class="panel panel-default">
+            <div class="panel-body">
+                
+               <div class="row">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3 txtsize">
+                    <hr/>
+                      <fieldset>
+                        <legend>Select by equipment list</legend>
+                          
+                        <select class="form-control" id="selectequ" data-ng-model="equipment" data-ng-change="filterChange()">
+                            <option selected value="">All</option>
+                            <option data-ng-repeat="eq in dtdata track by $index">{{eq.$id}}</option>
+                        </select>                      
+                      </fieldset>                     
+                  </div>
+                   
+                   <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3" data-ng-show="(monthFilter == undefined || monthFilter == '') && (dayFilter == undefined || dayFilter == '')">
+                    <hr/>
+                      <fieldset>
+                      <legend>Year</legend>
+                          <div class="input-group date yearFilter" data-date="" data-link-field="dtp_input6">
+                            <input class="form-control" size="16" type="text" value="" ng-model="yearFilter" data-ng-change="filterChange()" readonly>
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                          
+                      </fieldset>
+                     
+                  </div>
+                   
+                   <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3" data-ng-show="(yearFilter == undefined || yearFilter == '') && (dayFilter == undefined || dayFilter == '')">
+                    <hr/>
+                      <fieldset>
+                      <legend>Month</legend>
+                          <div class="input-group date monthFilter" data-date="" data-link-field="dtp_input6">
+                            <input class="form-control" size="16" type="text" value="" ng-model="monthFilter" data-ng-change="filterChange()" readonly>
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                          
+                      </fieldset>
+                     
+                  </div>
+                   
+                  <div class="form-group col-xs-6 col-sm-6 col-md-3 col-lg-3" data-ng-show="(yearFilter == undefined || yearFilter == '') && (monthFilter == undefined || monthFilter == '')">
+                    <hr/>
+                      <fieldset>
+                      <legend>Day</legend>
+                          <div class="input-group date dtFilter" data-date="" data-link-field="dtp_input6">
+                            <input class="form-control" size="16" type="text" value="" ng-model="dateFilter" data-ng-change="filterChange()" readonly>
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            <span class="input-group-addon"><span class="fa fa-times" id="remove"></span></span>
+                        </div>
+                          
+                      </fieldset>
+                     
+                  </div>
+                   
+                  <br>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 txtsize">
+                    <fieldset>
+                    <legend>Select by type of maintenance</legend>  
+                        
+                    <label class="custom-control custom-radio">
+                      <input id="radio1" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" value = "Corrective Maintenance" >
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Corrective Maintenance</span>
+                    </label>
+                      
+                      <label class="custom-control custom-radio">
+                      <input id="radio2" type="radio" class="custom-control-input"  data-ng-change="filterChange()" data-ng-model = "type" value = "Preventive Maintenance">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Preventive Maintenance</span>
+                    </label>
+                      
+                    <label class="custom-control custom-radio">
+                      <input id="radio3" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" value = "Standby">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Standby</span>
+                    </label>
+                      
+                    <label class="custom-control custom-radio">
+                      <input id="radio4" type="radio" class="custom-control-input" data-ng-change="filterChange()" data-ng-model = "type" data-ng-checked = "true" value="">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">All</span>
+                    </label>
+                    </fieldset>
+                    <hr/>
+
+                    
+                      
+<!--
+                     <br/>
+                     <input id="corr" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Corrective Maintenance" /> <label for="corr">Corrective Maintenance &nbsp; &nbsp;</label>
+                     <input id="pre" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Preventive Maintenance" /><label for="pre">Preventive Maintenance &nbsp; &nbsp;</label>
+                     <input id="st" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" value = "Standby" /><label for="st">Standby &nbsp; &nbsp;</label>
+                     <input id="all" type = "radio" name="type" data-ng-model = "type" data-ng-change="filterChange()" data-ng-value = "" data-ng-checked="true"/><label for="all">All &nbsp;</label>
+-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
         <div class="row">
         
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -64,6 +177,108 @@
             </div>
             </div>
         </div>
+        
+        
+<!-- CHARTS -->
+        
+        <div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    
+    <div class="card mb-3">
+   <div class="card-header">
+      <i class="fa fa-area-chart"></i> Downtime Charts
+   </div>
+   <div class="card-body">
+    <div class="row" style="margin-left: 5px, margin-right: 5px">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                
+            
+                
+                Equipment Downtime (Hour)
+                
+            
+<!--
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Export graph (JPEG) to computer" id="saveImgHrDt" data-ng-click="downloadImgHrDt()"><span class="fa fa-fw fa-file-image-o"></span></button>
+            
+                <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" title="Print graph to PDF" id="downloadhr" data-ng-click="downloadHour()"><span class="fa fa-fw fa-file-pdf-o"></span></button>            
+-->
+            
+                
+            <hr/>
+            
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="chartData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartOptions" id="hour" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+            </div>
+        </div>
+       
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            
+            Equipment Downtime Percentage (%) 
+            
+<!--
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" data-ng-click="downloadImgPerDt()" title="Export graph (JPEG) to computer" id="saveImgPerDt"><span class="fa fa-fw fa-file-image-o"></span></button>
+            
+            <button class="btn cd-add-to-cart cd-add-to-cart:hover cd-add-to-cart:active" role="button" id="downloadper" data-ng-click="downloadPercentage()" title="Print graph to PDF"><span class="fa fa-fw fa-file-pdf-o"></span></button>
+-->
+            <hr/>
+            <div class="col-xs-10 border" id="chartStyle">
+                <canvas class="chart chart-bar" chart-data="percentageData" chart-labels="equipmentLabels" chart-series="series" chart-options="chartPercentOptions" id="percent" data-toggle="modal" data-target="#viewGraph" data-backdrop="false" chart-click="onClick"></canvas>
+            </div>        
+        </div>
+        
+        
     </div>
+    </div>
+</div>
+
+    
+</div>
 
 </div>
+    </div>
+    
+    <!--  Downtime Description Pop-up Modal  -->
+<div class="modal fade" id="viewGraph">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content txtsize">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">{{pointLabel}}</h4>
+       </div>
+       <div class="modal-body">
+           
+           <h4>Downtime description</h4>
+           <div class="table-responsive">
+               <table class="table table-responsive table-striped">
+                    <thead>
+                        <th>Equipment</th>
+                        <th>Description</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </thead>
+                   
+                   <tbody>
+                    <tr data-ng-repeat = "desc in descriptionPush">
+                       <td>{{pointLabel}}</td>
+                       <td>{{desc.description}}</td>
+                       <td>{{desc.start}}</td>
+                       <td>{{desc.end}}</td>
+                    </tr>
+                   </tbody>
+               </table>
+
+           </div>
+           
+           
+       </div>
+       <div class="modal-footer">
+           <button type="button" class="btn btn-danger txtsize" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+  </div>
+
+</div>
+

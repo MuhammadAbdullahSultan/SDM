@@ -227,7 +227,6 @@ app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filt
                         var toPush = { "equipment": so.$id, "uptime": difference, "system": $scope.toPushSystem, "uppercent": 0, "year": ""};
                         if(moment(downt.start).format("YYYY") === new Date().getFullYear().toString()) {
                             $scope.upTimeCalculation.push(toPush);
-                            console.log($scope.upTimeCalculation);
                         }
                     })
                 });
