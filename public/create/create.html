@@ -31,23 +31,41 @@
                                 <thead>
                                     <tr>
                                         <th><a href="javascript:void(0)" ng-click="orderByField='email'; reverseSort = !reverseSort">List of Existing Users Emails <span ng-show="orderByField == 'email'"><i ng-show="!reverseSort" class="icon-sort-up"></i><i ng-show="reverseSort" class="icon-sort-down"></i></span></a></th>
-                                        <th>Activate/Deactivate</th>
-                                        <th>Delete User</th>
+                                        <th>Status</th>
+                                        <th>Options</th>
+                                        
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="d in filteredUsers | orderBy:orderByField:reverseSort" ng-if="!d.filtered">
                                         <td>{{d.email}}</td>
+                                        <td data-ng-if="userStates.$getRecord(d.$id).active">Active</td>
+                                        <td data-ng-if="!userStates.$getRecord(d.$id).active">Not Active</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                              <button type="button" class="btn btn-info">Options</button>
+                                              <div class="btn-group" role="group">
+                                                <button id="btnGroupDrop2" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                  <a class="dropdown-item bg-danger" href="" data-ng-if="userStates.$getRecord(d.$id).active" data-ng-click="deactivateUser(d.$id)">Deactivate</a>
+                                                  <a class="dropdown-item bg-success" href="" data-ng-if="!userStates.$getRecord(d.$id).active" data-ng-click="activateUser(d.$id)">Activate</a>
+                                                  <a class="dropdown-item" href="" data-ng-click="deleteUser(d.$id); getId(d.$id);">Delete</a>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </td>
                                         
+<!--
                                         <td>
                                             <button data-ng-if="userStates.$getRecord(d.$id).active" class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deactivateUser(d.$id)">Deactivate</button>
                                             <button data-ng-if="!userStates.$getRecord(d.$id).active" class="btn btn-success col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="activateUser(d.$id)">Activate</button>
                                         </td>
                                         
                                         <td>
-                                            <button class="btn btn-danger col-xs-6 col-sm-6 col-md-6 col-lg-6" data-ng-click="deleteUser(d.$id); getId(d.$id);">Delete</button>
+                                            <button class="btn btn-danger" data-ng-click="deleteUser(d.$id); getId(d.$id);">Delete</button>
                                         </td>
+-->
 
                                     </tr>
 

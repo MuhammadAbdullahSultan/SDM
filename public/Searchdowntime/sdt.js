@@ -20,6 +20,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 app.controller('sdtCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$filter', function ($scope, $firebaseObject, $firebaseArray, $filter) {
     'use strict';
     
+    
+    
     $('#remove').datetimepicker('remove');
         
     //export Canvas to PDF

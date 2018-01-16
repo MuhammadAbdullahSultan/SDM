@@ -1,0 +1,26 @@
+[debug] [2018-01-16T11:48:58.908Z] ----------------------------------------------------------------------
+[debug] [2018-01-16T11:48:58.910Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Abdullah\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --except functions
+[debug] [2018-01-16T11:48:58.910Z] CLI Version:   3.16.0
+[debug] [2018-01-16T11:48:58.910Z] Platform:      win32
+[debug] [2018-01-16T11:48:58.910Z] Node Version:  v8.9.1
+[debug] [2018-01-16T11:48:58.911Z] Time:          Tue Jan 16 2018 14:48:58 GMT+0300 (Arab Standard Time)
+[debug] [2018-01-16T11:48:58.911Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-16T11:48:58.922Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-16T11:48:58.922Z] > authorizing via signed-in user
+[debug] [2018-01-16T11:48:58.924Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/eqdowntime  
+  
+ Tue Jan 16 2018 14:48:58 GMT+0300 (Arab Standard Time)
+[debug] [2018-01-16T11:49:00.307Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-16T11:49:00.307Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/eqdowntime/tokens  
+  
+ Tue Jan 16 2018 14:49:00 GMT+0300 (Arab Standard Time)
+[debug] [2018-01-16T11:49:01.296Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'eqdowntime'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing public directory for upload...
+[debug] [2018-01-16T11:49:05.830Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/eqdowntime/uploads/-L2ynFUyMZHlgnSqIjRh?fileCount=3079&message=  
+  
+ Tue Jan 16 2018 14:49:05 GMT+0300 (Arab Standard Time)

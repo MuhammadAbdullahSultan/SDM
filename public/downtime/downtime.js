@@ -19,6 +19,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', 'toaster', function ($scope, $firebaseObject, $firebaseArray, toaster) {
     
+    
+    
     $scope.downtimeJson = [];
     
     var ref = firebase.database().ref();
@@ -313,14 +315,14 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
     
     //////////////////DOWNTIME HOUR CHART//////////
     
+       
+    
+    Chart.defaults.global.colors = [];
+    
+    for(var i = 0 ; i < 100 ; i++) {
+        Chart.defaults.global.colors.push("#007bff");
+    }
         $scope.chartOptions = {
-            data: {
-            datasets: [{
-                fillColor: "rgba(14,72,100,1)",
-                strokeColor: "brown",
-                borderWidth: 1
-            }]
-        },
             title: {
                 display: true,
                 text: "Equipment Downtime",
@@ -355,7 +357,7 @@ app.controller('downtimeCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '
             
             
             scales: {
-                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {beginAtZero: true}}],
+                yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 0}}],
                 xAxes: [{
                     scaleLabel: {
                         display: true,
@@ -765,6 +767,7 @@ $scope.refreshList = function () {
                             $scope.percentageData.push(0);
                         }
                     });
+                    
                     
                     for (var i = 0 ; i < $scope.equipmentLabels.length ; i++) {
                     if(moment(n.start).format("YYYY") === new Date().getFullYear().toString()) {
